@@ -1,0 +1,117 @@
+import UserModel from "../models/User.Model.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import IdeaFormModel from "../models/IdeaForm.Model.js";
+const register = async (req, res) => {
+  try {
+    const { fullname, email, mobileNumber, password } = req.body;
+    if ((!mobileNumber || !fullname, !email || !password)) {
+      throw new Error("All fields are mandatory.");
+    }
+    if (/^[a-zA-Z09._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+      // console.log("true");
+      throw new Error("Email is wrong please check your email...");
+    }
+    const user = await UserModel.findOne({ email });
+    if (user) {
+      throw new Error("User already exist you can login..");
+    }
+    const usermobilecheck = await UserModel.findOne({ mobileNumber });
+    if (usermobilecheck) {
+      throw new Error(
+        "User already exist with this mobile number you can login.."
+      );
+    }
+
+    const hashpassword = await bcrypt.hash(password, 10);
+    // Creating new user
+    const userx = await UserModel.create({
+      fullname,
+      email,
+      mobileNumber,
+      password: hashpassword,
+    });
+    const UserId = userx._id;
+    const token = await jwt.sign({ UserId }, process.env.SECRETKEY, {
+      expiresIn: "1h",
+    });
+    if (!token) {
+      throw new Error("token not genrated.");
+    }
+    res.status(201).json({ user: userx, token: token });
+    // }
+  } catch (error) {
+    res
+      .status(400)
+      .json({ message: "Problem while registering", Error: `${error}` });
+  }
+};
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      throw new Error("All fields are mandatory.");
+    }
+    let user = "";
+    const value = email;
+    if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)) {
+      user = await UserModel.findOne({ email });
+    } else {
+      // console.log("false");
+      const mobileNumber = email;
+      user = await UserModel.findOne({ mobileNumber });
+    }
+    if (!user) {
+      throw new Error("User not found.");
+    }
+    // console.log(email, password);
+    // I have to write logic of sign in here
+    const isMatched = await bcrypt.compare(password, user.password);
+    if (!isMatched) {
+      console.log(isMatched);
+      return res
+        .status(400)
+        .json({ message: "Problem while login", Error: `Wrong password.` });
+    }
+    const UserId = user._id;
+    const token = jwt.sign({ UserId }, "wedsqrf", {
+      expiresIn: "1h",
+    });
+    if (!token) {
+      throw new Error("token not genrated.");
+    }
+    res.status(200).json({ user, token });
+  } catch (error) {
+    res.status(400).json({ message: "Problem while login", Error: `${error}` });
+  }
+};
+const Likes = async (req, res) => {
+  try {
+    const { id } = req.body;
+    if (!id) {
+      res.status(400).send("form Id not provided.", id);
+    }
+    const userId = req.user;
+    const _id = id;
+    const form = await IdeaFormModel.findById({ _id });
+    // console.log(id);
+    if (!form) {
+      throw new Error("Form not found.");
+    }
+    if (form.likes.includes(userId.id)) {
+      const UpdatedForm = await IdeaFormModel.findByIdAndUpdate(id, {
+        $pull: { likes: userId._id },
+      });
+      res.send(UpdatedForm);
+    } else {
+      const UpdatedForm = await IdeaFormModel.findByIdAndUpdate(_id, {
+        $push: { likes: userId._id },
+      });
+      res.send(UpdatedForm);
+    }
+  } catch (error) {
+    res.json({ message: "Some problem at likes api", error: error.message });
+  }
+};
+export { register, login, Likes };
