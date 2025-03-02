@@ -33,7 +33,7 @@ function FullForm2() {
         navigateTo("/");
       }
       const response = await axios
-        .post("http://localhost:3000/form/Fullform", Form, {
+        .post("https://inter-project-lnf5.onrender.com/form/Fullform", Form, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

@@ -10,10 +10,12 @@ function IdeaForms() {
   useEffect(() => {
     const requirement_api = async () => {
       try {
-        await axios.get("http://localhost:3000/form/IdiaForm").then((res) => {
-          console.log(res.data);
-          setforms(res.data);
-        });
+        await axios
+          .get("https://inter-project-lnf5.onrender.com/form/IdiaForm")
+          .then((res) => {
+            console.log(res.data);
+            setforms(res.data);
+          });
       } catch (error) {
         console.log("some error in getting requirement form details");
       }

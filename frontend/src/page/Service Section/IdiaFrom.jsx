@@ -52,7 +52,7 @@ export default function IdiaFrom() {
         navigateTo("/");
       }
       const response = await axios
-        .post("http://localhost:3000/form/IdiaForm", Form, {
+        .post("https://inter-project-lnf5.onrender.com/form/IdiaForm", Form, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

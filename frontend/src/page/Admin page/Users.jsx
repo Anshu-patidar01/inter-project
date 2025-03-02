@@ -8,7 +8,7 @@ function Users() {
     const requirement_api = async () => {
       try {
         await axios
-          .get("http://localhost:3000/admin/getAllUsers")
+          .get("https://inter-project-lnf5.onrender.com/admin/getAllUsers")
           .then((res) => {
             console.log(res.data);
             setforms(res.data);

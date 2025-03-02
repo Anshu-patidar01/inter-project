@@ -34,9 +34,9 @@ export default function LoginPage() {
       seterror("");
     }
     console.log(form);
-    // await axios.post("http://localhost:3000/login")
+    // await axios.post("https://inter-project-lnf5.onrender.com/login")
     await axios
-      .post("http://localhost:3000/login", form, {
+      .post("https://inter-project-lnf5.onrender.com/login", form, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {

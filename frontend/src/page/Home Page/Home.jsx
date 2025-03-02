@@ -14,7 +14,7 @@ function Home() {
     try {
       const token = localStorage.getItem("project");
       const response = await axios
-        .get("http://localhost:3000/form/limitedIdiaForm", {
+        .get("https://inter-project-lnf5.onrender.com/form/limitedIdiaForm", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -36,7 +36,7 @@ function Home() {
       const token = localStorage.getItem("project");
       await axios
         .post(
-          "http://localhost:3000/validate-token",
+          "https://inter-project-lnf5.onrender.com/validate-token",
           { token: `${token}` },
           {
             headers: { "Content-Type": "application/json" },
@@ -53,7 +53,7 @@ function Home() {
     const requirementform_api = async () => {
       try {
         await axios
-          .get("http://localhost:3000/form/Requirement")
+          .get("https://inter-project-lnf5.onrender.com/form/Requirement")
           .then((res) => {
             // console.log(" then requirement form api :", res.data);
             setrequirementform(res.data);
@@ -79,7 +79,7 @@ function Home() {
       console.log("id:", id);
       await axios
         .post(
-          "http://localhost:3000/like",
+          "https://inter-project-lnf5.onrender.com/like",
           { id: id },
           {
             headers: {
