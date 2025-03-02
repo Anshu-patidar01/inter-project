@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 app.use(
   cors({
     // origin: "https://intern-frontend-five.vercel.app/",
-    origin: "https://inter-project-gray.vercel.app/",
+    origin: "https://inter-project-gray.vercel.app",
     credentials: true,
   })
 );
