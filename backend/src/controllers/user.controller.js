@@ -9,7 +9,6 @@ const register = async (req, res) => {
       throw new Error("All fields are mandatory.");
     }
     if (/^[a-zA-Z09._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-      // console.log("true");
       throw new Error("Email is wrong please check your email...");
     }
     const user = await UserModel.findOne({ email });
