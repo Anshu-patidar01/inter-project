@@ -6,7 +6,7 @@ import "react-toastify/ReactToastify.css";
 import { MyContext } from "../Context/context";
 export default function RegisterationPage() {
   const navigate = useNavigate();
-  const { User, setUser } = useContext(MyContext);
+  const { setUser } = useContext(MyContext);
   const [form, setform] = useState({
     fullname: "",
     mobileNumber: "",
@@ -36,6 +36,71 @@ export default function RegisterationPage() {
     }
     try {
       console.log(form);
+      if (form.fullname === "") {
+        toast.error("Full Name is Required!", {
+          position: "top-center",
+        });
+        return;
+      }
+      if (form.email === "") {
+        toast.error("Email is Required!", {
+          position: "top-center",
+        });
+        return;
+      }
+      if (form.mobileNumber === "") {
+        toast.error("Mobile Number is Required!", {
+          position: "top-center",
+        });
+        return;
+      }
+      if (form.password === "") {
+        toast.error("Password is Required!", {
+          position: "top-center",
+        });
+        return;
+      }
+      const email = form.email;
+      if (/^[a-zA-Z09._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+        // console.log("true");
+        toast.error("Wrong Email Id!", {
+          position: "top-center",
+        });
+        return;
+      }
+
+      if (password.length < 8) {
+        toast.error("Must be at least 8 characters.", {
+          position: "top-center",
+        });
+        return;
+      }
+      if (!/[A-Z]/.test(password)) {
+        toast.error("Must include an uppercase letter.", {
+          position: "top-center",
+        });
+        return;
+      }
+      if (!/[a-z]/.test(password)) {
+        toast.error("Must include a lowercase letter.", {
+          position: "top-center",
+        });
+        return;
+      }
+      if (!/[0-9]/.test(password)) {
+        toast.error("Must include a number.", {
+          position: "top-center",
+        });
+        return;
+      }
+      const password = form.password;
+      if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+        toast.error("Must include a special character.", {
+          position: "top-center",
+        });
+        return;
+      }
+
       const response = await axios
         .post("https://inter-project-lnf5.onrender.com/register", form, {
           headers: { "Content-Type": "application/json" },
@@ -51,7 +116,7 @@ export default function RegisterationPage() {
 
           localStorage.setItem("project", token);
           toast.success("Registered Succefully.", {
-            position: "top-right",
+            position: "top-center",
           });
           setUser(response.data);
           setTimeout(() => {
@@ -65,7 +130,7 @@ export default function RegisterationPage() {
           };
           console.log(response);
           toast.error(response.error, {
-            position: "top-right",
+            position: "top-center",
           });
         });
     } catch (error) {
@@ -75,14 +140,6 @@ export default function RegisterationPage() {
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
       <div className="">
         <ToastContainer />
         <div className=" flex flow-row  items-center justify-center gap-3 w-full h-8 text-center text-red-600/80 bg-green-100/75">
@@ -126,12 +183,13 @@ export default function RegisterationPage() {
                   htmlFor="fullName"
                   className="block text-sm/6 font-medium text-gray-900"
                 >
-                  Full Name
+                  Full Name <span className="text-red-600">*</span>
                 </label>
                 <div className="mt-2">
                   <input
                     id="fullname"
                     type="text"
+                    placeholder="Enter your Full Name"
                     name="fullname"
                     value={form.fullname}
                     onChange={handleChange}
@@ -146,7 +204,7 @@ export default function RegisterationPage() {
                   htmlFor="mobilenumber"
                   className="block text-sm/6 font-medium text-gray-900"
                 >
-                  Mobile no
+                  Mobile Number<span className="text-red-600">*</span>
                 </label>
                 <div className="mt-2">
                   <input
@@ -167,7 +225,7 @@ export default function RegisterationPage() {
                   htmlFor="email"
                   className="block text-sm/6 font-medium text-gray-900"
                 >
-                  Email address
+                  Email Address<span className="text-red-600">*</span>
                 </label>
                 <div className="mt-2">
                   <input
@@ -189,7 +247,7 @@ export default function RegisterationPage() {
                     htmlFor="password"
                     className="block text-sm/6 font-medium text-gray-900"
                   >
-                    Create Password
+                    Create Password<span className="text-red-600">*</span>
                   </label>
                   <div className="text-sm">
                     <a

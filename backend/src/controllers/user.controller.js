@@ -14,7 +14,7 @@ const register = async (req, res) => {
     }
     const user = await UserModel.findOne({ email });
     if (user) {
-      throw new Error("User already exist you can login..");
+      throw new Error("User is already registered Please click on login");
     }
     const usermobilecheck = await UserModel.findOne({ mobileNumber });
     if (usermobilecheck) {
