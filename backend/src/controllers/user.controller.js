@@ -47,14 +47,8 @@ const register = async (req, res) => {
       mobileNumber,
       password: hashpassword,
     });
-    const UserId = userx._id;
-    const token = await jwt.sign({ UserId }, process.env.SECRETKEY, {
-      expiresIn: "1h",
-    });
-    if (!token) {
-      throw new Error("token not genrated.");
-    }
-    res.status(201).json({ user: userx, token: token });
+
+    res.status(201).json({ user: userx });
     // }
   } catch (error) {
     res

@@ -47,15 +47,9 @@ export default function RegisterationPage() {
             email: "",
             password: "",
           });
-          const token = response.data.token;
-
-          localStorage.setItem("project", token);
-          toast.success("Registered Succefully.", {
-            position: "top-center",
-          });
           setUser(response.data);
           setTimeout(() => {
-            navigate("/idiaSubmit");
+            navigate("/login");
           }, 1000);
         })
         .catch((error) => {
