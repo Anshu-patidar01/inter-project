@@ -12,6 +12,8 @@ import AdminRoute from "./Routes/AdminRoute";
 import LoginPage from "./components/LoginPage";
 import CategoryPage from "./page/CategoryPage";
 import NavigationBar from "./components/NavigationBar";
+import Footer from "./page/Footer";
+import ContactPage from "./page/Service Section/ContactPage";
 function App() {
   return (
     <>
@@ -23,6 +25,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/services" element={<ServicePage />} />
           <Route path="/category" element={<CategoryPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           {/* idiaSubmit form route */}
           <Route
             path="/idiaSubmit"
@@ -63,6 +66,7 @@ function App() {
             }
           />
         </Routes>
+        <Footer />
       </Router>
     </>
   );
