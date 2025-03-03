@@ -14,7 +14,9 @@ function Footer() {
         </div>
         <div></div>
       </div>
-      <div className=" text-white text-center ">Copyright @2025</div>
+      <div className=" text-white text-center mt-5 sm:mt-0">
+        Copyright @2025
+      </div>
     </div>
   );
 }
