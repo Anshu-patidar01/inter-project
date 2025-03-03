@@ -61,6 +61,8 @@ export default function RegisterationPage() {
         return;
       }
       const email = form.email;
+      const password = form.password;
+
       if (/^[a-zA-Z09._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
         // console.log("true");
         toast.error("Wrong Email Id!", {
@@ -93,7 +95,6 @@ export default function RegisterationPage() {
         });
         return;
       }
-      const password = form.password;
       if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
         toast.error("Must include a special character.", {
           position: "top-center",
