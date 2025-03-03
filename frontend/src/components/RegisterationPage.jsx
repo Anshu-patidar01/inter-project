@@ -63,7 +63,7 @@ export default function RegisterationPage() {
       const email = form.email;
       const password = form.password;
 
-      if (/^[a-zA-Z09._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+      if (!/^[a-zA-Z09._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
         // console.log("true");
         toast.error("Wrong Email Id!", {
           position: "top-center",
@@ -271,6 +271,11 @@ export default function RegisterationPage() {
                     className="block w-full rounded-md shadow-md shadow-gray-500 focus:shadow-xl focus:outline-none transition-shadow duration-500 bg-sky-100 px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
                 </div>
+                <span className="text-gray-50 text-base">
+                  {" "}
+                  Use at least 8 characters, including uppercase, lowercase, a
+                  number, and a special character.
+                </span>
               </div>
 
               <div>
