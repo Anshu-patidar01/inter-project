@@ -7,10 +7,10 @@ function Footer() {
       <div className=" h-10 sm:items-center sm:p-10 p-3 text-white flex  flex-col sm:flex-row sm:flex sm:justify-between">
         <div className="flex gap-4 flex-row">
           <Link to={"/"}>Home</Link>
-          <Link to={"/services"}>Our Service</Link>
+          <Link to={"/services"}>Service</Link>
           <Link to={"/"}>Portfolio</Link>
           <Link to={"/contact"}>Contact</Link>
-          <Link to={"/"}>About us</Link>
+          <Link to={"/"}>About</Link>
         </div>
         <div></div>
       </div>
