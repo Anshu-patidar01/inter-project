@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import base_api from "../../utility/contants";
 function FullForm2() {
   const [Form, setForm] = useState({
     company: "",
@@ -33,7 +34,7 @@ function FullForm2() {
         navigateTo("/");
       }
       const response = await axios
-        .post("https://inter-project-lnf5.onrender.com/form/Fullform", Form, {
+        .post(`${base_api}/form/Fullform`, Form, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

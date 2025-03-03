@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Nav from "./Nav";
 import axios from "axios";
+import base_api from "../../utility/contants";
 function RequirementForm() {
   const [forms, setforms] = useState([]);
 
@@ -8,7 +9,7 @@ function RequirementForm() {
     const requirement_api = async () => {
       try {
         await axios
-          .get("https://inter-project-lnf5.onrender.com/form/Requirement")
+          .get(`${base_api}/form/Requirement`)
           .then((res) => {
             console.log(res.data);
             setforms(res.data);

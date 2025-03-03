@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../Context/AdminContex.jsx";
 import PopUpCard from "./PopUpCard.jsx";
 import Nav from "./Nav.jsx";
+import base_api from "../../utility/contants.js";
 
 function IdeaForms() {
   const [forms, setforms] = useState([]);
@@ -11,7 +12,7 @@ function IdeaForms() {
     const requirement_api = async () => {
       try {
         await axios
-          .get("https://inter-project-lnf5.onrender.com/form/IdiaForm")
+          .get(`${base_api}/form/IdiaForm`)
           .then((res) => {
             console.log(res.data);
             setforms(res.data);

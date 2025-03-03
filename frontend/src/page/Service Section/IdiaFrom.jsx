@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import axios from "axios";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import base_api from "../../utility/contants";
 export default function IdiaFrom() {
   const [Copyright, setCopyright] = useState("");
   const [CheckBox, setCheckBox] = useState(false);
@@ -52,7 +53,7 @@ export default function IdiaFrom() {
         navigateTo("/");
       }
       const response = await axios
-        .post("https://inter-project-lnf5.onrender.com/form/IdiaForm", Form, {
+        .post(`${base_api}/form/IdiaForm`, Form, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

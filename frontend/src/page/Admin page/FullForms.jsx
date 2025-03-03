@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Nav from "./Nav";
 import axios from "axios";
+import base_api from "../../utility/contants";
 function FullForms() {
   const [forms, setforms] = useState([]);
 
   useEffect(() => {
     const requirement_api = async () => {
       try {
-        await axios
-          .get("https://inter-project-lnf5.onrender.com/form/Fullform")
-          .then((res) => {
-            console.log(res.data);
-            setforms(res.data);
-          });
+        await axios.get(`${base_api}/form/Fullform`).then((res) => {
+          console.log(res.data);
+          setforms(res.data);
+        });
       } catch (error) {
         console.log("some error in getting requirement form details");
       }

@@ -5,6 +5,7 @@ import axios from "axios";
 import { MyContext } from "../../Context/context";
 import { useNavigate } from "react-router-dom";
 import PopupCartUser from "../../components/PopupCartUser";
+import base_api from "../../utility/contants";
 function Home() {
   const { forms, setform, User, setUser, setpop, Pop } = useContext(MyContext);
   const [requirementform, setrequirementform] = useState([]);
@@ -14,7 +15,7 @@ function Home() {
     try {
       const token = localStorage.getItem("project");
       const response = await axios
-        .get("https://inter-project-lnf5.onrender.com/form/limitedIdiaForm", {
+        .get(`${base_api}/form/limitedIdiaForm`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -36,7 +37,7 @@ function Home() {
       const token = localStorage.getItem("project");
       await axios
         .post(
-          "https://inter-project-lnf5.onrender.com/validate-token",
+          `${base_api}/validate-token`,
           { token: `${token}` },
           {
             headers: { "Content-Type": "application/json" },
@@ -53,7 +54,7 @@ function Home() {
     const requirementform_api = async () => {
       try {
         await axios
-          .get("https://inter-project-lnf5.onrender.com/form/Requirement")
+          .get(`{base_api}/form/Requirement`)
           .then((res) => {
             // console.log(" then requirement form api :", res.data);
             setrequirementform(res.data);
@@ -79,7 +80,7 @@ function Home() {
       console.log("id:", id);
       await axios
         .post(
-          "https://inter-project-lnf5.onrender.com/like",
+          `${base_api}/like`,
           { id: id },
           {
             headers: {

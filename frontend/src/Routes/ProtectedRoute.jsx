@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { MyContext } from "../Context/context";
+import base_api from "../utility/contants";
 
 const ProtectedRoute = ({ children, to }) => {
   const [isAuthorized, setIsAuthorized] = useState(null);
@@ -19,7 +20,7 @@ const ProtectedRoute = ({ children, to }) => {
         await axios
           .post(
             // "https://inter-project-lnf5.onrender.com/user/validate-token",
-            "https://inter-project-lnf5.onrender.com/validate-token",
+            `${base_api}/validate-token`,
             { token: `${token}` },
             {
               headers: { "Content-Type": "application/json" },

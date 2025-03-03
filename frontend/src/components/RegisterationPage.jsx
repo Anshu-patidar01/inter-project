@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { MyContext } from "../Context/context";
+import base_api from "../utility/contants";
 export default function RegisterationPage() {
   const navigate = useNavigate();
   const { setUser } = useContext(MyContext);
@@ -35,75 +36,8 @@ export default function RegisterationPage() {
       seterror("");
     }
     try {
-      console.log(form);
-      if (form.fullname === "") {
-        toast.error("Full Name is Required!", {
-          position: "top-center",
-        });
-        return;
-      }
-      if (form.email === "") {
-        toast.error("Email is Required!", {
-          position: "top-center",
-        });
-        return;
-      }
-      if (form.mobileNumber === "") {
-        toast.error("Mobile Number is Required!", {
-          position: "top-center",
-        });
-        return;
-      }
-      if (form.password === "") {
-        toast.error("Password is Required!", {
-          position: "top-center",
-        });
-        return;
-      }
-      const email = form.email;
-      const password = form.password;
-
-      if (/^[a-zA-Z09._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-        // console.log("true");
-        toast.error("Wrong Email Id!", {
-          position: "top-center",
-        });
-        return;
-      }
-
-      if (password.length < 8) {
-        toast.error("Must be at least 8 characters.", {
-          position: "top-center",
-        });
-        return;
-      }
-      if (!/[A-Z]/.test(password)) {
-        toast.error("Must include an uppercase letter.", {
-          position: "top-center",
-        });
-        return;
-      }
-      if (!/[a-z]/.test(password)) {
-        toast.error("Must include a lowercase letter.", {
-          position: "top-center",
-        });
-        return;
-      }
-      if (!/[0-9]/.test(password)) {
-        toast.error("Must include a number.", {
-          position: "top-center",
-        });
-        return;
-      }
-      if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-        toast.error("Must include a special character.", {
-          position: "top-center",
-        });
-        return;
-      }
-
       const response = await axios
-        .post("https://inter-project-lnf5.onrender.com/register", form, {
+        .post(`${base_api}/register`, form, {
           headers: { "Content-Type": "application/json" },
         })
         .then((response) => {

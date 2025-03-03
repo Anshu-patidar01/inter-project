@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { MyContext } from "../Context/context.jsx";
+import base_api from "../utility/contants.js";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ export default function LoginPage() {
     console.log(form);
     // await axios.post("https://inter-project-lnf5.onrender.com/login")
     await axios
-      .post("https://inter-project-lnf5.onrender.com/login", form, {
+      .post(`${base_api}/login`, form, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
