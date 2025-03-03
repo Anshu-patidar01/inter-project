@@ -54,7 +54,7 @@ function Home() {
     const requirementform_api = async () => {
       try {
         await axios
-          .get(`{base_api}/form/Requirement`)
+          .get(`${base_api}/form/Requirement`)
           .then((res) => {
             // console.log(" then requirement form api :", res.data);
             setrequirementform(res.data);

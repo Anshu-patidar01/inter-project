@@ -63,7 +63,7 @@ export default function RegisterationPage() {
             message: error.response.data.message,
             error: error.response.data.Error,
           };
-          console.log(response);
+          console.log(response.error);
           toast.error(response.error, {
             position: "top-center",
           });

@@ -2,18 +2,35 @@ import UserModel from "../models/User.Model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import IdeaFormModel from "../models/IdeaForm.Model.js";
+import validator from "validator";
+
 const register = async (req, res) => {
   try {
     const { fullname, email, mobileNumber, password } = req.body;
-    if ((!mobileNumber || !fullname, !email || !password)) {
-      throw new Error("All fields are mandatory.");
+
+    if (!fullname) {
+      throw new Error("Full Name is required.");
     }
-    if (/^[a-zA-Z09._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-      throw new Error("Email is wrong please check your email...");
+    if (!mobileNumber) {
+      throw new Error("Mobile Number is required.");
+    }
+    if (!email) {
+      throw new Error("Email is required.");
+    }
+    if (!password) {
+      throw new Error("Password is required.");
+    }
+    if (!validator.isEmail(email)) {
+      throw new Error("Email is Wrong please check!");
+    }
+    if (!validator.isStrongPassword(password)) {
+      throw new Error(
+        "Use at least 8 characters, including uppercase, lowercase, a number, and a special character.!"
+      );
     }
     const user = await UserModel.findOne({ email });
     if (user) {
-      throw new Error("User is already registered Please click on login");
+      throw new Error("Email is Wrong please check!");
     }
     const usermobilecheck = await UserModel.findOne({ mobileNumber });
     if (usermobilecheck) {
@@ -50,22 +67,22 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      throw new Error("All fields are mandatory.");
+      throw new Error("Email and Password is required!");
     }
     let user = "";
     const value = email;
-    if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)) {
+    if (validator.isEmail(value)) {
       user = await UserModel.findOne({ email });
-    } else {
-      // console.log("false");
+    } else if (validator.isMobilePhone(email, "en-IN")) {
       const mobileNumber = email;
       user = await UserModel.findOne({ mobileNumber });
+    } else {
+      throw new Error("Email Address or Mobile Number is incorrect");
     }
     if (!user) {
-      throw new Error("User not found.");
+      throw new Error("Email Address or Mobile Number is incorrect");
     }
     // console.log(email, password);
-    // I have to write logic of sign in here
     const isMatched = await bcrypt.compare(password, user.password);
     if (!isMatched) {
       console.log(isMatched);
