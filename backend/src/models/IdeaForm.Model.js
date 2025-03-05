@@ -41,7 +41,7 @@ const IdeaFormSchema = new mongoose.Schema(
     gender: {
       type: String,
       required: true,
-      enum: ["Male", "Female"],
+      enum: ["Male", "Female", "Other"],
     },
 
     copyright: {

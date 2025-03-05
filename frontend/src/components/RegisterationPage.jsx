@@ -106,7 +106,7 @@ export default function RegisterationPage() {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="#" method="POST" className="space-y-6">
+            <form onSubmit={(e) => handleSubmit(e)} className="space-y-6">
               <div>
                 <label
                   htmlFor="fullName"
@@ -207,13 +207,12 @@ export default function RegisterationPage() {
               </div>
 
               <div>
-                <Link
-                  to={"/FullFrom"}
-                  onClick={handleSubmit}
+                <button
+                  type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   sign-up
-                </Link>
+                </button>
               </div>
             </form>
             <p className="text-[1rem] text-center">

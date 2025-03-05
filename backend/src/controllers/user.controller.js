@@ -30,7 +30,9 @@ const register = async (req, res) => {
     }
     const user = await UserModel.findOne({ email });
     if (user) {
-      throw new Error("Email is Wrong please check!");
+      throw new Error(
+        "User already exist with this Email Address you can login.."
+      );
     }
     const usermobilecheck = await UserModel.findOne({ mobileNumber });
     if (usermobilecheck) {

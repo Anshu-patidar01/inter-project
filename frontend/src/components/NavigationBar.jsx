@@ -15,7 +15,7 @@ import {
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/react";
-import { ChevronUpDownIcon } from "@heroicons/react/16/solid";
+import { ChevronDownIcon, ChevronUpDownIcon } from "@heroicons/react/16/solid";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useContext, useEffect } from "react";
@@ -71,43 +71,6 @@ export default function NavigationBar() {
     };
   }, []);
 
-  const people = [
-    {
-      id: 0,
-      name: "All Category",
-    },
-    {
-      id: 1,
-      name: "Short Story",
-    },
-    {
-      id: 2,
-      name: "Story",
-    },
-    {
-      id: 3,
-      name: "Lyrics",
-    },
-    {
-      id: 4,
-      name: "Poem",
-    },
-    {
-      id: 5,
-      name: "Theme",
-    },
-    {
-      id: 6,
-      name: "Music",
-    },
-    {
-      id: 7,
-      name: "Other...",
-    },
-  ];
-
-  const [selected, setSelected] = useState(people[0]);
-
   return (
     <Disclosure as="nav" className="bg-gray-800 ">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -140,68 +103,38 @@ export default function NavigationBar() {
                 </Link>
                 <Link
                   className={
-                    "bg-gray-600 text-white rounded-md text-sm font-medium px-1"
+                    "bg-gray-600 text-white rounded-md  text-sm font-medium"
                   }
                 >
-                  <Listbox
-                    value={selected}
-                    onChange={(e) => {
-                      setSelected(e);
-                      setallcategory(e);
-                      if (e.name == allcategory.name) {
-                        setSelected(allcategory);
-                      }
-                      const name = e.name;
-                      if (name === "All Category") {
-                        window.location.href = "/";
-                      } else {
-                        window.location.href = "/category";
-                        console.log("hello");
-                      }
-                    }}
-                    // console.log(selected.name);
-                    // }}
-                  >
-                    <div className="relative ">
-                      <ListboxButton className="grid w-full p-1 cursor-default grid-cols-1 rounded-md bg-gray-600 text-left text-white  sm:text-sm/6">
-                        <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6">
-                          <span className="block truncate">
-                            {selected.name}
-                          </span>
-                        </span>
-                        <ChevronUpDownIcon
-                          aria-hidden="true"
-                          className="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-                        />
-                      </ListboxButton>
-
-                      <ListboxOptions
-                        transition
-                        className="absolute w-40 z-10 mt-1 max-h-56  overflow-auto rounded-md bg-gray-700 text-white py-1 text-base outline-none focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm"
-                      >
-                        {people.map((person) => (
-                          <ListboxOption
-                            key={person.id}
-                            value={person}
-                            className="group relative cursor-default select-none  text-white data-[focus]:bg-indigo-600 data-[focus]:text-white data-[focus]:outline-none"
-                          >
-                            <div className="flex items-center">
-                              <span className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
-                                {person.name}
-                              </span>
-                            </div>
-
-                            <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-[&:not([data-selected])]:hidden group-data-[focus]:text-white">
-                              <CheckIcon
-                                aria-hidden="true"
-                                className="size-5"
-                              />
-                            </span>
-                          </ListboxOption>
-                        ))}
-                      </ListboxOptions>
-                    </div>
-                  </Listbox>
+                  <div className=" grid grid-cols-1">
+                    <select
+                      id="Categories"
+                      name="categories"
+                      onChange={(e) => {
+                        setallcategory(e.target.value);
+                        // console.log(allcategory);
+                        // navigate("/category");
+                      }}
+                      onClick={() => navigate("/category")}
+                      value={allcategory}
+                      //autoComplete="Topic"
+                      className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-gray-600 py-1.5 pr-8 pl-3 text-base text-white outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                    >
+                      <option className="">All Category</option>
+                      <option>Short Story</option>
+                      <option>Story</option>
+                      <option>Full Script</option>
+                      <option>Lyrics</option>
+                      <option>Poem</option>
+                      <option>Theme</option>
+                      <option>Music</option>
+                      <option>Other...</option>
+                    </select>
+                    <ChevronDownIcon
+                      aria-hidden="true"
+                      className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
+                    />
+                  </div>
                 </Link>
                 <Link
                   to={"/"}
@@ -282,21 +215,14 @@ export default function NavigationBar() {
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <MenuItem>
-                  <a
-                    href="#"
+                  <Link
+                    to={"/profile"}
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                   >
                     Your Profile
-                  </a>
+                  </Link>
                 </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
-                  >
-                    Settings
-                  </a>
-                </MenuItem>
+
                 <MenuItem>
                   <a
                     href="#"

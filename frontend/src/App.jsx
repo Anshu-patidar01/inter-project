@@ -14,6 +14,7 @@ import CategoryPage from "./page/CategoryPage";
 import NavigationBar from "./components/NavigationBar";
 import Footer from "./page/Footer";
 import ContactPage from "./page/Service Section/ContactPage";
+import Profile from "./components/Profile";
 function App() {
   return (
     <>
@@ -26,6 +27,8 @@ function App() {
           <Route path="/services" element={<ServicePage />} />
           <Route path="/category" element={<CategoryPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/profile" element={<Profile />} />
+
           {/* idiaSubmit form route */}
           <Route
             path="/idiaSubmit"

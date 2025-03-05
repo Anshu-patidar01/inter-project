@@ -111,14 +111,14 @@ export default function IdiaFrom() {
 
     const words = e.target.value.trim().split(/\s+/);
     settest(words.length);
-    if (words.length < 100) {
+    if (words.length < 200) {
       setSummeryWords(e.target.value);
       setForm({
         ...Form,
         [e.target.name]: e.target.value,
       });
     } else {
-      toast.error("Max words limit is 100 only..", {
+      toast.error("Max words limit is 200 only..", {
         position: "top-right",
       });
     }
@@ -162,6 +162,7 @@ export default function IdiaFrom() {
                     <div className="mt-2 grid grid-cols-1">
                       <select
                         id="country"
+                        required
                         name="state"
                         value={Form.state}
                         onChange={handleChange}
@@ -306,6 +307,23 @@ export default function IdiaFrom() {
                         Female
                       </label>
                     </div>
+                    <div className="flex items-center gap-x-3">
+                      <input
+                        required
+                        id="FeMale"
+                        name="gender"
+                        value={"Female"}
+                        onChange={handleChange}
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label
+                        htmlFor="Female"
+                        className="block text-sm/6 font-medium text-gray-100"
+                      >
+                        Other
+                      </label>
+                    </div>
                   </div>
                   <div className="sm:col-span-full">
                     <label
@@ -379,11 +397,11 @@ export default function IdiaFrom() {
                       >
                         <option>Select Content</option>
                         <option>Action</option>
-                        <option>Fiction</option>
                         <option>Adventure</option>
                         <option>Comedy</option>
                         <option>Drama</option>
                         <option>Fantasy</option>
+                        <option>Fiction</option>
                         <option>Horror</option>
                         <option>Musicals</option>
                         <option>Mystery</option>
@@ -545,7 +563,7 @@ export default function IdiaFrom() {
                       >
                         Summary <span className="text-red-500">*</span>
                       </label>
-                      <div>{test}/100</div>
+                      <div>{test}/200</div>
                     </div>
 
                     <textarea
