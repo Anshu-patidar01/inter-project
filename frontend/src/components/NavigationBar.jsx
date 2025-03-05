@@ -8,7 +8,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import {
   Listbox,
   ListboxButton,
@@ -19,7 +19,7 @@ import { ChevronDownIcon, ChevronUpDownIcon } from "@heroicons/react/16/solid";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { MyContext } from "../Context/context";
 
 function classNames(...classes) {
@@ -39,6 +39,7 @@ export default function NavigationBar() {
       password: "",
     });
   };
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     async () => {
@@ -101,41 +102,130 @@ export default function NavigationBar() {
                 >
                   <h1>Home</h1>
                 </Link>
-                <Link
+                <div
                   className={
                     "bg-gray-600 text-white rounded-md  text-sm font-medium"
                   }
                 >
                   <div className=" grid grid-cols-1">
-                    <select
-                      id="Categories"
-                      name="categories"
-                      onChange={(e) => {
-                        setallcategory(e.target.value);
-                        // console.log(allcategory);
-                        // navigate("/category");
-                      }}
-                      onClick={() => navigate("/category")}
-                      value={allcategory}
-                      //autoComplete="Topic"
-                      className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-gray-600 py-1.5 pr-8 pl-3 text-base text-white outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    >
-                      <option className="">All Category</option>
-                      <option>Short Story</option>
-                      <option>Story</option>
-                      <option>Full Script</option>
-                      <option>Lyrics</option>
-                      <option>Poem</option>
-                      <option>Theme</option>
-                      <option>Music</option>
-                      <option>Other...</option>
-                    </select>
-                    <ChevronDownIcon
-                      aria-hidden="true"
-                      className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-                    />
+                    <div className="relative">
+                      <button
+                        onClick={() => {
+                          setDropdownOpen(!dropdownOpen);
+                          // navigate("/services");
+                          // console.log("hello");
+                        }}
+                        onMouseEnter={() => setDropdownOpen(true)}
+                        // onMouseLeave={() => setDropdownOpen(false)}
+                        className="bg-gray-600 px-4 py-2 rounded transition"
+                      >
+                        All Category ▼
+                      </button>
+
+                      {dropdownOpen && (
+                        <ul
+                          onMouseEnter={() => setDropdownOpen(true)}
+                          onMouseLeave={() => setDropdownOpen(false)}
+                          className="absolute bg-white text-black right-0 w-48 rounded shadow-lg"
+                        >
+                          <li
+                            onClick={() => {
+                              console.log(allcategory);
+                              navigate("/category");
+                              setallcategory("Short Story");
+                            }}
+                            className="px-4 py-2 hover:bg-gray-200"
+                          >
+                            <Link to={"/category"}>
+                              <div className="w-full">Short Story</div>
+                            </Link>
+                          </li>
+                          <li
+                            onClick={() => {
+                              setallcategory("Story");
+                              navigate("/category");
+                            }}
+                            className="px-4 py-2 hover:bg-gray-200"
+                          >
+                            {" "}
+                            <Link to={"/category"}>
+                              <button>Story</button>
+                            </Link>
+                          </li>
+                          <li
+                            onClick={() => {
+                              setallcategory("Full Script");
+                              navigate("/category");
+                            }}
+                            className="px-4 py-2 hover:bg-gray-200"
+                          >
+                            <Link to={"/category"}>
+                              <button>Full Script</button>
+                            </Link>
+                          </li>
+                          <li
+                            onClick={() => {
+                              setallcategory("Lyrics");
+                              navigate("/category");
+                            }}
+                            className="px-4 py-2 hover:bg-gray-200"
+                          >
+                            {" "}
+                            <Link to={"/category"}>
+                              <button>Lyrics</button>
+                            </Link>
+                          </li>
+                          <li
+                            onClick={() => {
+                              setallcategory("Poem");
+                              navigate("/category");
+                            }}
+                            className="px-4 py-2 hover:bg-gray-200"
+                          >
+                            <Link to={"/category"}>
+                              <button>Poem</button>
+                            </Link>
+                          </li>
+                          <li
+                            onClick={() => {
+                              setallcategory("Theme");
+                              navigate("/category");
+                            }}
+                            className="px-4 py-2 hover:bg-gray-200"
+                          >
+                            {" "}
+                            <Link to={"/category"}>
+                              <button>Theme</button>
+                            </Link>
+                          </li>
+                          <li
+                            onClick={() => {
+                              setallcategory("Music");
+                              navigate("/category");
+                            }}
+                            className="px-4 py-2 hover:bg-gray-200"
+                          >
+                            <Link to={"/category"}>
+                              <button>Music</button>
+                            </Link>
+                          </li>
+                          <li
+                            onClick={() => {
+                              setallcategory("Other");
+                              navigate("/category");
+                            }}
+                            className="px-4 py-2 hover:bg-gray-200"
+                          >
+                            {" "}
+                            <Link to={"/category"}>
+                              <button>Other...</button>
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
+                    </div>
                   </div>
-                </Link>
+                </div>
                 <Link
                   to={"/"}
                   className={
@@ -249,12 +339,127 @@ export default function NavigationBar() {
             >
               <h1>Home</h1>
             </Link>
-            <Link
-              to={"/"}
+            <div
+              // to={"/"}
               className={" text-white rounded-md px-3 py-2 text-sm font-medium"}
             >
-              All Category
-            </Link>
+              <div className="relative">
+                <button
+                  onClick={() => {
+                    setDropdownOpen(!dropdownOpen);
+                    // navigate("/services");
+                    // console.log("hello");
+                  }}
+                  onMouseEnter={() => setDropdownOpen(true)}
+                  // onMouseLeave={() => setDropdownOpen(false)}
+                  className="bg-gray-600 px-4 py-2 rounded transition"
+                >
+                  All Category ▼
+                </button>
+
+                {dropdownOpen && (
+                  <ul
+                    onMouseEnter={() => setDropdownOpen(true)}
+                    onMouseLeave={() => setDropdownOpen(false)}
+                    className="absolute bg-white text-black w-48 rounded shadow-lg"
+                  >
+                    <li
+                      onClick={() => {
+                        console.log(allcategory);
+                        navigate("/category");
+                        setallcategory("Short Story");
+                      }}
+                      className="px-4 py-2 hover:bg-gray-200"
+                    >
+                      <Link to={"/category"}>
+                        <div className="w-full">Short Story</div>
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setallcategory("Story");
+                        navigate("/category");
+                      }}
+                      className="px-4 py-2 hover:bg-gray-200"
+                    >
+                      {" "}
+                      <Link to={"/category"}>
+                        <button>Story</button>
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setallcategory("Full Script");
+                        navigate("/category");
+                      }}
+                      className="px-4 py-2 hover:bg-gray-200"
+                    >
+                      <Link to={"/category"}>
+                        <button>Full Script</button>
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setallcategory("Lyrics");
+                        navigate("/category");
+                      }}
+                      className="px-4 py-2 hover:bg-gray-200"
+                    >
+                      {" "}
+                      <Link to={"/category"}>
+                        <button>Lyrics</button>
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setallcategory("Poem");
+                        navigate("/category");
+                      }}
+                      className="px-4 py-2 hover:bg-gray-200"
+                    >
+                      <Link to={"/category"}>
+                        <button>Poem</button>
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setallcategory("Theme");
+                        navigate("/category");
+                      }}
+                      className="px-4 py-2 hover:bg-gray-200"
+                    >
+                      {" "}
+                      <Link to={"/category"}>
+                        <button>Theme</button>
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setallcategory("Music");
+                        navigate("/category");
+                      }}
+                      className="px-4 py-2 hover:bg-gray-200"
+                    >
+                      <Link to={"/category"}>
+                        <button>Music</button>
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setallcategory("Other");
+                        navigate("/category");
+                      }}
+                      className="px-4 py-2 hover:bg-gray-200"
+                    >
+                      {" "}
+                      <Link to={"/category"}>
+                        <button>Other...</button>
+                      </Link>
+                    </li>
+                  </ul>
+                )}
+              </div>
+            </div>
             <Link
               to={"/"}
               className={" text-white rounded-md px-3 py-2 text-sm font-medium"}
