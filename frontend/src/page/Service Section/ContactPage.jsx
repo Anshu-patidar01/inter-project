@@ -7,6 +7,7 @@ import { MyContext } from "../../Context/context";
 import { useNavigate } from "react-router-dom";
 
 function ContactPage() {
+  const [ToggleLoading, setToggleLoading] = useState(false);
   const navigateto = useNavigate();
   const [form, setform] = useState({
     name: "",
@@ -24,6 +25,7 @@ function ContactPage() {
     });
   };
   const handleSubmited = async (e) => {
+    setToggleLoading(true);
     e.preventDefault();
     console.log(User.user);
     if (!User.user == "") {
@@ -32,7 +34,8 @@ function ContactPage() {
         .post(`${base_api}/sendMail`, {
           from1: User.user.email,
           reasone: "I wanna contact you",
-          to: "xyz@gmail.com",
+          to: "Officialscripthq@gmail.com",
+          contact: User.user.mobileNumber,
           name: form.name,
           subject: form.subject,
           message: form.message,
@@ -42,6 +45,7 @@ function ContactPage() {
           toast.success("Email Sent.", {
             position: "top-center",
           });
+          setToggleLoading(false);
         })
         .catch((res) => {
           console.log(res);
@@ -56,97 +60,262 @@ function ContactPage() {
   return (
     <div>
       <ToastContainer />
-      <section className="bg-white ">
-        <div
-          className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md
+      <div className="flex sm:flex-row justify-center items-center flex-col flex-wrap bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/twcomponents/header.webp')] bg-cover bg-center bg-gray-600 py-10">
+        <section className=" sm:w-7/12 rounded-r-full sm:pl-5 ">
+          <div
+            className="py-8 lg:py-16 px-4 sm:mr-20 sm:w-[90%] rounded-xl  bg-white/50  mx-auto max-w-screen-md
         "
-        >
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 ">
-            Send Us A Message!
-          </h2>
-          <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 sm:text-xl"></p>
-          <form onSubmit={handleSubmited} className="space-y-8">
-            <div>
-              <label
-                htmlFor="name"
-                className="block mb-2 text-sm font-medium text-gray-900 "
+          >
+            <h2 className=" text-4xl tracking-tight font-extrabold text-center text-gray-900 ">
+              Send Us A Message!
+            </h2>
+            <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 sm:text-xl"></p>
+            <form onSubmit={handleSubmited} className="space-y-8">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
+                >
+                  Name<span className="text-red-600">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  onChange={handleonchange}
+                  value={form.name}
+                  className="shadow-sm bg-gray-50/50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+                  placeholder="Full Name"
+                  required
+                ></input>
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
+                >
+                  Your email<span className="text-red-600">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  onChange={handleonchange}
+                  value={form.email}
+                  className="shadow-sm bg-gray-50/50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+                  placeholder="name@flowbite.com"
+                  required
+                ></input>
+              </div>
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
+                >
+                  Subject<span className="text-red-600">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  onChange={handleonchange}
+                  value={form.subject}
+                  className="block p-3 w-full text-sm text-gray-900 bg-gray-50/50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 "
+                  placeholder="Let us know how we can help you"
+                  required
+                ></input>
+              </div>
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="message"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Your message<span className="text-red-600">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  rows="6"
+                  name="message"
+                  onChange={handleonchange}
+                  value={form.message}
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50/50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 "
+                  placeholder="Leave a comment..."
+                ></textarea>
+              </div>
+              <button
+                // onClick={(e) => handleSubmited(e)}
+                type="submit"
+                className="py-3 px-5 text-sm font-medium text-center text-white bg-gray-800 border-[2px] border-gray-400 rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                onChange={handleonchange}
-                value={form.name}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
-                placeholder="Full Name"
-                required
-              ></input>
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900 "
+                {!ToggleLoading && <span>Send message</span>}
+                {ToggleLoading && <span>Sending message...</span>}
+              </button>
+            </form>
+          </div>
+        </section>
+        <section className="sm:w-5/12 py-32 p-3 flex flex-col mt-16 justify-center rounded-l-full bg-slate-400/50 text-white gap-10 sm:p-5">
+          <div className="text-center text-5xl text-white font-bold tracking-widest">
+            Contact Us
+          </div>
+          {/* <div className=" absolute hidden sm:block bg-white/15 ml-2 sm:ml-8 rounded-l-xl w-[25rem] sm:w-[29rem] h-full"></div> */}
+          <div className=" flex flex-row items-center gap-5 text-xl">
+            <span className="hover:scale-125 duration-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="54"
+                height="54"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-phone-call"
               >
-                Your email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                onChange={handleonchange}
-                value={form.email}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
-                placeholder="name@flowbite.com"
-                required
-              ></input>
-            </div>
-            <div>
-              <label
-                htmlFor="subject"
-                className="block mb-2 text-sm font-medium text-gray-900 "
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                <path d="M14.05 2a9 9 0 0 1 8 7.94" />
+                <path d="M14.05 6A5 5 0 0 1 18 10" />
+              </svg>
+            </span>
+            <span>+91 6789054321</span>
+          </div>
+          <div className=" flex flex-row items-center gap-5 text-xl">
+            <span className="hover:scale-125 duration-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="54"
+                height="54"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-mail-check"
               >
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                onChange={handleonchange}
-                value={form.subject}
-                className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 "
-                placeholder="Let us know how we can help you"
-                required
-              ></input>
-            </div>
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="message"
-                className="block mb-2 text-sm font-medium text-gray-900"
+                <path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                <path d="m16 19 2 2 4-4" />
+              </svg>
+            </span>
+            <span>
+              <div>Info@scripthq.in</div>
+              <div className="mt-2">Officialscripthq@gmail.com</div>
+            </span>
+          </div>
+          <div className="flex flex-row items-center gap-5 text-xl">
+            <span className="hover:scale-125 duration-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="54"
+                height="54"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-map-pin"
               >
-                Your message
-              </label>
-              <textarea
-                id="message"
-                rows="6"
-                name="message"
-                onChange={handleonchange}
-                value={form.message}
-                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 "
-                placeholder="Leave a comment..."
-              ></textarea>
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </span>
+            <span>12,west, bholaram ringroad ,indore, MP</span>
+          </div>
+          <div className="flex flex-row justify-center items-center">
+            <div className="flex flex-row gap-5 text-center items-center">
+              <a
+                href="https://x.com/Scripthq0"
+                className="border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg "
+              >
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    className="lucide lucide-x"
+                  >
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://www.facebook.com/share/1CZj6tandM/"
+                className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
+              >
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-facebook"
+                  >
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://youtube.com/@scripthqofficial?si=UXrt-JLsb2s_un9y"
+                className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
+              >
+                <div href="https://youtube.com/@scripthqofficial?si=UXrt-JLsb2s_un9y">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#fff"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-youtube"
+                  >
+                    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+                    <path d="m10 15 5-3-5-3z" />
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://www.threads.net/@scripthq_official"
+                className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
+              >
+                <div href="https://www.threads.net/@scripthq_official">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.25"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-at-sign"
+                  >
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8" />
+                  </svg>
+                </div>
+              </a>
             </div>
-            <button
-              // onClick={(e) => handleSubmited(e)}
-              type="submit"
-              className="py-3 px-5 text-sm font-medium text-center text-white bg-gray-800 border-[2px] border-gray-400 rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-            >
-              Send message
-            </button>
-          </form>
-        </div>
-      </section>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

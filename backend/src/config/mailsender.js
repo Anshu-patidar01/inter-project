@@ -4,13 +4,21 @@ import nodemailer from "nodemailer";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "xyz@gmail.com", // Secured via .env
-    pass: "ovcv fjed oqyt lkfo",
+    user: "Officialscripthq@gmail.com", // Secured via .env
+    pass: "xvfh jeuf lmtq tuev",
   },
 });
 
 // Function to Send Email
-const sendEmail = async (to, from1, reasone, name, subject, message) => {
+const sendEmail = async (
+  to,
+  from1,
+  reasone,
+  name,
+  contact,
+  subject,
+  message
+) => {
   try {
     const mailOptions = {
       from: `"Support Team"`, // Professional sender name
@@ -57,6 +65,7 @@ const sendEmail = async (to, from1, reasone, name, subject, message) => {
         <p><span class="highlight">Subject:${subject}</span></p>
         <p><span class="highlight">To:</span> <span id="adminEmail"></span>${to}</p>
         <p><span class="highlight">From:</span> <span id="userEmail">${from1}</span></p>
+        <p><span class="highlight">Mobile Nuber:</span> <span id="userEmail">${contact}</span></p>
         <p><span class="highlight">Reason:</span> <span id="userEmail">${reasone}</span></p>
         <p>Dear <span id="adminName">Admin Name</span>,</p>
         <p><span class="highlight">Message: ${message}</span></p>

@@ -4,6 +4,8 @@ function Home() {
   return (
     <div>
       <div className="p-4">
+        {/* <div className="p-4 bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/twcomponents/header.webp')] bg-cover bg-center"> */}
+
         <div className="bg-white py-24 sm:py-32">
           <div className="max-w-xl">
             <h2 className="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">
