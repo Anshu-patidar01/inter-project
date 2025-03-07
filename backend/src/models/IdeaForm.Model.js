@@ -52,7 +52,7 @@ const IdeaFormSchema = new mongoose.Schema(
 
     ROCNumber: {
       type: String,
-      required: true,
+      // required: true,
     },
     ROCAttachment: {
       type: String,

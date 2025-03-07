@@ -1,38 +1,119 @@
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
+import axios from "axios";
+import base_api from "../../utility/contants";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
-import NavigationBar from "../../components/NavigationBar.jsx";
+import { useNavigate } from "react-router-dom";
 function RequirementForm() {
+  const navigateTo = useNavigate();
   const [SummeryWords, setSummeryWords] = useState("");
   const [test, settest] = useState("");
-  // const handleSummeruChange = (e) => {
-  //   const words = e.target.value.trim().split(/\s+/);
-  //   settest(words.length);
-  //   if (words.length < 100) {
-  //     setSummeryWords(e.target.value);
-  //   } else {
-  //     toast.error("Max words limit is 100 only..", {
-  //       position: "top-right",
-  //     });
-  //   }
-  // };
+
+  const [form, setform] = useState({
+    company: "",
+    mobile: "",
+    city: "",
+    language: "",
+    interested: "",
+    Summary: "",
+  });
+  const [error, seterror] = useState("");
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    setform({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(form);
+    const value = form.mobile;
+    if (!/^[6-9]\d{9}$/.test(value)) {
+      seterror("Invalid mobile number.");
+      return "";
+    } else {
+      seterror("");
+    }
+    try {
+      const token = localStorage.getItem("project");
+
+      if (!token) {
+        toast.error("Sign-in first.", {
+          position: "top-center",
+        });
+        navigateTo("/login");
+      }
+      // console.log(token);
+
+      const response = await axios
+        .post(`${base_api}/form/Requirement`, form, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          setform({
+            company: "",
+            mobile: "",
+            city: "",
+            language: "",
+            interested: "",
+            Summary: "",
+          });
+          console.log(response);
+          toast.success("Thankyou for submitting your Requirement From.", {
+            position: "top-center",
+          });
+
+          setTimeout(() => {
+            navigateTo("/services");
+          }, 2000);
+        })
+        .catch((error) => {
+          const response = {
+            message: error.response,
+            error: error.response,
+          };
+          console.log(response);
+          toast.error(response.error, {
+            position: "top-center",
+          });
+        });
+    } catch (error) {
+      toast.error("Please Try Again after some time.", {
+        position: "top-center",
+      });
+      console.log(
+        "error while connecting to Requirement Form api.Error:",
+        error
+      );
+    }
+  };
   const handleSummeruChange = (e) => {
     e.preventDefault();
 
     const words = e.target.value.trim().split(/\s+/);
     settest(words.length);
     if (words.length < 100) {
+      // console.log(e.target.value);
+
       setSummeryWords(e.target.value);
+      setform({
+        ...form,
+        [e.target.name]: e.target.value,
+      });
     } else {
-      toast.error("Max words limit is 100 only..", {
+      toast.error("Max words limit is 200 only..", {
         position: "top-right",
       });
     }
   };
   return (
     <>
-      <NavigationBar />
       <div className="p-2 sm:p-10">
         <ToastContainer />
         <div className="w-full h-auto rounded-lg sm:rounded-[5rem] shadow-2xl bg-gray-500 text-white shadow-sky-800">
@@ -42,7 +123,7 @@ function RequirementForm() {
                 Requirement Form
               </h1>
             </div>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                   <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -57,8 +138,11 @@ function RequirementForm() {
                       <div className="mt-2">
                         <input
                           id="Company"
-                          name="Company"
+                          name="company"
+                          value={form.company}
+                          onChange={handleChange}
                           type="text"
+                          required
                           //autoComplete="street-address"
                           className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                         />
@@ -74,12 +158,16 @@ function RequirementForm() {
                       </label>
                       <div className="mt-2">
                         <input
+                          required
                           id="Mobile"
-                          name="Mobile"
+                          name="mobile"
+                          value={form.mobile}
+                          onChange={handleChange}
                           type="text"
                           //autoComplete="street-address"
                           className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                         />
+                        {error && <p className="text-red-200">{error}</p>}
                       </div>
                     </div>
                     <div className="col-span-3">
@@ -92,8 +180,11 @@ function RequirementForm() {
                       </label>
                       <div className="mt-2">
                         <input
+                          required
                           id="City"
-                          name="City"
+                          name="city"
+                          value={form.city}
+                          onChange={handleChange}
                           type="text"
                           //autoComplete="street-address"
                           className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -110,7 +201,10 @@ function RequirementForm() {
                       <div className="mt-2 grid grid-cols-1">
                         <select
                           id="Language"
-                          name="Language"
+                          name="language"
+                          value={form.language}
+                          onChange={handleChange}
+                          required
                           //autoComplete="Language"
                           className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                         >
@@ -141,7 +235,10 @@ function RequirementForm() {
                       <div className="mt-2 grid grid-cols-1">
                         <select
                           id="Topic"
-                          name="Topic"
+                          name="interested"
+                          value={form.interested}
+                          required
+                          onChange={handleChange}
                           //autoComplete="Topic"
                           className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                         >
@@ -177,10 +274,14 @@ function RequirementForm() {
                         id="Summary"
                         className="min-h-[150px] p-3 w-full border border-gray-300 rounded-md bg-white text-black "
                         // contentEditable="true"
+                        required
+                        name="Summary"
                         value={SummeryWords}
+                        onChange={(e) => {
+                          handleSummeruChange(e);
+                        }}
                         rows="4"
                         cols="50"
-                        onChange={handleSummeruChange}
                       ></textarea>
                     </div>
                   </div>

@@ -226,10 +226,9 @@ const GetidiaForm = async (req, res) => {
 };
 const getrequirementform = async (req, res) => {
   try {
-    const forms = await RequirementModel.find({}).populate(
-      "userId",
-      "fullname"
-    );
+    const forms = await RequirementModel.find({})
+      .sort({ _id: -1 })
+      .populate("userId", "fullname");
     res.send(forms);
   } catch (error) {
     res.status(400).json({

@@ -50,17 +50,17 @@ function FullForm2() {
             interested: "",
           });
           console.log(response);
-          toast.success("Full Form Submited Succefully.", {
-            position: "top-right",
+          toast.success("Form Submited Succefully.Thankyou", {
+            position: "top-center",
           });
 
           setTimeout(() => {
-            navigateTo("/");
+            navigateTo("/services");
           }, 2000);
         })
         .catch((error) => {
           toast.error(error.response.data, {
-            position: "top-right",
+            position: "top-center",
           });
         });
     } catch (error) {
@@ -70,7 +70,7 @@ function FullForm2() {
   };
   return (
     <>
-      <NavigationBar />
+      {/* <NavigationBar /> */}
       <div className="p-10">
         <ToastContainer />
 

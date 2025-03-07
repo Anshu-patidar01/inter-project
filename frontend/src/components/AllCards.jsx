@@ -246,7 +246,7 @@ function AllCards(props) {
           </div>
         )}
 
-        <div className="flex flex-col gap-8 p-5 bg-gray-500  md:w-[20%]">
+        <div className="flex flex-col gap-8 p-5 h-[40rem] overflow-y-scroll bg-gray-500  md:w-[20%]">
           <h1 className="text-white text-lg  font-bold tracking-wider">
             Requirement
           </h1>
@@ -270,7 +270,19 @@ function AllCards(props) {
                 </label>
                 <label>
                   Summery:
-                  <span className="text-sm font-normal"> {item.Summary}</span>
+                  <span className="text-sm font-normal">
+                    {" "}
+                    {item.Summary.split(" ").slice(0, 10).join(" ")}
+                    <span
+                      className="text-blue-200 cursor-pointer"
+                      onClick={() => {
+                        setpop("true");
+                        setsummary(item.Summary);
+                      }}
+                    >
+                      See More...
+                    </span>
+                  </span>
                 </label>
               </div>
             </div>

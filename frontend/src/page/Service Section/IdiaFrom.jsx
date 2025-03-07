@@ -76,12 +76,12 @@ export default function IdiaFrom() {
             termAndCondition: "",
           });
           console.log(response);
-          toast.success("From Submited Succefully.", {
-            position: "top-right",
+          toast.success("Thankyou for submitting your creativity.", {
+            position: "top-center",
           });
 
           setTimeout(() => {
-            navigateTo("/");
+            navigateTo("/services");
           }, 2000);
         })
         .catch((error) => {
@@ -91,7 +91,7 @@ export default function IdiaFrom() {
           };
           console.log(response);
           toast.error(response.error, {
-            position: "top-right",
+            position: "top-center",
           });
         });
     } catch (error) {
@@ -572,10 +572,10 @@ export default function IdiaFrom() {
                       // contentEditable="true"
                       // value={Form.summary}
                       name="summary"
+                      value={SummeryWords}
                       onChange={(e) => {
                         handleSummeruChange(e);
                       }}
-                      value={SummeryWords}
                       rows="4"
                       cols="50"
                     ></textarea>

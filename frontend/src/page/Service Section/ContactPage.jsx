@@ -25,9 +25,10 @@ function ContactPage() {
     });
   };
   const handleSubmited = async (e) => {
-    setToggleLoading(true);
     e.preventDefault();
+    setToggleLoading(true);
     console.log(User.user);
+
     if (!User.user == "") {
       console.log(form);
       await axios
@@ -46,6 +47,9 @@ function ContactPage() {
             position: "top-center",
           });
           setToggleLoading(false);
+          setTimeout(() => {
+            navigateto("/");
+          }, 2000);
         })
         .catch((res) => {
           console.log(res);
@@ -54,7 +58,52 @@ function ContactPage() {
           });
         });
     } else {
-      navigateto("/login");
+      console.log(form);
+      await axios
+        .post(`${base_api}/sendMail`, {
+          from1: form.email,
+          reasone: "I wanna contact you",
+          to: "Officialscripthq@gmail.com",
+          contact: "Unavailable,Not Registered.",
+          name: form.name,
+          subject: form.subject,
+          message: form.message,
+        })
+        .then((res) => {
+          console.log(res);
+          toast.success("Email Sent.Thankyou for contacting us.", {
+            position: "top-center",
+          });
+          setToggleLoading(false);
+          setTimeout(() => {
+            navigateto("/");
+          }, 2000);
+        })
+        .catch((res) => {
+          console.log(res);
+          toast.error("Please Try again After some time.", {
+            position: "top-center",
+          });
+        });
+    }
+  };
+  const [test, settest] = useState("");
+  const [SummeryWords, setSummeryWords] = useState("");
+  const handleSummeruChange = (e) => {
+    e.preventDefault();
+
+    const words = e.target.value.trim().split(/\s+/);
+    settest(words.length);
+    if (words.length < 100) {
+      setSummeryWords(e.target.value);
+      setform({
+        ...form,
+        [e.target.name]: e.target.value,
+      });
+    } else {
+      toast.error("Max words limit is 100 only..", {
+        position: "top-center",
+      });
     }
   };
   return (
@@ -128,16 +177,19 @@ function ContactPage() {
               <div className="sm:col-span-2">
                 <label
                   htmlFor="message"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="flex flex-row justify-between mb-2 text-sm font-medium text-gray-900"
                 >
-                  Your message<span className="text-red-600">*</span>
+                  <span>
+                    Your message<span className="text-red-600">*</span>
+                  </span>
+                  <span>{test}/100</span>
                 </label>
                 <textarea
                   id="message"
                   rows="6"
                   name="message"
-                  onChange={handleonchange}
-                  value={form.message}
+                  onChange={(e) => handleSummeruChange(e)}
+                  value={SummeryWords}
                   className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50/50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 "
                   placeholder="Leave a comment..."
                 ></textarea>
