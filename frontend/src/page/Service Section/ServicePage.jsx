@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "../../components/NavigationBar";
-
+import idiaimage from "../../assets/Submit an Idea (1).jpg";
+import requirementimage from "../../assets/Requirement (1).jpg";
+import fullimage from "../../assets/Full View of Script (1).jpg";
 function ServicePage() {
   return (
-    <div>
+    <div className="my-20">
       {/* <NavigationBar /> */}
 
       <div className=" flex justify-center items-center">
@@ -39,7 +41,7 @@ function ServicePage() {
                     Idea Submit
                   </h1>
                   <img
-                    src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR9q-Rabiss8YM1xtDIhCt34vgcbkf9Rr6uQOBwAJC-T-622jGA"
+                    src={idiaimage}
                     alt=""
                     className=" rounded-xl w-72 h-52"
                   />
@@ -59,7 +61,7 @@ function ServicePage() {
                     Requirement
                   </h1>
                   <img
-                    src="https://www.shutterstock.com/image-photo/there-notebook-word-requirement-eyecatching-260nw-2378542451.jpg"
+                    src={requirementimage}
                     alt=""
                     className=" rounded-xl w-72 h-52"
                   />
@@ -80,7 +82,7 @@ function ServicePage() {
                   </h1>
                   <div className=" rounded-xl w-72 h-52 bg-red-400 ">
                     <img
-                      src="https://www.wikihow.com/images/thumb/1/18/Take-Better-Notes-Step-1-Version-2.jpg/v4-460px-Take-Better-Notes-Step-1-Version-2.jpg"
+                      src={fullimage}
                       alt=""
                       className=" rounded-xl object-cover w-full h-full"
                     />
