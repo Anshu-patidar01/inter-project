@@ -18,7 +18,6 @@ function ContactPage() {
   const { User } = useContext(MyContext);
   const handleonchange = (e) => {
     e.preventDefault();
-
     setform({
       ...form,
       [e.target.name]: e.target.value,

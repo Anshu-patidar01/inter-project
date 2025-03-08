@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/context";
 import PopupCartUser from "./PopupCartUser";
@@ -19,6 +20,8 @@ function AllCards(props) {
   const [requirementform, setrequirementform] = useState([]);
   const [summary, setsummary] = useState("");
   const navigatTo = useNavigate();
+  const [ToggleLoading, setToggleLoading] = useState(false);
+
   const response2 = async () => {
     try {
       const token = localStorage.getItem("project");
@@ -109,8 +112,46 @@ function AllCards(props) {
       console.log("error while connecting to like api.");
     }
   };
+  const handleinterestedin = async (form) => {
+    console.log(form, User);
+    setToggleLoading(true);
+
+    try {
+      await axios
+        .post(`${base_api}/sendMail`, {
+          from1: User.email,
+          reasone: "I am Interested in your content",
+          to: "Info@scripthq.in",
+          // to: "anshupatidar62@gmail.com",
+          contact: User.mobileNumber,
+          name: User.fullname,
+          subject: `Submission of Interested In `,
+          message: `Hi Admin, I came across your content and found it very interesting. I noticed a form with the ID ${form.formId} and would love to learn more. Could you please contact me via my mobile number or email? Looking forward to your response! `,
+        })
+        .then((res) => {
+          console.log(res);
+          toast.success(
+            "Your message has been sent successfully! The admin will contact you soon. ",
+            {
+              position: "top-center",
+            }
+          );
+          setpop("false");
+        })
+        .catch((res) => {
+          console.log(res);
+          toast.error("Please Try again After some time Server Busy.", {
+            position: "top-center",
+          });
+          setpop("false");
+        });
+    } catch (error) {
+      console.log(`some Erron in interested in ${error}`);
+    }
+  };
   return (
     <div>
+      <ToastContainer />
       <PopupCartUser summary={summary} />
       <div className=" flex flex-col  md:flex-row gap-3 w-full">
         {forms !== "" ? (
@@ -158,15 +199,27 @@ function AllCards(props) {
                     </h1>
                   </div>
                   <div className="flex flex-row justify-between gap-4 p-5">
-                    <button className=" border-2 hover:scale-105 duration-300 hover:shadow-lg border-gray-700 rounded-lg p-1 shadow-md shadow-sky-800 bg-gray-300">
-                      Interested
+                    <button
+                      onClick={() => {
+                        if (User._id === "") {
+                          navigatTo("/login");
+                        } else {
+                          setpop("true");
+                          setsummary(
+                            `We are sending Mail to Admin That You are interested in form:${item.formId} Title:${item.title} Category:${item.categories} Language:${item.language}`
+                          );
+                          handleinterestedin(item);
+                        }
+                      }}
+                      className=" border-2 hover:scale-105 duration-300 hover:shadow-lg border-gray-700 rounded-lg p-1 shadow-md shadow-sky-800 bg-gray-300"
+                    >
+                      <span>Interested</span>
                     </button>
                     <span className=" flex flex-row items-center gap-3">
                       <h1 className="text-lg">{item.likes.length}</h1>
                       <button
                         onClick={() => {
                           handlelikes(item._id);
-
                           console.log("item clicked:", User);
                         }}
                       >
