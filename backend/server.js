@@ -29,20 +29,18 @@ connection()
 
 app.use("/", userRouter);
 app.post("/sendmail", async (req, res) => {
-  const { name, to, from1, reasone, subject, message } = req.body;
+  const { name, to, from1, contact, reasone, subject, message } = req.body;
   try {
     if (!to || !subject || !message) {
       throw new Error("All fields are required");
     }
-    const other = {
-      email: "patidaranshu490@gmail.com",
-      other: "lorem df rew sdf ghyt vbgfvr ",
-    };
+
     const response = await sendEmail(
       to,
       from1,
       reasone,
       name,
+      contact,
       subject,
       message
     );
