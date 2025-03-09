@@ -36,6 +36,12 @@ const RequirementSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: String,
+      required: true,
+      enum: ["Approved", "Pendding", "Rejected"],
+      default: "Pendding",
+    },
   },
   {
     timestamps: true,
