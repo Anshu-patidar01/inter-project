@@ -89,10 +89,10 @@ export default function IdiaFrom() {
               reasone: "New submition of Creativity",
               to: User.data.email,
               contact: User.data.mobileNumber,
-              name: "ScriptHQ Team",
-              subject: "Thank You for Submitting Your Idea!",
+              name: User.data.name,
+              subject: "Submission Received – Your Creative Work is in Review ",
               message:
-                "Thank you for sharing your idea with us! We appreciate your creativity and the time you took to submit it. Our team will review your submission and get back to you if we need more details.If you have any additional thoughts or updates, feel free to reply to this email.",
+                "Thank you for submitting your creative idea to ScriptHQ. We have successfully received your submission and appreciate your trust in us.<br>What Happens Next?<br>- Our team will review your submission to ensure it meets all required aspects and criteria.<br>- If your work aligns with the requirements of production houses, we will share it with them for consideration.<br>- This process may take approximately 15 to 30 days to display on ScriptHQ.in . <br>- If we receive any confirmation or interest from a production house, we will notify you immediately.<br><br>We value your creativity and look forward to working together to bring great stories to life. Stay connected and keep innovating.<br><br>For any queries, feel free to reach out at info@scripthq.in.",
             })
             .then((res) => {
               console.log("Email res:", res);

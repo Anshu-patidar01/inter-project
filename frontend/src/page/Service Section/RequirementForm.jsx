@@ -1,14 +1,17 @@
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import base_api from "../../utility/contants";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { MyContext } from "../../Context/context";
 function RequirementForm() {
   const navigateTo = useNavigate();
   const [SummeryWords, setSummeryWords] = useState("");
   const [test, settest] = useState("");
+  const { setUser, User } = useContext(MyContext);
+  // console.log(User);
 
   const [form, setform] = useState({
     company: "",
@@ -55,7 +58,7 @@ function RequirementForm() {
             "Content-Type": "application/json",
           },
         })
-        .then((response) => {
+        .then(async (response) => {
           setform({
             company: "",
             mobile: "",
@@ -69,6 +72,23 @@ function RequirementForm() {
             position: "top-center",
           });
 
+          await axios
+            .post(`${base_api}/sendMail`, {
+              from1: "Info@scripthq.in",
+              reasone: "New submition of Creativity",
+              to: User.data.email,
+              contact: User.data.mobileNumber,
+              name: User.data.fullname,
+              subject: "Confirmation of Your Script Requirement Submission",
+              message:
+                "Thank you for submitting your requirement. We have received your request and appreciate your interest in working with us.<br>If we need any additional information, we will reach out to you shortly. In the meantime, please feel free to share any specific preferences or deadlines you may have. We aim to provide you with a tailored script that meets your expectations. <br>If you have any urgent queries, please feel free to contact us at scriptHQ.in<br><br>Looking forward to collaborating with you!",
+            })
+            .then((res) => {
+              console.log("Email res:", res);
+            })
+            .catch((res) => {
+              console.log("Email res:", res);
+            });
           setTimeout(() => {
             navigateTo("/services");
           }, 2000);

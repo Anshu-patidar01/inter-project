@@ -65,12 +65,12 @@ const sendEmail = async (
         <p><span class="highlight">Subject:${subject}</span></p>
         <p><span class="highlight">To:</span> <span id="adminEmail"></span>${to}</p>
         <p><span class="highlight">From:</span> <span id="userEmail">${from1}</span></p>
-        <p><span class="highlight">Mobile Nuber:</span> <span id="userEmail">${contact}</span></p>
+        <p><span class="highlight">Mobile Number:</span> <span id="userEmail">${contact}</span></p>
         <p><span class="highlight">Reason:</span> <span id="userEmail">${reasone}</span></p>
-        <p>Dear <span id="adminName">Sir/Ma'am,</span>,</p>
+        <p>Dear <span id="adminName">${name},</span>,</p>
         <p><span class="highlight">Message: ${message}</span></p>
         <p>Best regards,</p>
-        <p><span id="userName3">${name}</span><br><span id="userEmail2">${from1}</span></p>
+        <p><span id="userName3">Team ScriptHQ</span><br><span id="userEmail2">${from1}</span></p>
     </div>
 
   

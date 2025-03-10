@@ -168,9 +168,9 @@ function AllCards(props) {
               .map((item, index) => (
                 <div
                   key={index}
-                  className=" h-72 flex flex-col justify-between  shadow-lg hover:scale-105 cursor-pointer duration-300 bg-gray-50 shadow-blue-800 rounded-xl "
+                  className=" h-80 flex flex-col justify-between  shadow-lg hover:scale-105 cursor-pointer duration-300 bg-gray-50 shadow-blue-800 rounded-xl "
                 >
-                  <div className=" flex flex-col  break-words p-3 ">
+                  <div className="flex flex-col  break-words p-3 ">
                     <h1 className="text-gray-900 text-lg font-bold tracking-wider">
                       {item.gender === "Male" ? "Mr. " : "Mrs. "}
                       {item.fullname.split(" ")}
@@ -185,7 +185,7 @@ function AllCards(props) {
                     <h1 className="text-gray-700">
                       Copyright: {item.copyright}
                     </h1>
-                    <h1 className="text-gray-700 ">
+                    <div className="text-gray-700 overflow-hidden ">
                       Summary :{item.summary.split(" ").slice(0, 10).join(" ")}
                       <span
                         className="text-blue-800"
@@ -196,9 +196,9 @@ function AllCards(props) {
                       >
                         See More...
                       </span>
-                    </h1>
+                    </div>
                   </div>
-                  <div className="flex flex-row justify-between gap-4 p-5">
+                  <div className="flex flex-row justify-between gap-4 p-2">
                     <button
                       onClick={() => {
                         if (User._id === "") {
@@ -299,7 +299,7 @@ function AllCards(props) {
           </div>
         )}
 
-        <div className="flex flex-col gap-8 p-5 h-[40rem] overflow-y-scroll bg-gray-500  md:w-[20%]">
+        <div className="flex flex-col gap-8 p-5 h-[42rem] overflow-y-scroll bg-gray-500  md:w-[20%]">
           <h1 className="text-white text-lg  font-bold tracking-wider">
             Requirement
           </h1>
