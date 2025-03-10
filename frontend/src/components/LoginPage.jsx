@@ -9,7 +9,7 @@ import base_api from "../utility/contants.js";
 export default function LoginPage() {
   const navigate = useNavigate();
   const { User, setUser } = useContext(MyContext);
-
+  const [Toggele, setToggele] = useState(true);
   const [form, setform] = useState({
     email: "",
     password: "",
@@ -24,6 +24,7 @@ export default function LoginPage() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setToggele(false);
     const value = form.email;
     if (
       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) &&
@@ -52,6 +53,7 @@ export default function LoginPage() {
           position: "top-center",
         });
         setUser(response.data);
+        setToggele(true);
         setTimeout(() => {
           navigate("/services");
         }, 1000);
@@ -140,7 +142,8 @@ export default function LoginPage() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                {Toggele && <span>Sign in</span>}
+                {!Toggele && <span>Loading..</span>}
               </button>
             </div>
           </form>

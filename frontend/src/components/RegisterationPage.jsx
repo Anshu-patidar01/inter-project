@@ -7,7 +7,8 @@ import { MyContext } from "../Context/context";
 import base_api from "../utility/contants";
 export default function RegisterationPage() {
   const navigate = useNavigate();
-  const { setUser } = useContext(MyContext);
+  const { setUser, User } = useContext(MyContext);
+  const [Toggeload, setToggeload] = useState(true);
   const [form, setform] = useState({
     fullname: "",
     mobileNumber: "",
@@ -28,6 +29,7 @@ export default function RegisterationPage() {
   //handle from submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setToggeload(false);
     const value = form.mobileNumber;
     if (!/^[6-9]\d{9}$/.test(value)) {
       seterror("Invalid mobile number.");
@@ -40,7 +42,7 @@ export default function RegisterationPage() {
         .post(`${base_api}/register`, form, {
           headers: { "Content-Type": "application/json" },
         })
-        .then((response) => {
+        .then(async (response) => {
           setform({
             fullname: "",
             mobileNumber: "",
@@ -48,6 +50,28 @@ export default function RegisterationPage() {
             password: "",
           });
           setUser(response.data);
+          console.log(response.data);
+          await axios
+            .post(`${base_api}/sendMail`, {
+              from1: "Info@scripthq.in",
+              reasone: "New Registration",
+              to: response.data.user.email,
+              contact: response.data.user.mobileNumber,
+              name: "ScriptHQ Team",
+              subject: "Welcome to ScriptHQ - Your Creative Journey Begins!",
+              message:
+                "We are thrilled to have you on board as part of our growing creative community. At ScriptHQ, we are committed to providing a secure, innovative, and collaborative platform where storytellers, filmmakers, and industry professionals come together to create magic.",
+            })
+            .then((res) => {
+              console.log("Email res:", res);
+            })
+            .catch((res) => {
+              console.log("Email res:", res);
+            });
+          setToggeload(true);
+          toast.success("Registered Successfully!", {
+            position: "top-center",
+          });
           setTimeout(() => {
             navigate("/login");
           }, 1000);
@@ -211,7 +235,8 @@ export default function RegisterationPage() {
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  sign-up
+                  {Toggeload && <span>sign-up</span>}
+                  {!Toggeload && <span>Loading...</span>}
                 </button>
               </div>
             </form>

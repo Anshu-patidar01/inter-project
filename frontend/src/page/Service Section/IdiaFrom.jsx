@@ -1,14 +1,17 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import axios from "axios";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import base_api from "../../utility/contants";
+import { MyContext } from "../../Context/context";
 export default function IdiaFrom() {
   const [Copyright, setCopyright] = useState("");
   const [CheckBox, setCheckBox] = useState(false);
+  const { setUser, User } = useContext(MyContext);
+
   const navigateTo = useNavigate();
   const handleCheckBoxChange = (e) => {
     // e.preventDefault();
@@ -59,7 +62,7 @@ export default function IdiaFrom() {
             "Content-Type": "application/json",
           },
         })
-        .then((response) => {
+        .then(async (response) => {
           setForm({
             state: "",
             correspondingAddress: "",
@@ -79,7 +82,24 @@ export default function IdiaFrom() {
           toast.success("Thankyou for submitting your creativity.", {
             position: "top-center",
           });
-
+          // console.log(Use);
+          await axios
+            .post(`${base_api}/sendMail`, {
+              from1: "Info@scripthq.in",
+              reasone: "New submition of Creativity",
+              to: User.data.email,
+              contact: User.data.mobileNumber,
+              name: "ScriptHQ Team",
+              subject: "Thank You for Submitting Your Idea!",
+              message:
+                "Thank you for sharing your idea with us! We appreciate your creativity and the time you took to submit it. Our team will review your submission and get back to you if we need more details.If you have any additional thoughts or updates, feel free to reply to this email.",
+            })
+            .then((res) => {
+              console.log("Email res:", res);
+            })
+            .catch((res) => {
+              console.log("Email res:", res);
+            });
           setTimeout(() => {
             navigateTo("/services");
           }, 2000);
