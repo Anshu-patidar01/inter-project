@@ -306,9 +306,9 @@ function AllCards(props) {
           {requirementform.map((item, index) => (
             <div
               key={index}
-              className=" flex justify-center hover:scale-110 duration-300 items-center text-gray-200"
+              className=" flex justify-center hover:scale-110 duration-300  items-center text-gray-200"
             >
-              <div className=" flex flex-col gap-1 shadow-lg font-bold bg-gray-700 shadow-blue-800 rounded-xl px-5 py-5 ">
+              <div className=" flex flex-col gap-1 shadow-lg font-bold w-72 bg-gray-700 shadow-blue-800 rounded-xl px-5 py-5 ">
                 <label>
                   Interested In:
                   <span className="text-sm font-normal">
