@@ -56,6 +56,7 @@ const IdiaFormController = async (req, res) => {
       summary,
       termAndCondition,
     };
+    const fileURL = "http://localhost:3000/uploads/" + req.file.filename;
     await formModel.create({
       userId,
       state,
@@ -69,7 +70,7 @@ const IdiaFormController = async (req, res) => {
       containt,
       copyright,
       ROCNumber,
-      ROCAttachment,
+      ROCAttachment: fileURL,
       summary,
       termAndCondition,
       status,

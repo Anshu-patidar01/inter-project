@@ -11,9 +11,21 @@ import {
 import userAuth from "../middelware/Auth.js";
 import { getidiaforms } from "../controllers/Admin.controller.js";
 const Router = express.Router();
-Router.post("/IdiaForm", userAuth, IdiaFormController);
+import multer from "multer";
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+Router.post("/IdiaForm", upload.single("file1"), userAuth, IdiaFormController);
 Router.post("/Requirement", userAuth, RequirementForm);
 Router.post("/Fullform", userAuth, FullForm);
+
 Router.get("/IdiaForm", getidiaforms);
 Router.get("/Requirement", getrequirementform);
 Router.get("/Fullform", getfullform);
