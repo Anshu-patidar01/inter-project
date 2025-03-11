@@ -188,7 +188,7 @@ export default function IdiaFrom() {
                         onChange={handleChange}
                         className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                       >
-                        <option>Select State</option>
+                        <option value="">Select State</option>
                         <option>Andhra Pradesh</option>
                         <option>Arunachal Pradesh</option>
                         <option>Assam</option>
@@ -376,12 +376,13 @@ export default function IdiaFrom() {
                       <select
                         id="Language"
                         name="language"
+                        required
                         value={Form.language}
                         onChange={handleChange}
                         //autoComplete="Language"
                         className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                       >
-                        <option>Select Language</option>
+                        <option value="">Select Language</option>
                         <option>English</option>
                         <option>Hindi</option>
                         <option>Kannada</option>
@@ -413,9 +414,10 @@ export default function IdiaFrom() {
                         value={Form.containt}
                         onChange={handleChange}
                         //autoComplete="Topic"
+                        required
                         className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                       >
-                        <option>Select Content</option>
+                        <option value="">Select Content</option>
                         <option>Action</option>
                         <option>Adventure</option>
                         <option>Comedy</option>
@@ -449,11 +451,12 @@ export default function IdiaFrom() {
                         id="Categories"
                         name="categories"
                         value={Form.categories}
+                        required
                         onChange={handleChange}
                         //autoComplete="Topic"
                         className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                       >
-                        <option>Select Category</option>
+                        <option value="">Select Category</option>
                         <option>Short Story</option>
                         <option>Story</option>
                         <option>Full Script</option>

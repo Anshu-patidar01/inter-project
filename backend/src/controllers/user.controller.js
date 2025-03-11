@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import IdeaFormModel from "../models/IdeaForm.Model.js";
 import validator from "validator";
-
+import { sendResetEmail } from "../config/resetpasswordmail.js";
 const register = async (req, res) => {
   try {
     const { fullname, email, mobileNumber, password } = req.body;
@@ -126,4 +126,34 @@ const Likes = async (req, res) => {
     res.json({ message: "Some problem at likes api", error: error.message });
   }
 };
-export { register, login, Likes };
+const forgotpassword = async (req, res) => {
+  const { email } = req.body;
+  try {
+    if (!validator.isEmail) {
+      throw new Error("Wrong Email Address.");
+    }
+    const ismail = await UserModel.findOne({ email });
+    if (!ismail) {
+      throw new Error("User not registered.");
+    } else {
+      const token = jwt.sign({ email: email }, "asdfgh", { expiresIn: "10m" });
+      sendResetEmail("anshupatidar62@gmail.com", token);
+      res.send(token);
+    }
+  } catch (error) {
+    res.send(`error in forgot password:${error.massage}`);
+  }
+};
+const resetpasswors = async (req, res) => {
+  const { token } = req.body;
+  try {
+    const decoded = jwt.verify(token, "asdfgh");
+    res.send(decoded);
+  } catch (error) {
+    res.send(`Token Epired:${error.message}`);
+  }
+};
+
+// Call function
+// sendResetEmail("user@example.com", "your-secure-token");
+export { register, login, Likes, forgotpassword, resetpasswors };
