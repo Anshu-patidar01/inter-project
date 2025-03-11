@@ -56,7 +56,13 @@ const IdiaFormController = async (req, res) => {
       summary,
       termAndCondition,
     };
-    const fileURL = "http://localhost:3000/uploads/" + req.file.filename;
+    // console.log(form);
+    let fileURL = "";
+    // console.log(req.file);
+    if (req.file) {
+      fileURL = "http://localhost:3000/uploads/" + req.file.filename;
+    }
+
     await formModel.create({
       userId,
       state,

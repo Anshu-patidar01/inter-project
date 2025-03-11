@@ -11,7 +11,6 @@ export default function IdiaFrom() {
   const [Copyright, setCopyright] = useState("");
   const [CheckBox, setCheckBox] = useState(false);
   const { setUser, User } = useContext(MyContext);
-
   const navigateTo = useNavigate();
   const handleCheckBoxChange = (e) => {
     // e.preventDefault();
@@ -51,7 +50,7 @@ export default function IdiaFrom() {
       const token = localStorage.getItem("project");
       if (!token) {
         toast.error("Token not provided.", {
-          position: "top-right",
+          position: "top-center",
         });
         navigateTo("/");
       }
@@ -59,7 +58,7 @@ export default function IdiaFrom() {
         .post(`${base_api}/form/IdiaForm`, Form, {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
         })
         .then(async (response) => {
@@ -121,10 +120,18 @@ export default function IdiaFrom() {
   const handleChange = (e) => {
     // e.preventDefault();
 
-    setForm({
-      ...Form,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "ROCAttachment") {
+      if (e.target.files[0] && e.target.files[0].size > 10 * 1024 * 1024) {
+        // 10MB limit
+        toast.error("File size exceeds 10MB.", {
+          position: "top-center",
+        });
+        return;
+      }
+      setForm({ ...Form, ROCAttachment: e.target.files[0] });
+    } else {
+      setForm({ ...Form, [e.target.name]: e.target.value });
+    }
   };
   const handleSummeruChange = (e) => {
     e.preventDefault();
@@ -167,7 +174,11 @@ export default function IdiaFrom() {
               />
             </svg>
           </div>
-          <form onSubmit={handleOnsubmit}>
+          <form
+            onSubmit={handleOnsubmit}
+            encType="multipart/form-data"
+            method="POST"
+          >
             <div className="space-y-12">
               <div className="border-b border-gray-900/10 pb-12">
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -563,9 +574,9 @@ export default function IdiaFrom() {
                             <input
                               id="file-upload"
                               name="ROCAttachment"
-                              value={Form.ROCAttachment}
-                              onChange={handleChange}
+                              // value={Form.ROCAttachment}
                               type="file"
+                              onChange={handleChange}
                               className="sr-only"
                             />
                           </label>

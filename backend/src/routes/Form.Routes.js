@@ -22,7 +22,12 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage: storage });
-Router.post("/IdiaForm", upload.single("file1"), userAuth, IdiaFormController);
+Router.post(
+  "/IdiaForm",
+  upload.single("ROCAttachment"),
+  userAuth,
+  IdiaFormController
+);
 Router.post("/Requirement", userAuth, RequirementForm);
 Router.post("/Fullform", userAuth, FullForm);
 
