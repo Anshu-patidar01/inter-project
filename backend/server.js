@@ -5,7 +5,7 @@ import userRouter from "./src/routes/User.Routes.js";
 import FromRouter from "./src/routes/Form.Routes.js";
 import AdminRouter from "./src/routes/Admin.Routes.js";
 import cors from "cors";
-import sendEmail from "./src/config/mailsender.js";
+import { sendEmail } from "./src/config/mailsender.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;

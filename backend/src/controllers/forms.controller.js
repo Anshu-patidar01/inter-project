@@ -1,8 +1,8 @@
+import { FormSendEmail } from "../config/mailsender.js";
 import FullFormModel from "../models/FullForm.Model.js";
 import IdeaFormModel from "../models/IdeaForm.Model.js";
 import formModel from "../models/IdeaForm.Model.js";
 import RequirementModel from "../models/RequirementForm.Model.js";
-import UserModel from "../models/User.Model.js";
 const IdiaFormController = async (req, res) => {
   let {
     state,
@@ -81,6 +81,19 @@ const IdiaFormController = async (req, res) => {
       termAndCondition,
       status,
     });
+    // console.log(req.user);
+    const user = req.user;
+    const subject = "Submission Received – Your Creative Work is in Review ";
+    const message =
+      "Thank you for submitting your creative idea to ScriptHQ. We have successfully received your submission and appreciate your trust in us.<br>What Happens Next?<br>- Our team will review your submission to ensure it meets all required aspects and criteria.<br>- If your work aligns with the requirements of production houses, we will share it with them for consideration.<br>- This process may take approximately 15 to 30 days to display on ScriptHQ.in .<br>- If we receive any confirmation or interest from a production house, we will notify you immediately.  <br>We value your creativity and look forward to working together to bring great stories to life. Stay connected and keep innovating.<br><br>For any queries, feel free to reach out at info@scripthq.in.";
+    const x = await FormSendEmail(
+      user.email,
+      "Info@scripthq.in",
+      user.fullname,
+      subject,
+      message
+    );
+    console.log(x);
     res.status(201).json({ message: form });
   } catch (err) {
     res.status(400).json({
@@ -110,6 +123,18 @@ const RequirementForm = async (req, res) => {
       formId,
       userId,
     });
+    const user = req.user;
+    const subject = " Confirmation of Your Script Requirement Submission";
+    const message =
+      "Thank you for submitting your requirement. We have received your request and appreciate your interest in working with us.<br>If we need any additional information, we will reach out to you shortly. In the meantime, please feel free to share any specific preferences or deadlines you may have. We aim to provide you with a tailored script that meets your expectations.<br>If you have any urgent queries, please feel free to contact us at scriptHQ.in<br><br>Looking forward to collaborating with you!";
+    const x = await FormSendEmail(
+      user.email,
+      "Info@scripthq.in",
+      user.fullname,
+      subject,
+      message
+    );
+    // console.log(x);
     res.status(201).json({
       message: "Required Form was Created.",
       data: form,

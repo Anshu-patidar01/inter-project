@@ -6,6 +6,7 @@ import "react-toastify/ReactToastify.css";
 import axios from "axios";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import base_api from "../../utility/contants";
+import termandcondition from "../../assets/New User Terms & Conditions.pdf";
 import { MyContext } from "../../Context/context";
 export default function IdiaFrom() {
   const [Copyright, setCopyright] = useState("");
@@ -82,23 +83,23 @@ export default function IdiaFrom() {
             position: "top-center",
           });
           // console.log(Use);
-          await axios
-            .post(`${base_api}/sendMail`, {
-              from1: "Info@scripthq.in",
-              reasone: "New submition of Creativity",
-              to: User.data.email,
-              contact: User.data.mobileNumber,
-              name: User.data.name,
-              subject: "Submission Received – Your Creative Work is in Review ",
-              message:
-                "Thank you for submitting your creative idea to ScriptHQ. We have successfully received your submission and appreciate your trust in us.<br>What Happens Next?<br>- Our team will review your submission to ensure it meets all required aspects and criteria.<br>- If your work aligns with the requirements of production houses, we will share it with them for consideration.<br>- This process may take approximately 15 to 30 days to display on ScriptHQ.in . <br>- If we receive any confirmation or interest from a production house, we will notify you immediately.<br><br>We value your creativity and look forward to working together to bring great stories to life. Stay connected and keep innovating.<br><br>For any queries, feel free to reach out at info@scripthq.in.",
-            })
-            .then((res) => {
-              console.log("Email res:", res);
-            })
-            .catch((res) => {
-              console.log("Email res:", res);
-            });
+          // await axios
+          //   .post(`${base_api}/sendMail`, {
+          //     from1: "Info@scripthq.in",
+          //     reasone: "New submition of Creativity",
+          //     to: User.data.email,
+          //     contact: User.data.mobileNumber,
+          //     name: User.data.name,
+          //     subject: "Submission Received – Your Creative Work is in Review ",
+          //     message:
+          //       "Thank you for submitting your creative idea to ScriptHQ. We have successfully received your submission and appreciate your trust in us.<br>What Happens Next?<br>- Our team will review your submission to ensure it meets all required aspects and criteria.<br>- If your work aligns with the requirements of production houses, we will share it with them for consideration.<br>- This process may take approximately 15 to 30 days to display on ScriptHQ.in . <br>- If we receive any confirmation or interest from a production house, we will notify you immediately.<br><br>We value your creativity and look forward to working together to bring great stories to life. Stay connected and keep innovating.<br><br>For any queries, feel free to reach out at info@scripthq.in.",
+          //   })
+          //   .then((res) => {
+          //     console.log("Email res:", res);
+          //   })
+          //   .catch((res) => {
+          //     console.log("Email res:", res);
+          //   });
           setTimeout(() => {
             navigateTo("/services");
           }, 2000);
@@ -591,7 +592,6 @@ export default function IdiaFrom() {
                               // value={Form.ROCAttachment}
                               type="file"
                               onChange={handleChange}
-                              className="sr-only"
                             />
                           </label>
                           <p className="pl-1">or drag and drop</p>
@@ -646,7 +646,10 @@ export default function IdiaFrom() {
                       htmlFor="term"
                       className="block text-sm/6 font-medium text-gray-100"
                     >
-                      For copyright form term and condition{" "}
+                      For copyright form{" "}
+                      <a href={termandcondition} className="text-blue-500">
+                        term and condition
+                      </a>
                     </label>
                   </div>
                 </div>

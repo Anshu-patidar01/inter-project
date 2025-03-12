@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import IdeaFormModel from "../models/IdeaForm.Model.js";
 import validator from "validator";
-import { sendResetEmail } from "../config/resetpasswordmail.js";
+import { FormSendEmail } from "../config/mailsender.js";
 const register = async (req, res) => {
   try {
     const { fullname, email, mobileNumber, password } = req.body;
@@ -49,7 +49,17 @@ const register = async (req, res) => {
       mobileNumber,
       password: hashpassword,
     });
-
+    const subject = "Welcome to ScriptHQ – Your Creative Journey Begins!";
+    const message =
+      "Congratulations! 🎉 You have successfully registered at ScriptHQ – The Head Quarter of Scripts.<br>We are thrilled to have you on board as part of our growing creative community. At ScriptHQ, we are committed to providing a secure, innovative, and collaborative platform where storytellers, filmmakers, and industry professionals come together to create magic.";
+    const x = await FormSendEmail(
+      userx.email,
+      "Info@scripthq.in",
+      userx.fullname,
+      subject,
+      message
+    );
+    // console.log(x);
     res.status(201).json({ user: userx });
     // }
   } catch (error) {
@@ -137,7 +147,6 @@ const forgotpassword = async (req, res) => {
       throw new Error("User not registered.");
     } else {
       const token = jwt.sign({ email: email }, "asdfgh", { expiresIn: "10m" });
-      sendResetEmail("anshupatidar62@gmail.com", token);
       res.send(token);
     }
   } catch (error) {
@@ -155,5 +164,4 @@ const resetpasswors = async (req, res) => {
 };
 
 // Call function
-// sendResetEmail("user@example.com", "your-secure-token");
 export { register, login, Likes, forgotpassword, resetpasswors };

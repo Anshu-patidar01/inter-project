@@ -51,23 +51,7 @@ export default function RegisterationPage() {
           });
           setUser(response.data);
           console.log(response.data);
-          await axios
-            .post(`${base_api}/sendMail`, {
-              from1: "Info@scripthq.in",
-              reasone: "New Registration",
-              to: response.data.user.email,
-              contact: response.data.user.mobileNumber,
-              name: "ScriptHQ Team",
-              subject: "Welcome to ScriptHQ - Your Creative Journey Begins!",
-              message:
-                "We are thrilled to have you on board as part of our growing creative community. At ScriptHQ, we are committed to providing a secure, innovative, and collaborative platform where storytellers, filmmakers, and industry professionals come together to create magic.",
-            })
-            .then((res) => {
-              console.log("Email res:", res);
-            })
-            .catch((res) => {
-              console.log("Email res:", res);
-            });
+
           setToggeload(true);
           toast.success("Registered Successfully!", {
             position: "top-center",
