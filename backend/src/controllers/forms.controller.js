@@ -152,7 +152,7 @@ const limitedIdeaForm = async (req, res) => {
   try {
     const forms = await IdeaFormModel.find(
       { status: "Approved" },
-      "city gender title language categories copyright summary likes _id createdAt formId"
+      "city gender title language categories copyright summary likes _id createdAt formId ROCAttachment"
     )
       .sort({ _id: -1 })
       .populate("userId", "fullname");
@@ -207,6 +207,7 @@ const limitedIdeaForm = async (req, res) => {
         likes: form.likes,
         formId: form.formId,
         _id: form._id,
+        ROCAttachment: form.ROCAttachment,
       };
     });
     res.send(modifiedForm);

@@ -121,14 +121,28 @@ export default function IdiaFrom() {
     // e.preventDefault();
 
     if (e.target.name === "ROCAttachment") {
-      if (e.target.files[0] && e.target.files[0].size > 10 * 1024 * 1024) {
-        // 10MB limit
-        toast.error("File size exceeds 10MB.", {
-          position: "top-center",
-        });
-        return;
+      const file = e.target.files[0];
+      if (
+        file.name.toLowerCase().endsWith(".pdf") ||
+        file.name.toLowerCase().endsWith(".docx") ||
+        file.name.toLowerCase().endsWith(".mp3")
+      ) {
+        if (file && file.size > 10 * 1024 * 1024) {
+          // 10MB limit
+          toast.error("File size exceeds 10MB.", {
+            position: "top-center",
+          });
+          return;
+        }
+        setForm({ ...Form, ROCAttachment: e.target.files[0] });
+      } else {
+        toast.error(
+          "Invalid file type! Please upload a PDF, DOCX, or MP3 file.",
+          {
+            position: "top-center",
+          }
+        );
       }
-      setForm({ ...Form, ROCAttachment: e.target.files[0] });
     } else {
       setForm({ ...Form, [e.target.name]: e.target.value });
     }

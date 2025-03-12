@@ -168,7 +168,7 @@ function AllCards(props) {
               .map((item, index) => (
                 <div
                   key={index}
-                  className=" h-80 flex flex-col justify-between  shadow-lg hover:scale-105 cursor-pointer duration-300 bg-gray-50 shadow-blue-800 rounded-xl "
+                  className=" flex flex-col justify-between  shadow-lg hover:scale-105 cursor-pointer duration-300 bg-gray-50 shadow-blue-800 rounded-xl "
                 >
                   <div className="flex flex-col  break-words p-3 ">
                     <h1 className="text-gray-900 text-lg font-bold tracking-wider">
@@ -197,6 +197,40 @@ function AllCards(props) {
                         See More...
                       </span>
                     </div>
+                    {item.ROCAttachment !== "" ? (
+                      <div className="mt-5">
+                        {item.ROCAttachment.toLowerCase().endsWith(".pdf") ? (
+                          <a
+                            href={item.ROCAttachment}
+                            className=" border-2 border-black p-1 rounded-lg"
+                          >
+                            {item.ROCAttachment.split("/").pop()}
+                          </a>
+                        ) : item.ROCAttachment.toLowerCase().endsWith(
+                            ".mp3"
+                          ) ? (
+                          <a
+                            href={item.ROCAttachment}
+                            className=" border-2 border-black p-1 rounded-lg"
+                          >
+                            {item.ROCAttachment.split("/").pop()}
+                          </a>
+                        ) : item.ROCAttachment.toLowerCase().endsWith(
+                            ".docx"
+                          ) ? (
+                          <a
+                            href={item.ROCAttachment}
+                            className=" border-2 border-black p-1 rounded-lg"
+                          >
+                            {item.ROCAttachment.split("/").pop()}
+                          </a>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="flex flex-row justify-between gap-4 p-2">
                     <button

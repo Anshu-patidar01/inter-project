@@ -9,6 +9,7 @@ import sendEmail from "./src/config/mailsender.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
+app.use(express.static("public"));
 app.use(
   cors({
     // origin: "https://intern-frontend-five.vercel.app/",
@@ -17,6 +18,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 connection()
   .then(() =>
     app.listen(PORT, () => {
