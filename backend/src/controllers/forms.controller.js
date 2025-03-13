@@ -60,7 +60,8 @@ const IdiaFormController = async (req, res) => {
     let fileURL = "";
     // console.log(req.file);
     if (req.file) {
-      fileURL = "http://localhost:3000/uploads/" + req.file.filename;
+      fileURL =
+        `https://inter-project-lnf5.onrender.com/uploads/` + req.file.filename;
     }
 
     await formModel.create({
