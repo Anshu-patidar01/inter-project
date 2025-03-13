@@ -160,6 +160,7 @@ function AllCards(props) {
               .filter((item) => {
                 if (props.state === "false") {
                   if (allcategory === "All Category") return item;
+                  if (allcategory === "all") return item;
                   return item.categories == allcategory;
                 } else {
                   return item;
