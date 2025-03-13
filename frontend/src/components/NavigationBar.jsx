@@ -351,6 +351,9 @@ export default function NavigationBar() {
                 <button
                   onClick={() => {
                     setDropdownOpen(!dropdownOpen);
+                    setallcategory("all");
+                    navigate("/category");
+
                     // navigate("/services");
                     // console.log("hello");
                   }}
@@ -358,7 +361,7 @@ export default function NavigationBar() {
                   // onMouseLeave={() => setDropdownOpen(false)}
                   className="bg-gray-600 px-4 py-2 rounded transition"
                 >
-                  All Category ▼
+                  All Category
                 </button>
 
                 {dropdownOpen && (
@@ -465,7 +468,7 @@ export default function NavigationBar() {
               </div>
             </div>
             <Link
-              to={"/"}
+              to={"/about"}
               className={" text-white rounded-md px-3 py-2 text-sm font-medium"}
             >
               About
