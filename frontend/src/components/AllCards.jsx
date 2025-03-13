@@ -180,6 +180,7 @@ function AllCards(props) {
                       Title: {item.title}
                     </h1>
                     <h1 className="text-gray-700">Language:{item.language}</h1>
+                    <h1 className="text-gray-700">containt:{item.containt}</h1>
                     <h1 className="text-gray-700">
                       Category: {item.categories}
                     </h1>
@@ -198,40 +199,6 @@ function AllCards(props) {
                         See More...
                       </span>
                     </div>
-                    {item.ROCAttachment !== "" ? (
-                      <div className="mt-5">
-                        {item.ROCAttachment.toLowerCase().endsWith(".pdf") ? (
-                          <a
-                            href={item.ROCAttachment}
-                            className=" border-2 border-black p-1 rounded-lg"
-                          >
-                            {item.ROCAttachment.split("/").pop()}
-                          </a>
-                        ) : item.ROCAttachment.toLowerCase().endsWith(
-                            ".mp3"
-                          ) ? (
-                          <a
-                            href={item.ROCAttachment}
-                            className=" border-2 border-black p-1 rounded-lg"
-                          >
-                            {item.ROCAttachment.split("/").pop()}
-                          </a>
-                        ) : item.ROCAttachment.toLowerCase().endsWith(
-                            ".docx"
-                          ) ? (
-                          <a
-                            href={item.ROCAttachment}
-                            className=" border-2 border-black p-1 rounded-lg"
-                          >
-                            {item.ROCAttachment.split("/").pop()}
-                          </a>
-                        ) : (
-                          ""
-                        )}
-                      </div>
-                    ) : (
-                      ""
-                    )}
                   </div>
                   <div className="flex flex-row justify-between gap-4 p-2">
                     <button

@@ -70,7 +70,7 @@ function ContactPage() {
         })
         .then((res) => {
           console.log(res);
-          toast.success("Email Sent.Thankyou for contacting us.", {
+          toast.success("Email Sent.Thank You for contacting us.", {
             position: "top-center",
           });
           setToggleLoading(false);
