@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 export const MyContext = createContext();
 export const MyProvider = ({ children }) => {
   const [Data, setData] = useState(0);
-  const [forms, setform] = useState("");
+  const [forms, setform] = useState([]);
   const [User, setUser] = useState({
     _id: "",
     fullname: "",

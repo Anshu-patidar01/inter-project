@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/context";
 import PopupCartUser from "./PopupCartUser";
 import base_api from "../utility/contants";
+import Pagination from "./Pagination";
 function AllCards(props) {
   const {
     forms,
@@ -17,7 +18,10 @@ function AllCards(props) {
     allcategory,
     setallcategory,
   } = useContext(MyContext);
-
+  const [CurrentPage, setCurrentPage] = useState(1);
+  const [postperpage, setpostperpage] = useState(9);
+  const lastpostIndex = CurrentPage * postperpage;
+  const firstpostindex = lastpostIndex - postperpage;
   const [requirementform, setrequirementform] = useState([]);
   const [summary, setsummary] = useState("");
   const navigatTo = useNavigate();
@@ -84,7 +88,16 @@ function AllCards(props) {
     validate_token_api();
     response2();
   }, []);
-
+  let currentposts = forms.filter((item) => {
+    if (props.state === "false") {
+      if (allcategory === "All Category") return item;
+      if (allcategory === "all") return item;
+      return item.categories == allcategory;
+    } else {
+      return item;
+    }
+  });
+  currentposts = currentposts.slice(firstpostindex, lastpostIndex);
   const handlelikes = async (id) => {
     try {
       const token = localStorage.getItem("project");
@@ -156,18 +169,9 @@ function AllCards(props) {
 
       <div className=" flex flex-col  md:flex-row gap-3 w-full">
         {forms !== "" ? (
-          <div className="md:w-[80%] bg-slate-500 rounded-md grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 gap-5 p-5">
-            {forms
-              .filter((item) => {
-                if (props.state === "false") {
-                  if (allcategory === "All Category") return item;
-                  if (allcategory === "all") return item;
-                  return item.categories == allcategory;
-                } else {
-                  return item;
-                }
-              })
-              .map((item, index) => (
+          <div className="w-[80%] flex flex-col items-center">
+            <div className="md:w-full bg-slate-500 rounded-md grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 gap-5 p-5">
+              {currentposts.map((item, index) => (
                 <div
                   key={index}
                   className="h-80 flex flex-col justify-between   shadow-lg hover:scale-105 cursor-pointer duration-300 bg-gray-50 shadow-blue-800 rounded-xl "
@@ -192,7 +196,7 @@ function AllCards(props) {
                       Summary :
                       {item.language === "Tamil"
                         ? item.summary.split(" ").slice(0, 5).join(" ")
-                        : item.summary.split(" ").slice(0, 5).join(" ")}
+                        : item.summary.split(" ").slice(0, 10).join(" ")}
                       <span
                         className="text-blue-800"
                         onClick={() => {
@@ -280,6 +284,18 @@ function AllCards(props) {
                   </div>
                 </div>
               ))}
+            </div>
+            {currentposts.length <= 9 ? (
+              <div className="w-[90%]">
+                <Pagination
+                  totalPosts={forms.length}
+                  postsPages={postperpage}
+                  setCurrentPage={setCurrentPage}
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         ) : (
           <div className="w-2/3">
