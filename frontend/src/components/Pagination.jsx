@@ -6,7 +6,7 @@ function Pagination({ totalPosts, postsPages, setCurrentPage }) {
     page.push(i);
   }
   return (
-    <div className="flex flex-row gap-3  my-10 bg-gray-500 w-full rounded-lg justify-center p-2">
+    <div className="flex flex-row gap-3 overflow-x-scroll  my-10 bg-gray-500 w-full rounded-lg justify-center p-2">
       {page.map((item, index) => {
         return (
           <div>

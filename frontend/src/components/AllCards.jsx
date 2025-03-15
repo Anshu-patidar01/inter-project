@@ -167,9 +167,9 @@ function AllCards(props) {
       <ToastContainer />
       <PopupCartUser summary={summary} />
 
-      <div className=" flex flex-col  md:flex-row gap-3 w-full">
+      <div className=" flex flex-col items-center md:items-start justify-center md:flex-row gap-3 w-full">
         {forms !== "" ? (
-          <div className="w-[80%] flex flex-col items-center">
+          <div className="w-[80%]  flex flex-col items-center justify-center">
             <div className="md:w-full bg-slate-500 rounded-md grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 gap-5 p-5">
               {currentposts.map((item, index) => (
                 <div
@@ -285,17 +285,14 @@ function AllCards(props) {
                 </div>
               ))}
             </div>
-            {currentposts.length <= 9 ? (
-              <div className="w-[90%]">
-                <Pagination
-                  totalPosts={forms.length}
-                  postsPages={postperpage}
-                  setCurrentPage={setCurrentPage}
-                />
-              </div>
-            ) : (
-              ""
-            )}
+
+            <div className="w-[90%]  p-1">
+              <Pagination
+                totalPosts={forms.length}
+                postsPages={postperpage}
+                setCurrentPage={setCurrentPage}
+              />
+            </div>
           </div>
         ) : (
           <div className="w-2/3">

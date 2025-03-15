@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import IdeaFormModel from "../models/IdeaForm.Model.js";
 import validator from "validator";
 import { FormSendEmail } from "../config/mailsender.js";
+
 const register = async (req, res) => {
   try {
     const { fullname, email, mobileNumber, password } = req.body;
@@ -142,22 +143,49 @@ const forgotpassword = async (req, res) => {
     if (!validator.isEmail) {
       throw new Error("Wrong Email Address.");
     }
-    const ismail = await UserModel.findOne({ email });
-    if (!ismail) {
+    const user = await UserModel.findOne({ email });
+    console.log(user);
+    if (user === null) {
       throw new Error("User not registered.");
     } else {
       const token = jwt.sign({ email: email }, "asdfgh", { expiresIn: "10m" });
+      const subject = "Reset Your Password";
+      const message = `"<p>Click the link below to reset your password:</p>
+      <a href="https://inter-project-1nf5.onrender.com/forgot/${token}">Reset Password</a>
+      <p>If you did not request this, please ignore this email.</p>"`;
+      FormSendEmail(
+        user.email,
+        "Info@scripthq.in",
+        user.fullname,
+        subject,
+        message
+      );
       res.send(token);
     }
   } catch (error) {
-    res.send(`error in forgot password:${error.massage}`);
+    res.status(404).send(`${error}`);
   }
 };
 const resetpasswors = async (req, res) => {
-  const { token } = req.body;
+  const { token, newpassword } = req.body;
   try {
+    if (!validator.isStrongPassword(newpassword)) {
+      throw new Error(
+        "Use at least 8 characters, including uppercase, lowercase, a number, and a special character.!"
+      );
+    }
     const decoded = jwt.verify(token, "asdfgh");
-    res.send(decoded);
+    console.log(decoded);
+    const hashpassword = await bcrypt.hash(newpassword, 10);
+    const user = await UserModel.findOneAndUpdate(
+      { email: decoded.email },
+      { password: hashpassword },
+      { new: true }
+    );
+    if (!user) {
+      throw new Error("User Not Found");
+    }
+    res.send("password Updated..!");
   } catch (error) {
     res.send(`Token Epired:${error.message}`);
   }

@@ -16,6 +16,7 @@ import Footer from "./page/Footer";
 import ContactPage from "./page/Service Section/ContactPage";
 import Profile from "./components/Profile";
 import About from "./page/About";
+import Forgot from "./components/Forgot";
 function App() {
   return (
     <>
@@ -30,6 +31,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/about" element={<About />} />
+          <Route path="/forgot/:token" element={<Forgot />} />
           {/* idiaSubmit form route */}
           <Route
             path="/idiaSubmit"

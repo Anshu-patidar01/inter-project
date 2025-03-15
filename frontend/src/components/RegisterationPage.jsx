@@ -79,6 +79,7 @@ export default function RegisterationPage() {
     <>
       <div className="">
         <ToastContainer />
+
         <div className=" flex flow-row  items-center justify-center gap-3 w-full h-8 text-center text-red-600/80 bg-green-100/75">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +113,6 @@ export default function RegisterationPage() {
               Sign-up Form
             </h2>
           </div>
-
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form onSubmit={(e) => handleSubmit(e)} className="space-y-6">
               <div>
@@ -187,12 +187,12 @@ export default function RegisterationPage() {
                     Create Password<span className="text-red-600">*</span>
                   </label>
                   <div className="text-sm">
-                    <a
-                      href="#"
+                    <Link
+                      to={"/forgot/1"}
                       className="font-semibold text-indigo-600 hover:text-indigo-500"
                     >
                       Forgot password?
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="mt-2">

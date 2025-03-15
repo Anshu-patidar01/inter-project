@@ -1,12 +1,20 @@
 import express from "express";
 const Router = express.Router();
-import { Likes, login, register } from "../controllers/user.controller.js";
+import {
+  forgotpassword,
+  Likes,
+  login,
+  register,
+  resetpasswors,
+} from "../controllers/user.controller.js";
 import UserModel from "../models/User.Model.js";
 import jwt from "jsonwebtoken";
 import userAuth from "../middelware/Auth.js";
 Router.post("/register", register);
 Router.post("/login", login);
 Router.post("/like", userAuth, Likes);
+Router.post("/forgot", forgotpassword);
+Router.post("/resetPassword", resetpasswors);
 
 Router.post("/validate-token", async (req, res) => {
   const { token } = req.body;
