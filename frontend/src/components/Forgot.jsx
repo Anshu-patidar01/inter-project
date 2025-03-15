@@ -88,12 +88,12 @@ function Forgot() {
         })
         .catch((error) => {
           console.log(error.message);
-          toast.success("Failed to update password. Please try again.", {
+          toast.error("Failed to update password. Please try again.", {
             position: "top-center",
             autoClose: 4000,
           });
           setTimeout(() => {
-            navigate("/gorgot/1");
+            navigate("/forgot/1");
           }, 8000);
         });
     } catch (error) {
@@ -160,8 +160,8 @@ function Forgot() {
         </section>
       ) : (
         <section className="bg-gray-50 dark:bg-gray-900">
-          <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
-            <div className="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
+          <div className="flex flex-col h-screen items-center justify-center px-6 py-8 mx-auto lg:py-0">
+            <div className="w-full  p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
               <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Change Password
               </h2>
