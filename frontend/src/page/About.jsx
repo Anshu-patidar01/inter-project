@@ -84,12 +84,12 @@ export default function About() {
           />
         </div>
       </div>
-      <div className=" bg-slate-700 text-white w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
         <div className=" py-24">
           <h1 className="text-[3rem] text-center font-bold my-10">
             Why Choose ScriptHQ?
           </h1>
-          <ul className="space-y-5 text-gray-300">
+          <ul className="space-y-5 text-gray-600">
             <li>
               {" "}
               🔥<strong>Global Talent Network – </strong> We connect creators

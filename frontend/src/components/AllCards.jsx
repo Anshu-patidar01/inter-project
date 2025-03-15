@@ -17,11 +17,11 @@ function AllCards(props) {
     allcategory,
     setallcategory,
   } = useContext(MyContext);
+
   const [requirementform, setrequirementform] = useState([]);
   const [summary, setsummary] = useState("");
   const navigatTo = useNavigate();
   const [ToggleLoading, setToggleLoading] = useState(false);
-
   const response2 = async () => {
     try {
       const token = localStorage.getItem("project");
@@ -153,6 +153,7 @@ function AllCards(props) {
     <div>
       <ToastContainer />
       <PopupCartUser summary={summary} />
+
       <div className=" flex flex-col  md:flex-row gap-3 w-full">
         {forms !== "" ? (
           <div className="md:w-[80%] bg-slate-500 rounded-md grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 gap-5 p-5">
@@ -169,9 +170,9 @@ function AllCards(props) {
               .map((item, index) => (
                 <div
                   key={index}
-                  className=" flex flex-col justify-between  shadow-lg hover:scale-105 cursor-pointer duration-300 bg-gray-50 shadow-blue-800 rounded-xl "
+                  className="h-80 flex flex-col justify-between   shadow-lg hover:scale-105 cursor-pointer duration-300 bg-gray-50 shadow-blue-800 rounded-xl "
                 >
-                  <div className="flex flex-col  break-words p-3 ">
+                  <div className="h-full flex flex-col justify-between  break-words p-3 ">
                     <h1 className="text-gray-900 text-lg font-bold tracking-wider">
                       {item.gender === "Male" ? "Mr. " : "Mrs. "}
                       {item.fullname.split(" ")}
@@ -187,8 +188,11 @@ function AllCards(props) {
                     <h1 className="text-gray-700">
                       Copyright: {item.copyright}
                     </h1>
-                    <div className="text-gray-700 overflow-hidden ">
-                      Summary :{item.summary.split(" ").slice(0, 10).join(" ")}
+                    <div className="text-gray-700 break-words max-h-24 overflow-hidden ">
+                      Summary :
+                      {item.language === "Tamil"
+                        ? item.summary.split(" ").slice(0, 5).join(" ")
+                        : item.summary.split(" ").slice(0, 5).join(" ")}
                       <span
                         className="text-blue-800"
                         onClick={() => {

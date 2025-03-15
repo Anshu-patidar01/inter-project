@@ -120,7 +120,7 @@ export default function NavigationBar() {
                           // console.log("hello");
                         }}
                         onMouseEnter={() => setDropdownOpen(true)}
-                        // onMouseLeave={() => setDropdownOpen(false)}
+                        onMouseLeave={() => setDropdownOpen(false)}
                         className="bg-gray-600 px-4 py-2 rounded transition"
                       >
                         All Category
@@ -358,7 +358,7 @@ export default function NavigationBar() {
                     // console.log("hello");
                   }}
                   onMouseEnter={() => setDropdownOpen(true)}
-                  // onMouseLeave={() => setDropdownOpen(false)}
+                  onMouseLeave={() => setDropdownOpen(false)}
                   className="bg-gray-600 px-4 py-2 rounded transition"
                 >
                   All Category
