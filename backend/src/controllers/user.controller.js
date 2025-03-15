@@ -187,7 +187,7 @@ const resetpasswors = async (req, res) => {
     }
     res.send("password Updated..!");
   } catch (error) {
-    res.send(`Token Epired:${error.message}`);
+    res.status(404).send(`Token Epired:${error.message}`);
   }
 };
 
