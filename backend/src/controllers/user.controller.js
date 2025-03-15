@@ -151,7 +151,7 @@ const forgotpassword = async (req, res) => {
       const token = jwt.sign({ email: email }, "asdfgh", { expiresIn: "10m" });
       const subject = "Reset Your Password";
       const message = `"<p>Click the link below to reset your password:</p>
-      <a href="https://inter-project-1nf5.onrender.com/forgot/${token}">Reset Password</a>
+      <a href="https://inter-project-gray.vercel.app/forgot/${token}">Reset Password</a>
       <p>If you did not request this, please ignore this email.</p>"`;
       FormSendEmail(
         user.email,
