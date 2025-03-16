@@ -1,15 +1,95 @@
-import React from "react";
-
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import base_api from "../utility/contants";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
+import { useSearchParams } from "react-router-dom";
+import { MyContext } from "../Context/context";
 function Profile() {
+  const { User } = useContext(MyContext);
+  const user = User.data;
+  const [toggle, settoggle] = useState(false);
+  const [data, setdata] = useState([]);
+  const [form, setform] = useState({
+    title: "",
+    summary: "",
+  });
+
+  const respons = async () => {
+    const token = localStorage.getItem("project");
+
+    await axios
+      .get(`${base_api}/form/getIdiaForm`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        // console.log(res);
+        setdata(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    respons();
+  }, []);
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    setform({ ...form, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
+    const token = localStorage.getItem("project");
+
+    await axios
+      .patch(
+        `${base_api}/form/IdeaForm`,
+        {
+          formId: "67d0152cb4fe5c7c2929a519",
+          title: form.title,
+          summary: form.summary,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        setform({
+          title: "",
+          summary: "",
+        });
+        respons();
+        console.log(response);
+        toast.success("Form Updated Successfully!", {
+          position: "top-center",
+        });
+        settoggle(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Not Updated Please Try Again!!", {
+          position: "top-center",
+        });
+      });
+  };
   return (
-    <div className=" px-20 ">
+    <div className=" md:px-20 ">
+      <ToastContainer />
+
       <div className="bg-slate-200">
         <section>
-          <header class="px-2 md:py-16 md:pt-16 flex flex-col justify-center items-center text-center">
+          <header class="md:px-2 py-20 flex flex-col justify-center items-center text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="50"
+              width="80"
+              height="80"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -22,148 +102,153 @@ function Profile() {
               <circle cx="12" cy="10" r="3" />
               <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
             </svg>
-            <h1 class="text-4xl text-gray-500 font-bold mt-2">Johh Doe</h1>
-            <h2 class="text-base md:text-xl text-gray-500 font-bold">
-              Lead Software Engineer @
-              <a
-                href=""
-                target="_blank"
-                class="text-indigo-900 hover:text-indigo-600 font-bold border-b-0 hover:border-b-4 hover:border-b-indigo-300 transition-all mb-2"
-              >
-                XYZ
-              </a>
-            </h2>
-            {/* <ul class="flex flex-row mt-2">
-            <li class="mx-2">
-              <a href="" target="_blank" aria-label="GitHub">
-                <svg
-                  class="h-6 text-indigo-700 hover:text-indigo-300"
-                  fill="currentColor"
-                  role="img"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>GitHub</title>
-                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
-                </svg>{" "}
-              </a>
-            </li>
-
-            <li class="mx-2">
-              <a href="" target="_blank" aria-label="LinkedIn">
-                <svg
-                  class="h-6 text-indigo-700 hover:text-indigo-300"
-                  fill="currentColor"
-                  role="img"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>LinkedIn</title>
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
-                </svg>{" "}
-              </a>
-            </li>
-
-            <li class="mx-2">
-              <a href="" target="_blank" aria-label="Twitter">
-                <svg
-                  class="h-6 text-indigo-700 hover:text-indigo-300"
-                  fill="currentColor"
-                  role="img"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Twitter</title>
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
-                </svg>{" "}
-              </a>
-            </li>
-
-            <li class="mx-2">
-              <a href="" target="_blank" aria-label="Unsplash">
-                <svg
-                  class="h-6 text-indigo-700 hover:text-indigo-300"
-                  fill="currentColor"
-                  role="img"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Unsplash</title>
-                  <path d="M7.5 6.75V0h9v6.75h-9zm9 3.75H24V24H0V10.5h7.5v6.75h9V10.5z"></path>
-                </svg>{" "}
-              </a>
-            </li>
-
-            <li class="mx-2">
-              <a href="" target="_blank" aria-label="Email">
-                <svg
-                  class="h-6 text-indigo-700 hover:text-indigo-300"
-                  fill="currentColor"
-                  role="img"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Mail.Ru</title>
-                  <path d="M15.61 12c0 1.99-1.62 3.61-3.61 3.61-1.99 0-3.61-1.62-3.61-3.61 0-1.99 1.62-3.61 3.61-3.61 1.99 0 3.61 1.62 3.61 3.61M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12c2.424 0 4.761-.722 6.76-2.087l.034-.024-1.617-1.879-.027.017A9.494 9.494 0 0 1 12 21.54c-5.26 0-9.54-4.28-9.54-9.54 0-5.26 4.28-9.54 9.54-9.54 5.26 0 9.54 4.28 9.54 9.54a9.63 9.63 0 0 1-.225 2.05c-.301 1.239-1.169 1.618-1.82 1.568-.654-.053-1.42-.52-1.426-1.661V12A6.076 6.076 0 0 0 12 5.93 6.076 6.076 0 0 0 5.93 12 6.076 6.076 0 0 0 12 18.07a6.02 6.02 0 0 0 4.3-1.792 3.9 3.9 0 0 0 3.32 1.805c.874 0 1.74-.292 2.437-.821.719-.547 1.256-1.336 1.553-2.285.047-.154.135-.504.135-.507l.002-.013c.175-.76.253-1.52.253-2.457 0-6.617-5.383-12-12-12"></path>
-                </svg>{" "}
-              </a>
-            </li> 
-          </ul>*/}
+            <div className="flex flex-col gap-1">
+              <h1 class="text-4xl text-gray-500 font-bold mt-2">
+                {user.fullname}
+              </h1>
+              <h2 class="text-base md:text-xl text-gray-500 font-bold">
+                {user.email}
+              </h2>
+              <h2 class="text-base md:text-xl text-gray-500 font-bold">
+                {user.mobileNumber}
+              </h2>
+            </div>
           </header>
+          <div className="text-end text-gray-600 p-3">
+            {" "}
+            Joining Date: {user.updatedAt.split("T")[0]}
+          </div>
         </section>
-        <div className=" h-32 bg-slate-800 text-3xl font-bold tracking-wide text-white grid items-center text-start px-10 ">
+        <div className="h-32 bg-slate-500/50 text-3xl font-bold tracking-wide text-black/80 grid items-center text-start px-10 ">
           Your Idea Froms
         </div>
-        <section className="mt-20 p-5 px-10">
+        <section className="p-5 px-2 md:px-10">
           <ul class="grid grid-cols-1  gap-y-10 gap-x-6 items-start p-8">
-            <li class="relative bg-slate-300 shadow-lg rounded-lg shadow-gray-400 p-4 flex flex-col sm:flex-row xl:flex-col items-start">
-              <div class="order-1 sm:ml-6 xl:ml-0">
-                <h3 class="mb-1 text-slate-900 font-semibold">
-                  <span class="mb-1 block text-sm leading-6 text-indigo-500">
-                    Headless UI
-                  </span>
-                  Completely unstyled, fully accessible UI components
-                </h3>
-                <div class="prose prose-slate prose-sm text-slate-600">
-                  <p>
-                    Completely unstyled, fully accessible UI components,
-                    designed to integrate beautifully with Tailwind CSS.
-                  </p>
-                </div>
-              </div>
-            </li>
-            <li class="relative bg-slate-300 shadow-lg rounded-lg shadow-gray-400 p-4 flex flex-col sm:flex-row xl:flex-col items-start">
-              <div class="order-1 sm:ml-6 xl:ml-0">
-                <h3 class="mb-1 text-slate-900 font-semibold">
-                  <span class="mb-1 block text-sm leading-6 text-indigo-500">
-                    Headless UI
-                  </span>
-                  Completely unstyled, fully accessible UI components
-                </h3>
-                <div class="prose prose-slate prose-sm text-slate-600">
-                  <p>
-                    Completely unstyled, fully accessible UI components,
-                    designed to integrate beautifully with Tailwind CSS.
-                  </p>
-                </div>
-              </div>
-            </li>
-            <li class="relative bg-slate-300 shadow-lg rounded-lg shadow-gray-400 p-4 flex flex-col sm:flex-row xl:flex-col items-start">
-              <div class="order-1 sm:ml-6 xl:ml-0">
-                <h3 class="mb-1 text-slate-900 font-semibold">
-                  <span class="mb-1 block text-sm leading-6 text-indigo-500">
-                    Headless UI
-                  </span>
-                  Completely unstyled, fully accessible UI components
-                </h3>
-                <div class="prose prose-slate prose-sm text-slate-600">
-                  <p>
-                    Completely unstyled, fully accessible UI components,
-                    designed to integrate beautifully with Tailwind CSS.
-                  </p>
-                </div>
-              </div>
-            </li>
+            {data.map((item) => (
+              <li
+                key={item.updatedAt}
+                class="relative bg-slate-300 shadow-lg rounded-lg shadow-gray-400 p-4 flex flex-col sm:flex-row xl:flex-col items-start"
+              >
+                <section className="flex w-full flex-col">
+                  <div className=" flex flex-col items-end text-stone-600">
+                    <h1>Date: {item.updatedAt.split("T")[0]}</h1>
+                    <h1>
+                      Status:{" "}
+                      <span
+                        className={`${
+                          item.status === "Pendding"
+                            ? "text-red-700/80 "
+                            : "text-green-700/80"
+                        } font-bold tracking-wider`}
+                      >
+                        {item.status}
+                      </span>
+                    </h1>
+                  </div>
+
+                  {item.status === "Pendding" ? (
+                    toggle === true ? (
+                      <div className=" grid gap-3">
+                        <div className="flex flex-row gap-5 ">
+                          <h1 className="text-gray-950 text-lg">Title:</h1>
+                          <input
+                            type="text"
+                            name="title"
+                            value={form.title}
+                            onChange={(e) => handleChange(e)}
+                            className=" p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />{" "}
+                        </div>
+                        <div className="flex flex-col md:flex-row md:gap-5 gap-2 ">
+                          <h1 className="text-gray-950 text-lg">Summary:</h1>
+                          <textarea
+                            className="w-full h-40 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            name="summary"
+                            value={form.summary}
+                            onChange={(e) => handleChange(e)}
+                            placeholder="Enter your message..."
+                            // value={}
+                          ></textarea>
+                        </div>
+                        <div className=" flex gap-3 mt-2">
+                          <button
+                            type="submit"
+                            className="hover:bg-gray-600/80 bg-gray-500 p-2 px-4 text-black font-bold tracking-wide rounded-lg"
+                            onClick={(e) => {
+                              handleSubmit(e);
+                            }}
+                          >
+                            Update
+                          </button>
+                          <button
+                            className="hover:bg-gray-800/80 bg-gray-800 p-2 px-4 text-white font-bold tracking-wide rounded-lg"
+                            onClick={() => {
+                              settoggle(false);
+                            }}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="flex flex-row gap-5 ">
+                          <h1 className="text-gray-950 text-lg">Title:</h1>
+                          <h1 className="text-gray-800">{item.title}</h1>
+                        </div>
+
+                        <div className="flex flex-col md:flex-row md:gap-5 gap-2 ">
+                          <h1 className="text-gray-950 text-lg">Summary:</h1>
+                          <h1 className="text-gray-800 text-justify">
+                            {item.summary}
+                          </h1>
+                        </div>
+                      </div>
+                    )
+                  ) : (
+                    <div>
+                      <div className="flex flex-row gap-5 ">
+                        <h1 className="text-gray-950 text-lg">Title:</h1>
+                        <h1 className="text-gray-800">{item.title}</h1>
+                      </div>
+
+                      <div className="flex flex-col md:flex-row md:gap-5 gap-2 ">
+                        <h1 className="text-gray-950 text-lg">Summary:</h1>
+                        <h1 className="text-gray-800 text-justify">
+                          {item.summary}
+                        </h1>
+                      </div>
+                    </div>
+                  )}
+                  {item.status !== "Pendding" ? (
+                    ""
+                  ) : (
+                    <div>
+                      {toggle === true ? (
+                        ""
+                      ) : (
+                        <div
+                          div
+                          className="flex flex-row justify-end mt-5 float-end gap-5"
+                        >
+                          <button
+                            onClick={() => {
+                              settoggle(true);
+                            }}
+                            className="hover:bg-green-800/80 bg-green-800 p-2 px-4 text-white font-bold tracking-wide rounded-lg"
+                          >
+                            Edit
+                          </button>
+                          <button className="hover:bg-red-800/80 bg-red-800 p-2 px-4 text-white font-bold tracking-wide rounded-lg">
+                            Delete
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </section>
+              </li>
+            ))}
           </ul>
         </section>
       </div>

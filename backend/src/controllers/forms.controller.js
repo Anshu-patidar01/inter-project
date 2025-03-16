@@ -3,6 +3,7 @@ import FullFormModel from "../models/FullForm.Model.js";
 import IdeaFormModel from "../models/IdeaForm.Model.js";
 import formModel from "../models/IdeaForm.Model.js";
 import RequirementModel from "../models/RequirementForm.Model.js";
+import { updateideaform } from "./Admin.controller.js";
 const IdiaFormController = async (req, res) => {
   let {
     state,
@@ -246,13 +247,34 @@ const limitedIdeaForm = async (req, res) => {
   }
 };
 
+const IdeaUpdate = async (req, res) => {
+  console.log("hello");
+  const { formId, title, summary } = req.body;
+  try {
+    if (!formId) {
+      throw new Error("Form Id not found");
+    }
+    const _id = formId;
+    const updateform = await IdeaFormModel.findByIdAndUpdate(
+      { _id },
+      { title: title, summary: summary }
+    );
+    res.send("Updated.");
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+
 const GetidiaForm = async (req, res) => {
   try {
     const User = req.user;
     if (!User) {
       throw new Error("user not found.");
     }
-    const forms = await IdeaFormModel.find({}).populate("userId", "fullname");
+    const forms = await IdeaFormModel.find({ userId: User._id }).populate(
+      "userId",
+      "fullname"
+    );
     res.send(forms);
   } catch (error) {
     res
@@ -289,6 +311,7 @@ export {
   IdiaFormController,
   RequirementForm,
   FullForm,
+  IdeaUpdate,
   GetidiaForm,
   limitedIdeaForm,
   getfullform,
