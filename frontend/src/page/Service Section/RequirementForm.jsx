@@ -68,27 +68,10 @@ function RequirementForm() {
             Summary: "",
           });
           console.log(response);
-          toast.success("Thankyou for submitting your Requirement From.", {
+          toast.success("Thank You for submitting your Requirement From.", {
             position: "top-center",
           });
 
-          // await axios
-          //   .post(`${base_api}/sendMail`, {
-          //     from1: "Info@scripthq.in",
-          //     reasone: "New submition of Creativity",
-          //     to: User.data.email,
-          //     contact: User.data.mobileNumber,
-          //     name: User.data.fullname,
-          //     subject: "Confirmation of Your Script Requirement Submission",
-          //     message:
-          //       "Thank you for submitting your requirement. We have received your request and appreciate your interest in working with us.<br>If we need any additional information, we will reach out to you shortly. In the meantime, please feel free to share any specific preferences or deadlines you may have. We aim to provide you with a tailored script that meets your expectations. <br>If you have any urgent queries, please feel free to contact us at scriptHQ.in<br><br>Looking forward to collaborating with you!",
-          //   })
-          //   .then((res) => {
-          //     console.log("Email res:", res);
-          //   })
-          //   .catch((res) => {
-          //     console.log("Email res:", res);
-          //   });
           setTimeout(() => {
             navigateTo("/services");
           }, 2000);
@@ -137,7 +120,7 @@ function RequirementForm() {
       <div className="p-2 sm:p-10">
         <ToastContainer />
         <div className="w-full h-auto rounded-lg sm:rounded-[5rem] shadow-2xl bg-gray-500 text-white shadow-sky-800">
-          <div className="p-5 sm:p-20">
+          <div className="p-5 sm:p-10">
             <div>
               <h1 className="text-start text-[3rem] font-bold">
                 Requirement Form
@@ -146,7 +129,7 @@ function RequirementForm() {
             <form onSubmit={handleSubmit}>
               <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
-                  <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-6">
                     <div className="col-span-3">
                       <label
                         htmlFor="Company"
@@ -279,7 +262,7 @@ function RequirementForm() {
                         />
                       </div>
                     </div>
-                    <div className=" col-span-full">
+                    <div className="col-span-full">
                       <div className="flex flex-row justify-between">
                         <label
                           htmlFor="Summary"
@@ -305,6 +288,7 @@ function RequirementForm() {
                       ></textarea>
                     </div>
                   </div>
+
                   <div className=" flex flex-row gap-3 float-end mt-5 sm:mt-10">
                     <button className="bg-gray-800 text-white hover:scale-110 duration-500 shadow-md shadow-black rounded-lg p-2  font-bold">
                       Submit

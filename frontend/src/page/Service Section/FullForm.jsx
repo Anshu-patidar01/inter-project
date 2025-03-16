@@ -50,7 +50,7 @@ function FullForm2() {
             interested: "",
           });
           console.log(response);
-          toast.success("Form Submited Succefully.Thankyou", {
+          toast.success("Form Submited Succefully.Thank You", {
             position: "top-center",
           });
 
@@ -75,15 +75,15 @@ function FullForm2() {
         <ToastContainer />
 
         <div className="w-full h-auto  rounded-[5rem] shadow-2xl bg-gray-500 text-white shadow-sky-800">
-          <div className="p-20">
+          <div className="py-20 px-5 ">
             <div>
               <h1 className="text-start text-[3rem] font-bold">Full Form</h1>
             </div>
             <form>
               <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
-                  <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div className="col-span-3">
+                  <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-6">
+                    <div className="sm:col-span-3">
                       <label
                         htmlFor="company"
                         className="block text-sm/6 font-medium text-gray-100"
@@ -104,7 +104,7 @@ function FullForm2() {
                         />
                       </div>
                     </div>
-                    <div className="col-span-3">
+                    <div className="sm:col-span-3">
                       <label
                         htmlFor="mobile"
                         className="block text-sm/6 font-medium text-gray-100"
@@ -125,7 +125,7 @@ function FullForm2() {
                         />
                       </div>
                     </div>
-                    <div className="col-span-3">
+                    <div className="sm:col-span-3">
                       <label
                         htmlFor="City"
                         className="block text-sm/6 font-medium text-gray-100"
@@ -179,7 +179,6 @@ function FullForm2() {
                         />
                       </div>
                     </div>
-
                     <div className="sm:col-span-3">
                       <label
                         htmlFor="interested"

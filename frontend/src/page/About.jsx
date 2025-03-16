@@ -17,7 +17,7 @@ export default function About() {
           </p>
         </div>
       </div>
-      <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
+      <div className=" w-full grid grid-cols-1 text-justify md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
         <div className="py-10 md:py-24">
           <h1 className="text-3xl text-center font-bold my-10">
             At ScriptHQ, our foundation is built on three core principles that
@@ -53,7 +53,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="bg-gray-700 text-white w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
+      <div className="bg-gray-700 text-white w-full text-justify grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
         <div className=" py-24">
           <h1 className="text-5xl text-center font-bold my-10">What We Do ?</h1>
           <ul className="space-y-5 text-gray-200">
@@ -84,7 +84,7 @@ export default function About() {
           />
         </div>
       </div>
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 text-justify gap-12 md:gap-48 p-10  md:px-20 items-center">
         <div className=" py-24">
           <h1 className="text-[3rem] text-center font-bold my-10">
             Why Choose ScriptHQ?

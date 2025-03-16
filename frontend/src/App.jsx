@@ -29,9 +29,18 @@ function App() {
           <Route path="/services" element={<ServicePage />} />
           <Route path="/category" element={<CategoryPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/about" element={<About />} />
           <Route path="/forgot/:token" element={<Forgot />} />
+
+          {/* Profile protected */}
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute to="admin">
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
           {/* idiaSubmit form route */}
           <Route
             path="/idiaSubmit"

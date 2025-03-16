@@ -79,27 +79,10 @@ export default function IdiaFrom() {
             termAndCondition: "",
           });
           console.log(response);
-          toast.success("Thankyou for submitting your creativity.", {
+          toast.success("Thank You for submitting your creativity.", {
             position: "top-center",
           });
-          // console.log(Use);
-          // await axios
-          //   .post(`${base_api}/sendMail`, {
-          //     from1: "Info@scripthq.in",
-          //     reasone: "New submition of Creativity",
-          //     to: User.data.email,
-          //     contact: User.data.mobileNumber,
-          //     name: User.data.name,
-          //     subject: "Submission Received – Your Creative Work is in Review ",
-          //     message:
-          //       "Thank you for submitting your creative idea to ScriptHQ. We have successfully received your submission and appreciate your trust in us.<br>What Happens Next?<br>- Our team will review your submission to ensure it meets all required aspects and criteria.<br>- If your work aligns with the requirements of production houses, we will share it with them for consideration.<br>- This process may take approximately 15 to 30 days to display on ScriptHQ.in . <br>- If we receive any confirmation or interest from a production house, we will notify you immediately.<br><br>We value your creativity and look forward to working together to bring great stories to life. Stay connected and keep innovating.<br><br>For any queries, feel free to reach out at info@scripthq.in.",
-          //   })
-          //   .then((res) => {
-          //     console.log("Email res:", res);
-          //   })
-          //   .catch((res) => {
-          //     console.log("Email res:", res);
-          //   });
+
           setTimeout(() => {
             navigateTo("/services");
           }, 2000);
@@ -170,7 +153,7 @@ export default function IdiaFrom() {
       <ToastContainer />
 
       <div className="w-full h-auto rounded-lg  md:rounded-[5rem] shadow-2xl bg-gray-800 text-white shadow-sky-800">
-        <div className="p-3 md:p-20">
+        <div className="p-3 md:p-10">
           <div className="flex flex-row gap-4 items-center justify-center mb-6">
             <h2 className="text-[3rem] p-1 text-center font-extrabold tracking-wider text-gray-200">
               Submit an Idea
@@ -196,9 +179,9 @@ export default function IdiaFrom() {
           >
             <div className="space-y-12">
               <div className="border-b border-gray-900/10 pb-12">
-                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="mt-10 grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-6">
                   {/* state */}
-                  <div className="sm:col-span-3">
+                  <div className=" sm:col-span-2">
                     <label
                       htmlFor="country"
                       className="block text-sm/6 font-medium text-gray-100"
@@ -253,7 +236,7 @@ export default function IdiaFrom() {
                   </div>
 
                   {/* for address */}
-                  <div className="col-span-full">
+                  <div className="sm:col-span-2">
                     <label
                       htmlFor="street"
                       className="block text-sm/6 font-medium text-gray-100"
@@ -301,11 +284,10 @@ export default function IdiaFrom() {
                       htmlFor="postal-code"
                       className="block text-sm/6 font-medium text-gray-100"
                     >
-                      ZIP / Postal code <span className="text-red-500">*</span>
+                      ZIP / Postal code
                     </label>
                     <div className="mt-2">
                       <input
-                        required
                         id="postal-code"
                         name="postal-code"
                         type="text"
@@ -314,7 +296,7 @@ export default function IdiaFrom() {
                       />
                     </div>
                   </div>
-                  <div className="sm:col-span-4 flex flex-row gap-2">
+                  <div className="sm:col-span-2 flex flex-row gap-2">
                     <div className="mr-3">
                       Gender<span className="text-red-500">*</span>
                     </div>
@@ -563,17 +545,14 @@ export default function IdiaFrom() {
                         id="ROCNumber"
                         name="ROCNumber"
                         value={Form.ROCNumber}
+                        required
                         onChange={handleChange}
                         type="text"
                         className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                       />
                     </div>
                   </div>
-                  <div
-                    className={`sm:col-span-full ${
-                      Copyright === "yes" ? "block" : "hidden"
-                    }`}
-                  >
+                  <div className={`sm:col-span-full`}>
                     <div className="mt-2 flex justify-center bg-gray-400 rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                       <div className="text-center ">
                         <PhotoIcon
@@ -583,7 +562,7 @@ export default function IdiaFrom() {
                         <div className="mt-4 flex text-sm/6 text-gray-800">
                           <label
                             htmlFor="file-upload"
-                            className="relative cursor-pointer rounded-md p-1 bg-white font-semibold text-indigo-600 focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 focus-within:outline-hidden hover:text-indigo-500"
+                            className="relative flex flex-col cursor-pointer rounded-md p-1 bg-white font-semibold text-indigo-600 focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 focus-within:outline-hidden hover:text-indigo-500"
                           >
                             <span>Attachment</span>
                             <input
@@ -594,7 +573,7 @@ export default function IdiaFrom() {
                               onChange={handleChange}
                             />
                           </label>
-                          <p className="pl-1">or drag and drop</p>
+                          {/* <p className="pl-1">or drag and drop</p> */}
                         </div>
                         <p className="text-xs/5 text-gray-100">
                           Containt up to 10MB
@@ -620,6 +599,7 @@ export default function IdiaFrom() {
                       // contentEditable="true"
                       // value={Form.summary}
                       name="summary"
+                      required
                       value={SummeryWords}
                       onChange={(e) => {
                         handleSummeruChange(e);
@@ -647,7 +627,11 @@ export default function IdiaFrom() {
                       className="block text-sm/6 font-medium text-gray-100"
                     >
                       For copyright form{" "}
-                      <a href={termandcondition} className="text-blue-500">
+                      <a
+                        href={termandcondition}
+                        target="_blank"
+                        className="text-blue-500"
+                      >
                         term and condition
                       </a>
                     </label>

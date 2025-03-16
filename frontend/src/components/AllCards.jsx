@@ -185,7 +185,7 @@ function AllCards(props) {
                       Title: {item.title}
                     </h1>
                     <h1 className="text-gray-700">Language:{item.language}</h1>
-                    <h1 className="text-gray-700">containt:{item.containt}</h1>
+                    <h1 className="text-gray-700">Content:{item.containt}</h1>
                     <h1 className="text-gray-700">
                       Category: {item.categories}
                     </h1>
