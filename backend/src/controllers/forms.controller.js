@@ -248,7 +248,7 @@ const limitedIdeaForm = async (req, res) => {
 };
 
 const IdeaUpdate = async (req, res) => {
-  console.log("hello");
+  // console.log("hello");
   const { formId, title, summary } = req.body;
   try {
     if (!formId) {
@@ -260,6 +260,20 @@ const IdeaUpdate = async (req, res) => {
       { title: title, summary: summary }
     );
     res.send("Updated.");
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+const IdeaDelete = async (req, res) => {
+  // console.log("hello");
+  const { formId } = req.body;
+  try {
+    if (!formId) {
+      throw new Error("Form Id not found");
+    }
+    const _id = formId;
+    await IdeaFormModel.findByIdAndDelete({ _id });
+    res.send("Deleted..");
   } catch (error) {
     res.status(404).send(error);
   }
@@ -310,6 +324,7 @@ const getfullform = async (req, res) => {
 export {
   IdiaFormController,
   RequirementForm,
+  IdeaDelete,
   FullForm,
   IdeaUpdate,
   GetidiaForm,

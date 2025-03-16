@@ -4,6 +4,7 @@ import {
   getfullform,
   GetidiaForm,
   getrequirementform,
+  IdeaDelete,
   IdeaUpdate,
   IdiaFormController,
   limitedIdeaForm,
@@ -30,6 +31,7 @@ Router.post(
   IdiaFormController
 );
 Router.patch("/IdeaForm", userAuth, IdeaUpdate);
+Router.post("/IdeaFormdelete", userAuth, IdeaDelete);
 Router.post("/Requirement", userAuth, RequirementForm);
 Router.post("/Fullform", userAuth, FullForm);
 // Admin

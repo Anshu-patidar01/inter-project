@@ -10,6 +10,9 @@ function Profile() {
   const user = User.data;
   const [toggle, settoggle] = useState(false);
   const [data, setdata] = useState([]);
+  const [SummeryWords, setSummeryWords] = useState("");
+  const [test, settest] = useState("");
+
   const [form, setform] = useState({
     title: "",
     summary: "",
@@ -41,7 +44,7 @@ function Profile() {
 
     setform({ ...form, [e.target.name]: e.target.value });
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (id) => {
     // e.preventDefault();
     const token = localStorage.getItem("project");
 
@@ -49,7 +52,7 @@ function Profile() {
       .patch(
         `${base_api}/form/IdeaForm`,
         {
-          formId: "67d0152cb4fe5c7c2929a519",
+          formId: id,
           title: form.title,
           summary: form.summary,
         },
@@ -78,6 +81,61 @@ function Profile() {
           position: "top-center",
         });
       });
+  };
+  const handleDelete = async (id) => {
+    // e.preventDefault();
+    const token = localStorage.getItem("project");
+    console.log(id);
+    await axios
+      .post(
+        `${base_api}/form/IdeaFormdelete`,
+        {
+          formId: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        setform({
+          title: "",
+          summary: "",
+        });
+        respons();
+        console.log(response);
+        toast.success("Form Deleted Successfully!", {
+          position: "top-center",
+        });
+        settoggle(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Not Deleted Please Try Again!!", {
+          position: "top-center",
+        });
+      });
+  };
+  const handleSummeruChange = (e) => {
+    e.preventDefault();
+
+    const words = e.target.value.trim().split(/\s+/);
+    settest(words.length);
+    if (words.length <= 200) {
+      // console.log(e.target.value);
+
+      setSummeryWords(e.target.value);
+      setform({
+        ...form,
+        [e.target.name]: e.target.value,
+      });
+    } else {
+      toast.error("Max words limit is 200 only..", {
+        position: "top-center",
+      });
+    }
   };
   return (
     <div className=" md:px-20 ">
@@ -159,13 +217,22 @@ function Profile() {
                             className=" p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                           />{" "}
                         </div>
+
                         <div className="flex flex-col md:flex-row md:gap-5 gap-2 ">
-                          <h1 className="text-gray-950 text-lg">Summary:</h1>
+                          <div className="flex flex-row justify-between">
+                            <h1 className="text-gray-950 text-lg">Summary:</h1>
+                            <div className="text-end">{test}/200</div>
+                          </div>
+
                           <textarea
                             className="w-full h-40 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             name="summary"
-                            value={form.summary}
-                            onChange={(e) => handleChange(e)}
+                            // value={form.summary}
+                            value={SummeryWords}
+                            onChange={(e) => {
+                              handleSummeruChange(e);
+                            }}
+                            // onChange={(e) => handleChange(e)}
                             placeholder="Enter your message..."
                             // value={}
                           ></textarea>
@@ -175,7 +242,7 @@ function Profile() {
                             type="submit"
                             className="hover:bg-gray-600/80 bg-gray-500 p-2 px-4 text-black font-bold tracking-wide rounded-lg"
                             onClick={(e) => {
-                              handleSubmit(e);
+                              handleSubmit(item._id);
                             }}
                           >
                             Update
@@ -239,7 +306,10 @@ function Profile() {
                           >
                             Edit
                           </button>
-                          <button className="hover:bg-red-800/80 bg-red-800 p-2 px-4 text-white font-bold tracking-wide rounded-lg">
+                          <button
+                            className="hover:bg-red-800/80 bg-red-800 p-2 px-4 text-white font-bold tracking-wide rounded-lg"
+                            onClick={() => handleDelete(item._id)}
+                          >
                             Delete
                           </button>
                         </div>

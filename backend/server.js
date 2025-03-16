@@ -12,8 +12,9 @@ const PORT = process.env.PORT || 5000;
 app.use(express.static("public"));
 app.use(
   cors({
-    // origin: "https://intern-frontend-five.vercel.app/",
-    origin: "https://inter-project-gray.vercel.app",
+    origin: "https://intern-frontend-five.vercel.app",
+    // origin: " http://localhost:5173",
+    // forgot password ka link bhi change krna he
     credentials: true,
   })
 );

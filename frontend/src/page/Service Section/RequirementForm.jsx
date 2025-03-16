@@ -111,7 +111,7 @@ function RequirementForm() {
       });
     } else {
       toast.error("Max words limit is 100 only..", {
-        position: "top-right",
+        position: "top-center",
       });
     }
   };
