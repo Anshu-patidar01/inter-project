@@ -35,8 +35,9 @@ export default function LoginPage() {
     } else {
       seterror("");
     }
-    console.log(form);
+    // console.log(form);
     // await axios.post("https://inter-project-lnf5.onrender.com/login")
+
     await axios
       .post(`${base_api}/login`, form, {
         headers: { "Content-Type": "application/json" },
@@ -54,9 +55,15 @@ export default function LoginPage() {
         });
         setUser(response.data);
         setToggele(true);
-        setTimeout(() => {
-          navigate("/services");
-        }, 1000);
+        if (response.data.admin === false) {
+          setTimeout(() => {
+            navigate("/services");
+          }, 1000);
+        } else {
+          setTimeout(() => {
+            navigate("/admin");
+          }, 1000);
+        }
       })
       .catch((error) => {
         console.log(error.response.data.Error);

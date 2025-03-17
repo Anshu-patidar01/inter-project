@@ -17,59 +17,17 @@ import ContactPage from "./page/Service Section/ContactPage";
 import Profile from "./components/Profile";
 import About from "./page/About";
 import Forgot from "./components/Forgot";
+import { useContext } from "react";
+import { MyContext } from "./Context/context";
+import UserRoute from "./Routes/UserRoute";
 function App() {
   return (
     <>
       <Router>
-        <NavigationBar />
+        {/* {User.admin === true ? "" : <NavigationBar />} */}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/registration" element={<RegisterationPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/services" element={<ServicePage />} />
-          <Route path="/category" element={<CategoryPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/forgot/:token" element={<Forgot />} />
-
-          {/* Profile protected */}
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute to="admin">
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          {/* idiaSubmit form route */}
-          <Route
-            path="/idiaSubmit"
-            element={
-              <ProtectedRoute to="admin">
-                <IdiaFrom />
-              </ProtectedRoute>
-            }
-          />
-          {/* requirementForm form route */}
-
-          <Route
-            path="/requirementForm"
-            element={
-              <ProtectedRoute to="admin">
-                <RequirementForm />
-              </ProtectedRoute>
-            }
-          />
-          {/* fullform form route */}
-
-          <Route
-            path="/fullform"
-            element={
-              <ProtectedRoute to="admin">
-                <FullForm />
-              </ProtectedRoute>
-            }
-          />
+          {/* User Routes */}
+          <Route path="/*" element={<UserRoute />} />
 
           {/* Admin Routes */}
           <Route
@@ -81,7 +39,6 @@ function App() {
             }
           />
         </Routes>
-        <Footer />
       </Router>
     </>
   );

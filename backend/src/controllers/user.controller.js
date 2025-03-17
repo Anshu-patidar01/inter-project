@@ -72,7 +72,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    let admin = false;
     if (!email || !password) {
       throw new Error("Email and Password is required!");
     }
@@ -104,7 +104,11 @@ const login = async (req, res) => {
     if (!token) {
       throw new Error("token not genrated.");
     }
-    res.status(200).json({ user, token });
+
+    if (email === "officialscripthq@gmail.com") {
+      admin = true;
+    }
+    res.status(200).json({ user, token, admin });
   } catch (error) {
     res.status(400).json({ message: "Problem while login", Error: `${error}` });
   }
