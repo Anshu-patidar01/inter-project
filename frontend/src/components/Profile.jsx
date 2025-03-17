@@ -12,6 +12,8 @@ function Profile() {
   const [data, setdata] = useState([]);
   const [SummeryWords, setSummeryWords] = useState("");
   const [test, settest] = useState("");
+  const [pop, setpop] = useState(false);
+  const [editid, seteditid] = useState("");
 
   const [form, setform] = useState({
     title: "",
@@ -73,7 +75,8 @@ function Profile() {
         toast.success("Form Updated Successfully!", {
           position: "top-center",
         });
-        settoggle(false);
+        setpop(false);
+        // settoggle(false);
       })
       .catch((error) => {
         console.log(error);
@@ -81,6 +84,7 @@ function Profile() {
           position: "top-center",
         });
       });
+    seteditid("");
   };
   const handleDelete = async (id) => {
     // e.preventDefault();
@@ -109,7 +113,8 @@ function Profile() {
         toast.success("Form Deleted Successfully!", {
           position: "top-center",
         });
-        settoggle(false);
+        // setpop(false)
+        // settoggle(false);
       })
       .catch((error) => {
         console.log(error);
@@ -117,6 +122,7 @@ function Profile() {
           position: "top-center",
         });
       });
+    seteditid("");
   };
   const handleSummeruChange = (e) => {
     e.preventDefault();
@@ -180,6 +186,7 @@ function Profile() {
         <div className="h-32 bg-slate-500/50 text-3xl font-bold tracking-wide text-black/80 grid items-center text-start px-10 ">
           Your Idea Froms
         </div>
+        {/* Card Section */}
         <section className="p-5 px-2 md:px-10">
           <ul class="grid grid-cols-1  gap-y-10 gap-x-6 items-start p-8">
             {data.map((item) => (
@@ -203,61 +210,9 @@ function Profile() {
                       </span>
                     </h1>
                   </div>
-
+                  {/* boxes */}
                   {item.status === "Pendding" ? (
-                    toggle === true ? (
-                      <div className=" grid gap-3">
-                        <div className="flex flex-row gap-5 ">
-                          <h1 className="text-gray-950 text-lg">Title:</h1>
-                          <input
-                            type="text"
-                            name="title"
-                            value={form.title}
-                            onChange={(e) => handleChange(e)}
-                            className=" p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          />{" "}
-                        </div>
-
-                        <div className="flex flex-col md:flex-row md:gap-5 gap-2 ">
-                          <div className="flex flex-row justify-between">
-                            <h1 className="text-gray-950 text-lg">Summary:</h1>
-                            <div className="text-end">{test}/200</div>
-                          </div>
-
-                          <textarea
-                            className="w-full h-40 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            name="summary"
-                            // value={form.summary}
-                            value={SummeryWords}
-                            onChange={(e) => {
-                              handleSummeruChange(e);
-                            }}
-                            // onChange={(e) => handleChange(e)}
-                            placeholder="Enter your message..."
-                            // value={}
-                          ></textarea>
-                        </div>
-                        <div className=" flex gap-3 mt-2">
-                          <button
-                            type="submit"
-                            className="hover:bg-gray-600/80 bg-gray-500 p-2 px-4 text-black font-bold tracking-wide rounded-lg"
-                            onClick={(e) => {
-                              handleSubmit(item._id);
-                            }}
-                          >
-                            Update
-                          </button>
-                          <button
-                            className="hover:bg-gray-800/80 bg-gray-800 p-2 px-4 text-white font-bold tracking-wide rounded-lg"
-                            onClick={() => {
-                              settoggle(false);
-                            }}
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
+                    toggle !== "true" && (
                       <div>
                         <div className="flex flex-row gap-5 ">
                           <h1 className="text-gray-950 text-lg">Title:</h1>
@@ -287,20 +242,17 @@ function Profile() {
                       </div>
                     </div>
                   )}
-                  {item.status !== "Pendding" ? (
-                    ""
-                  ) : (
+
+                  {/* buttons */}
+                  {item.status === "Pendding" && (
                     <div>
-                      {toggle === true ? (
-                        ""
-                      ) : (
-                        <div
-                          div
-                          className="flex flex-row justify-end mt-5 float-end gap-5"
-                        >
+                      {toggle === false && (
+                        <div className="flex flex-row justify-end mt-5 float-end gap-5">
                           <button
                             onClick={() => {
-                              settoggle(true);
+                              settoggle(false);
+                              setpop(true);
+                              seteditid(item._id);
                             }}
                             className="hover:bg-green-800/80 bg-green-800 p-2 px-4 text-white font-bold tracking-wide rounded-lg"
                           >
@@ -308,7 +260,9 @@ function Profile() {
                           </button>
                           <button
                             className="hover:bg-red-800/80 bg-red-800 p-2 px-4 text-white font-bold tracking-wide rounded-lg"
-                            onClick={() => handleDelete(item._id)}
+                            onClick={() => {
+                              handleDelete(item._id);
+                            }}
                           >
                             Delete
                           </button>
@@ -320,6 +274,108 @@ function Profile() {
               </li>
             ))}
           </ul>
+        </section>
+        {/* Editor section popup */}
+        <section>
+          <div
+            className={`relative  z-10  ${pop === true ? "block" : "hidden"}`}
+          >
+            <div
+              // transition
+              className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
+            />
+
+            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+              <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div
+                  // transition
+                  className="relative transform p-2 overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-500 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95"
+                >
+                  <div
+                    onClick={() => {
+                      setpop(false);
+                    }}
+                    className=" hover:bg-gray-200 p-2 cursor-pointer rounded-lg float-end"
+                  >
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#000000"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-x"
+                      >
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div className=" grid gap-3">
+                    {/* inputs */}
+                    <div className="flex flex-row gap-5 ">
+                      <h1 className="text-gray-950 text-lg">Title:</h1>
+                      <input
+                        type="text"
+                        name="title"
+                        value={form.title}
+                        onChange={(e) => {
+                          handleChange(e);
+                          // console.log(id, item._id);
+                        }}
+                        className=" p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />{" "}
+                    </div>
+                    {/* inputs */}
+                    <div className="flex flex-col md:flex-row md:gap-5 gap-2 ">
+                      <div className="flex flex-row justify-between">
+                        <h1 className="text-gray-950 text-lg">Summary:</h1>
+                        <div className="text-end">{test}/200</div>
+                      </div>
+
+                      <textarea
+                        className="w-full h-40 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        name="summary"
+                        // value={form.summary}
+                        value={SummeryWords}
+                        onChange={(e) => {
+                          handleSummeruChange(e);
+                        }}
+                        // onChange={(e) => handleChange(e)}
+                        placeholder="Enter your message..."
+                        // value={}
+                      ></textarea>
+                    </div>
+                    {/* buttons */}
+                    <div className=" flex gap-3 mt-2">
+                      <button
+                        type="submit"
+                        className="hover:bg-gray-600/80 bg-gray-500 p-2 px-4 text-black font-bold tracking-wide rounded-lg"
+                        onClick={(e) => {
+                          handleSubmit(editid);
+                        }}
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="hover:bg-gray-800/80 bg-gray-800 p-2 px-4 text-white font-bold tracking-wide rounded-lg"
+                        onClick={() => {
+                          setpop(false);
+                          // settoggle(false);
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
     </div>
