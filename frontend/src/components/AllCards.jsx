@@ -179,7 +179,7 @@ function AllCards(props) {
                   <div className="h-full flex flex-col justify-between  break-words p-3 ">
                     <h1 className="text-gray-900 text-lg font-bold tracking-wider">
                       {item.gender === "Male" ? "Mr. " : "Mrs. "}
-                      {item.fullname.split(" ")}
+                      {item.fullname}
                     </h1>
                     <h1 className="text-gray-900 font-semibold">
                       Title: {item.title}
