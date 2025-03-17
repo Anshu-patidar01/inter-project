@@ -540,7 +540,8 @@ export default function IdiaFrom() {
                       <input
                         id="ROCNumber"
                         name="ROCNumber"
-                        value={Form.ROCNumber}
+                        // value={Form.ROCNumber}
+                        value={Copyright === "yes" ? Form.ROCNumber : "Na"}
                         placeholder="If Not then Write NA"
                         required
                         onChange={handleChange}

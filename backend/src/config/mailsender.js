@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-// Create Transporter
+// Create Transporter //local email transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -8,6 +8,27 @@ const transporter = nodemailer.createTransport({
     pass: "xvfh jeuf lmtq tuev",
   },
 });
+// GoDaddy email transporter
+// const transporterinfo = nodemailer.createTransport({
+//   host: "smtpout.secureserver.net", // GoDaddy SMTP server
+//   port: 465, // Use 465 for SSL or 587 for TLS
+//   secure: true, // Set true for SSL, false for TLSs
+//   auth: {
+//     user: " info@scripthq.in", // Your GoDaddy Professional Email
+//     pass: "AnkushSumit@2025", // Your email password
+//   },
+// });
+
+// const transporterinfo = nodemailer.createTransport({
+//   host: "smtpout.secureserver.net",
+//   port: 993,
+//   secure: true,
+
+//   auth: {
+//     user: " info@scripthq.in", // Secured via .env
+//     pass: " AnkushSumit@2025",
+//   },
+// });
 
 // Function to Send Email
 const sendEmail = async (
@@ -147,7 +168,7 @@ const FormSendEmail = async (to, from1, name, subject, message) => {
     return { success: true, message: "Email sent successfully" };
   } catch (error) {
     // console.error("Email sending failed: ", error);
-    return { success: false, message: "Email sending failed" };
+    return { success: false, message: "Email sending failed", error: error };
   }
 };
 
