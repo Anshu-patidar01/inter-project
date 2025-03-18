@@ -40,6 +40,6 @@ Router.get("/IdiaForm", getidiaforms);
 Router.get("/Requirement", getrequirementform);
 Router.get("/Fullform", getfullform);
 
-Router.get("/getIdiaForm", GetidiaForm);
+Router.get("/getIdiaForm", userAuth, GetidiaForm);
 Router.get("/limitedIdiaForm", limitedIdeaForm);
 export default Router;

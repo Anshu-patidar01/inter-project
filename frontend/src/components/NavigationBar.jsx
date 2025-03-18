@@ -74,9 +74,13 @@ export default function NavigationBar() {
   }, []);
 
   return (
-    <Disclosure as="nav" className="bg-gray-800 ">
+    <Disclosure as="nav" className="bg-gray-900 w-full ">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
+          <div class="text-2xl px-2 py-1 bg-white rounded-lg font-bold text-gray-900 flex items-center space-x-2">
+            <span class="text-black">Script</span>
+            <span class="text-white bg-black px-2 rounded-lg">HQ</span>
+          </div>{" "}
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">

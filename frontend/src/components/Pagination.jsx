@@ -6,13 +6,13 @@ function Pagination({ totalPosts, postsPages, setCurrentPage }) {
     page.push(i);
   }
   return (
-    <div className="flex flex-row gap-3 overflow-x-scroll  my-10 bg-gray-500 w-full rounded-lg justify-center p-2">
+    <div className="flex flex-row gap-3 overflow-x-scroll border-2   my-10 w-full justify-center">
       {page.map((item, index) => {
         return (
           <div key={index}>
             <button
               key={index}
-              className="bg-gray-950 hover:bg-slate-700 text-white p-1 px-3 rounded-lg"
+              className="bg-gray-700  hover:bg-slate-700 text-white p-1 px-3 rounded-lg"
               onClick={() => {
                 setCurrentPage(item);
               }}
