@@ -9,7 +9,7 @@ function Pagination({ totalPosts, postsPages, setCurrentPage }) {
     <div className="flex flex-row gap-3 overflow-x-scroll  my-10 bg-gray-500 w-full rounded-lg justify-center p-2">
       {page.map((item, index) => {
         return (
-          <div>
+          <div key={index}>
             <button
               key={index}
               className="bg-gray-950 hover:bg-slate-700 text-white p-1 px-3 rounded-lg"
