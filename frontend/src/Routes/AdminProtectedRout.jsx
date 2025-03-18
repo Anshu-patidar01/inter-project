@@ -19,21 +19,20 @@ const AdminProtectedRout = ({ children, to }) => {
         await axios
           .post(
             // "https://inter-project-lnf5.onrender.com/user/validate-token",
-            `${base_api}/validate-token`,
+            `${base_api}/validate-token-admin`,
             { token: `${token}` },
             {
               headers: { "Content-Type": "application/json" },
             }
           )
           .then((res) => {
-            console.log("hello User:", User);
-
-            console.log("User from proted route:", res.data);
+            // console.log("hello User:", User);
+            console.log("User from Admin proted route:", res.data);
             setUser(res.data);
             setIsAuthorized(true);
           })
           .catch((res) => {
-            console.log("User from proted route catched:", res);
+            console.log("User from Admin proted route catched:", res);
             setIsAuthorized(false);
           });
       } catch (error) {
@@ -70,7 +69,7 @@ const AdminProtectedRout = ({ children, to }) => {
     );
   }
 
-  return isAuthorized ? children : <Navigate to={`/registration`} />;
+  return isAuthorized ? children : <Navigate to={`/`} />;
 };
 
 export default AdminProtectedRout;

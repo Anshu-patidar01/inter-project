@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Nav from "./Nav";
 import axios from "axios";
 import base_api from "../../utility/contants";
 function RequirementForm() {
@@ -8,12 +7,10 @@ function RequirementForm() {
   useEffect(() => {
     const requirement_api = async () => {
       try {
-        await axios
-          .get(`${base_api}/form/Requirement`)
-          .then((res) => {
-            console.log(res.data);
-            setforms(res.data);
-          });
+        await axios.get(`${base_api}/form/Requirement`).then((res) => {
+          console.log(res.data);
+          setforms(res.data);
+        });
       } catch (error) {
         console.log("some error in getting requirement form details");
       }
@@ -23,9 +20,6 @@ function RequirementForm() {
   return (
     <div>
       {" "}
-      <nav>
-        <Nav />
-      </nav>
       <div>
         {" "}
         <div className="p-5  m-3 bg-orange-300 rounded-sm ">

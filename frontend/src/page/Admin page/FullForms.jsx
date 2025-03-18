@@ -21,9 +21,6 @@ function FullForms() {
   return (
     <div>
       {" "}
-      <nav>
-        <Nav />
-      </nav>
       <div>
         {" "}
         <div className="p-5  m-3 bg-orange-300 rounded-sm ">

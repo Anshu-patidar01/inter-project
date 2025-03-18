@@ -19,7 +19,7 @@ const navigation = [
   },
   { name: "Full Forms", href: "/admin/FullForms", current: false },
   { name: "Idea Forms", href: "/admin", current: false },
-  { name: "Users", href: "/admin/Users", current: false },
+  // { name: "Users", href: "/admin/Users", current: false },
   { name: "User page", href: "/", current: false },
 ];
 
@@ -57,10 +57,10 @@ export default function Nav() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="#ffffff"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-user"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-user"
                 >
                   <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                   <circle cx="12" cy="7" r="4" />

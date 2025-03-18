@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../Context/AdminContex.jsx";
 import PopUpCard from "./PopUpCard.jsx";
-import Nav from "./Nav.jsx";
 import base_api from "../../utility/contants.js";
 
 function IdeaForms() {
@@ -11,29 +10,27 @@ function IdeaForms() {
   useEffect(() => {
     const requirement_api = async () => {
       try {
-        await axios
-          .get(`${base_api}/form/IdiaForm`)
-          .then((res) => {
-            console.log(res.data);
-            setforms(res.data);
-          });
+        await axios.get(`${base_api}/form/IdiaForm`).then((res) => {
+          console.log(res.data);
+          setforms(res.data);
+        });
       } catch (error) {
         console.log("some error in getting requirement form details");
       }
     };
     requirement_api();
   }, []);
+
   const { setIdeaForm } = useContext(AdminContext);
   const [status, setstatus] = useState({
     Pandding: "true",
     Approved: "false",
     Rejected: "false",
   });
+
+  const handleState = (status) => {};
   return (
     <div>
-      <nav>
-        <Nav />
-      </nav>
       <PopUpCard />
       <div className="p-5  m-3 bg-orange-300 rounded-sm ">
         <div className="flex flex-row gap-3 mb-2 ">
@@ -94,6 +91,7 @@ function IdeaForms() {
                     <th className=" border-2 border-gray-800">Language</th>
                     <th className=" border-2 border-gray-800">Categories</th>
                     <th className=" border-2 border-gray-800">Summary</th>
+                    <th className=" border-2 border-gray-800">Sold</th>
                     <th className=" border-2 border-gray-800">Detaile</th>
                     <th className={` border-2 border-gray-800`}>
                       Approve or Reject
@@ -126,7 +124,10 @@ function IdeaForms() {
                         </td>
                         <td className="border-2 border-gray-800 text-center">
                           {item.summary.split(" ").slice(0, 5).join(" ")}
-                          <span className="text-blue-900"> see more... </span>
+                          <span className="text-blue-900"> ... </span>
+                        </td>
+                        <td className="border-2 border-gray-800 text-center">
+                          True
                         </td>
                         <td className="border-2 border-gray-800 text-center ">
                           <div

@@ -20,6 +20,7 @@ import Forgot from "./components/Forgot";
 import { useContext } from "react";
 import { MyContext } from "./Context/context";
 import UserRoute from "./Routes/UserRoute";
+import AdminProtectedRout from "./Routes/AdminProtectedRout";
 function App() {
   return (
     <>
@@ -33,9 +34,11 @@ function App() {
           <Route
             path="/admin/*"
             element={
-              <AdminProvider>
-                <AdminRoute />
-              </AdminProvider>
+              <AdminProtectedRout>
+                <AdminProvider>
+                  <AdminRoute />
+                </AdminProvider>
+              </AdminProtectedRout>
             }
           />
         </Routes>

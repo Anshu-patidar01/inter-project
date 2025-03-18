@@ -35,10 +35,10 @@ Router.post("/IdeaFormdelete", userAuth, IdeaDelete);
 Router.post("/Requirement", userAuth, RequirementForm);
 Router.post("/Fullform", userAuth, FullForm);
 // Admin
-Router.get("/IdiaForm", userAuth, getidiaforms);
+Router.get("/IdiaForm", getidiaforms);
 Router.get("/Requirement", getrequirementform);
 Router.get("/Fullform", getfullform);
 
-Router.get("/getIdiaForm", userAuth, GetidiaForm);
+Router.get("/getIdiaForm", GetidiaForm);
 Router.get("/limitedIdiaForm", limitedIdeaForm);
 export default Router;

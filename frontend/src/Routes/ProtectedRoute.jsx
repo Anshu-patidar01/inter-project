@@ -27,13 +27,13 @@ const ProtectedRoute = ({ children, to }) => {
             }
           )
           .then((res) => {
-            console.log("User from proted route:", res.data);
+            // console.log("User from proted route:", res.data);
 
             setUser(res.data);
             setIsAuthorized(true);
           })
           .catch((res) => {
-            console.log("User from proted route catched:", res);
+            // console.log("User from proted route catched:", res);
             setIsAuthorized(false);
           });
       } catch (error) {
