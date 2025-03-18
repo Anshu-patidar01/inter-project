@@ -123,14 +123,14 @@ export default function PopUpCard() {
                 </h2>
               </div>
             </div>
-            <div className="text-center">
+            {/* <div className="text-center">
               <button className="bg-green-700 p-1 px-3 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg mr-2">
                 Approve
               </button>
               <button className="bg-red-800 p-1 px-3 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg">
                 Reject
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

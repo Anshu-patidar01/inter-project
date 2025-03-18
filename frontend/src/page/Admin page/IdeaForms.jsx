@@ -3,21 +3,22 @@ import React, { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../Context/AdminContex.jsx";
 import PopUpCard from "./PopUpCard.jsx";
 import base_api from "../../utility/contants.js";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 function IdeaForms() {
   const [forms, setforms] = useState([]);
   const { Pop, setPop } = useContext(AdminContext);
+  const requirement_api = async () => {
+    try {
+      await axios.get(`${base_api}/form/IdiaForm`).then((res) => {
+        console.log(res.data);
+        setforms(res.data);
+      });
+    } catch (error) {
+      console.log("some error in getting requirement form details");
+    }
+  };
   useEffect(() => {
-    const requirement_api = async () => {
-      try {
-        await axios.get(`${base_api}/form/IdiaForm`).then((res) => {
-          console.log(res.data);
-          setforms(res.data);
-        });
-      } catch (error) {
-        console.log("some error in getting requirement form details");
-      }
-    };
     requirement_api();
   }, []);
 
@@ -28,9 +29,78 @@ function IdeaForms() {
     Rejected: "false",
   });
 
-  const handleState = (status) => {};
+  const handleState = async (status, id) => {
+    try {
+      await axios
+        .post(
+          `${base_api}/admin/updateidiaforms`,
+          {
+            formId: id,
+            // "status":"Approved"
+            status: status,
+          },
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then((res) => {
+          // setToggeload(true);
+          switch (status) {
+            case "Approved":
+              toast.success("Idea Appproved Successfully!", {
+                position: "top-center",
+              });
+              break;
+            case "Rejected":
+              toast.success("Idea Rejected Successfully!", {
+                position: "top-center",
+              });
+              break;
+            default:
+              toast.error("Some Problem!", {
+                position: "top-center",
+              });
+              break;
+          }
+
+          requirement_api();
+        });
+    } catch (error) {
+      toast.error("Try Again!", {
+        position: "top-center",
+      });
+      console.log("some error in form details:", error);
+    }
+  };
+  const handleDelete = async (id) => {
+    try {
+      await axios
+        .post(
+          `${base_api}/admin/deleteidiaforms`,
+          {
+            formId: id,
+          },
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then((res) => {
+          // setToggeload(true);
+          toast.success("Idea Deleted Successfully!", {
+            position: "top-center",
+          });
+          requirement_api();
+        });
+    } catch (error) {
+      toast.error("Try Again!", {
+        position: "top-center",
+      });
+      console.log("some error in Delete form:", error);
+    }
+  };
   return (
     <div>
+      <ToastContainer />
       <PopUpCard />
       <div className="p-5  m-3 bg-orange-300 rounded-sm ">
         <div className="flex flex-row gap-3 mb-2 ">
@@ -87,6 +157,7 @@ function IdeaForms() {
                 <thead>
                   <tr className="border-2 border-gray-800">
                     <th className=" border-2 border-gray-800">User Name</th>
+                    <th className=" border-2 border-gray-800">Created Date:</th>
                     <th className=" border-2 border-gray-800">Title</th>
                     <th className=" border-2 border-gray-800">Language</th>
                     <th className=" border-2 border-gray-800">Categories</th>
@@ -112,6 +183,9 @@ function IdeaForms() {
                       <tr className="border-2 border-gray-800 hover:bg-white duration-200">
                         <td className="border-2 border-gray-800 text-center">
                           {item.userId.fullname}
+                        </td>
+                        <td className="border-2 border-gray-800 text-center">
+                          {item.updatedAt.split("T")[0]}
                         </td>
                         <td className="border-2 border-gray-800 text-center">
                           {item.title}
@@ -156,6 +230,9 @@ function IdeaForms() {
                         </td>
                         <td className="flex flex-row justify-center items-center text-center p-2">
                           <button
+                            onClick={() => {
+                              handleState("Approved", item._id);
+                            }}
                             className={`${
                               status.Approved === "false" ? "block" : "hidden"
                             } bg-green-700 p-1 px-3 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg mr-2`}
@@ -163,6 +240,9 @@ function IdeaForms() {
                             Approve
                           </button>
                           <button
+                            onClick={() => {
+                              handleDelete(item._id);
+                            }}
                             className={`bg-red-700 p-1 px-3 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg mr-2 ${
                               status.Pandding === "true" ? "hidden" : "block"
                             }`}
@@ -170,6 +250,9 @@ function IdeaForms() {
                             Delete
                           </button>
                           <button
+                            onClick={() => {
+                              handleState("Rejected", item._id);
+                            }}
                             className={`${
                               status.Approved === "true" ||
                               status.Pandding === "true"

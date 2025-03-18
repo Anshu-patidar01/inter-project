@@ -4,7 +4,9 @@ import RequirementModel from "../models/RequirementForm.Model.js";
 import UserModel from "../models/User.Model.js";
 
 const getidiaforms = async (req, res) => {
-  const forms = await IdeaFormModel.find({}).populate("userId", "fullname");
+  const forms = await IdeaFormModel.find({})
+    .sort({ updatedAt: -1 })
+    .populate("userId", "fullname");
   res.send(forms);
 };
 const updateideaform = async (req, res) => {

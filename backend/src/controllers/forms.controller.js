@@ -311,7 +311,9 @@ const getrequirementform = async (req, res) => {
 };
 const getfullform = async (req, res) => {
   try {
-    const forms = await FullFormModel.find({}).populate("userId", "fullname");
+    const forms = await FullFormModel.find({})
+      .sort({ _id: -1 })
+      .populate("userId", "fullname");
     res.send(forms);
   } catch (error) {
     res.status(400).json({
