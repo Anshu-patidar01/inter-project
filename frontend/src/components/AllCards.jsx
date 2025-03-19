@@ -427,19 +427,20 @@ function AllCards(props) {
               className=" flex justify-center hover:scale-110 duration-300  items-center text-gray-800"
             >
               <div className=" flex flex-col gap-1  border-[1px] hover:border-indigo-600  border-slate-400 rounded-xl font-bold w-72 bg-gray-50  shadow-xl hover:shadow-indigo-300 px-5 py-5 ">
-                <div className=" flex justify-end px-1">
-                  <span className="text-gray-600 font-normal text-sm">
-                    ID : {item.formId}
-                  </span>
+                <div className="flex flex-row justify-between">
+                  <label>
+                    Interested In:
+                    <span className="text-sm font-normal">
+                      {" "}
+                      {item.interested}
+                    </span>
+                  </label>
+                  <div className=" flex justify-end px-1">
+                    <span className="text-gray-600 font-normal text-sm">
+                      ID : {item.formId}
+                    </span>
+                  </div>
                 </div>
-                <label>
-                  Interested In:
-                  <span className="text-sm font-normal">
-                    {" "}
-                    {item.interested}
-                  </span>
-                </label>
-
                 <label>
                   Language:{" "}
                   <span className="text-sm font-normal"> {item.language}</span>

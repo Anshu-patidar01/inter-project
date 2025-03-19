@@ -76,7 +76,7 @@ function RequirementForm() {
             Summary: "",
           });
           console.log(response);
-          toast.success("Thank You for submitting your Requirement From.", {
+          toast.success("Thank you for submitting your Requirement Form.", {
             position: "top-center",
           });
 
@@ -127,7 +127,7 @@ function RequirementForm() {
     <>
       <div className="p-2 sm:p-10">
         <ToastContainer />
-        <div className="w-full h-auto rounded-lg sm:rounded-[5rem] shadow-2xl bg-gray-500 text-white shadow-sky-800">
+        <div className="w-full h-auto rounded-lg sm:rounded-[5rem] shadow-2xl bg-gray-800 text-white shadow-sky-800">
           <div className="p-5 sm:p-10">
             <div>
               <h1 className="text-start text-[3rem] font-bold">

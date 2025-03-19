@@ -23,23 +23,23 @@ export default function About() {
             At ScriptHQ, our foundation is built on three core principles that
             define who we are and what we stand for
           </h1>
-          <ul className="space-y-5">
+          <ul className="list-disc  space-y-5">
             <li>
               {" "}
-              🔥<strong> Trust-</strong> We provide a secure and transparent
+              <strong> Trust-</strong> We provide a secure and transparent
               platform where creators can share their scripts with confidence,
               knowing their intellectual property is highly protected.
             </li>
             <li>
               {" "}
-              🔥<strong> Create-</strong> We bring ideas to life by helping
+              <strong> Create-</strong> We bring ideas to life by helping
               writers, filmmakers, and artists develop original, compelling, and
               industry-ready content.
             </li>
             <li>
               {" "}
-              🔥<strong> Inspire-</strong> We fuel creativity by connecting
-              fresh talent with the right opportunities, shaping the future of
+              <strong> Inspire-</strong> We fuel creativity by connecting fresh
+              talent with the right opportunities, shaping the future of
               storytelling.
             </li>
           </ul>
@@ -89,32 +89,32 @@ export default function About() {
           <h1 className="text-[3rem] text-center font-bold my-10">
             Why Choose ScriptHQ?
           </h1>
-          <ul className="space-y-5 text-gray-600">
+          <ul className=" list-disc  space-y-5 text-gray-600">
             <li>
               {" "}
-              🔥<strong>Global Talent Network – </strong> We connect creators
-              from all over the world to the right industry professionals.
+              <strong>Global Talent Network – </strong> We connect creators from
+              all over the world to the right industry professionals.
             </li>
             <li>
               {" "}
-              🔥<strong>End-to-End Production -</strong> From concept to
+              <strong>End-to-End Production -</strong> From concept to
               execution, we offer a one-stop solution for Story telling in all
               formats.
             </li>
             <li>
               {" "}
-              🔥<strong className="">Industry-Ready Content –</strong> Every
+              <strong className="">Industry-Ready Content –</strong> Every
               script is curates, polished and tailored to meet industry
               standards.
             </li>
             <li>
               {" "}
-              🔥<strong>Confidential & Secure – </strong>Protecting your
+              <strong>Confidential & Secure – </strong>Protecting your
               intellectual property is our top priority.
             </li>
             <li>
               {" "}
-              🔥<strong>Creative & Strategic Approach -</strong>We don’t just
+              <strong>Creative & Strategic Approach -</strong>We don’t just
               write; we craft stories that leave an impact.
             </li>
             <li>
