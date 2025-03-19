@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import AllCards from "../../components/AllCards";
 import homeimg from "../../assets/Home_Page_image[1].jpg";
 function Home() {
+  const [Filter, setFilter] = useState({
+    language: "",
+    categories: "",
+    containt: "",
+  });
+  const [XFilter, setXFilter] = useState({
+    language: "",
+    categories: "",
+    containt: "",
+  });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    setFilter({
+      ...Filter,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div className="">
       <div className="">
@@ -32,7 +52,12 @@ function Home() {
                   <label className="text-white text-sm font-semibold mb-1">
                     Language
                   </label>
-                  <select className="block  p-2 border rounded-lg max-w-xs">
+                  <select
+                    className="block  p-2 border rounded-lg max-w-xs"
+                    name="language"
+                    value={Filter.language}
+                    onChange={handleChange}
+                  >
                     <option value="">Select Language</option>
                     <option>English</option>
                     <option>Hindi</option>
@@ -50,7 +75,12 @@ function Home() {
                   <label className="text-white text-sm font-semibold mb-1">
                     Category
                   </label>
-                  <select className="block  p-2 border rounded-lg">
+                  <select
+                    className="block  p-2 border rounded-lg"
+                    name="categories"
+                    value={Filter.categories}
+                    onChange={handleChange}
+                  >
                     <option value="">Select Category</option>
                     <option>Short Story</option>
                     <option>Story</option>
@@ -67,7 +97,12 @@ function Home() {
                   <label className="text-white text-sm font-semibold mb-1">
                     Content
                   </label>
-                  <select className="block  p-2 border rounded-lg">
+                  <select
+                    className="block  p-2 border rounded-lg"
+                    name="containt"
+                    value={Filter.containt}
+                    onChange={handleChange}
+                  >
                     <option value="">Select Content</option>
                     <option>Action</option>
                     <option>Adventure</option>
@@ -86,7 +121,12 @@ function Home() {
                   </select>
                 </div>
 
-                <button className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition mt-4">
+                <button
+                  onClick={() => {
+                    setXFilter(Filter);
+                  }}
+                  className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition mt-4"
+                >
                   Let's Begin
                 </button>
               </div>
@@ -101,7 +141,13 @@ function Home() {
         </div>
         <div className="w-full h-10 rounded-b-xl  bg-slate-800 shadow-xl shadow-black mb-10"></div>
         <div className="p-4">
-          <AllCards state="true" />
+          {XFilter.language !== "" ||
+          XFilter.categories !== "" ||
+          XFilter.containt !== "" ? (
+            <AllCards state="false" Filter={XFilter} setFilter={setXFilter} />
+          ) : (
+            <AllCards state="true" Filter={XFilter} setFilter={setXFilter} />
+          )}
         </div>
       </div>
     </div>

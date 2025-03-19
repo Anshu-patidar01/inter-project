@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/context";
 import PopupCartUser from "./PopupCartUser";
 import base_api from "../utility/contants";
 import Pagination from "./Pagination";
+import HeartImage from "../assets/Heart.png";
+import Loading from "./Loading";
 function AllCards(props) {
   const {
     forms,
@@ -48,7 +50,6 @@ function AllCards(props) {
       console.log("error while connecting to getformidea api.");
     }
   };
-
   useEffect(() => {
     // for requirment interested button
     if (requirementform !== "Self") {
@@ -95,7 +96,58 @@ function AllCards(props) {
     response2();
   }, []);
   let currentposts = forms.filter((item) => {
-    if (props.state === "false") {
+    if (props.state !== "true") {
+      if (
+        props.Filter.language !== "" &&
+        props.Filter.categories !== "" &&
+        props.Filter.containt !== ""
+      ) {
+        return (
+          item.language === props.Filter.language &&
+          item.categories === props.Filter.categories &&
+          item.containt === props.Filter.containt
+        );
+      }
+      if (
+        props.Filter.language === "" &&
+        props.Filter.categories !== "" &&
+        props.Filter.containt !== ""
+      ) {
+        return (
+          item.categories === props.Filter.categories &&
+          item.containt === props.Filter.containt
+        );
+      }
+      if (
+        props.Filter.language !== "" &&
+        props.Filter.categories !== "" &&
+        props.Filter.containt === ""
+      ) {
+        return (
+          item.language === props.Filter.language &&
+          item.categories === props.Filter.categories
+        );
+      }
+      if (
+        props.Filter.language !== "" &&
+        props.Filter.categories === "" &&
+        props.Filter.containt !== ""
+      ) {
+        return (
+          item.language === props.Filter.language &&
+          item.containt === props.Filter.containt
+        );
+      }
+      if (props.Filter.language !== "") {
+        return item.language === props.Filter.language;
+      }
+      if (props.Filter.categories !== "") {
+        return item.categories === props.Filter.categories;
+      }
+      if (props.Filter.containt !== "") {
+        return item.containt === props.Filter.containt;
+      }
+
       if (allcategory === "All Category") return item;
       if (allcategory === "all") return item;
       return item.categories == allcategory;
@@ -172,6 +224,27 @@ function AllCards(props) {
     <div>
       <ToastContainer />
       <PopupCartUser summary={summary} />
+      {props.Filter.language !== "" ||
+      props.Filter.categories !== "" ||
+      props.Filter.containt !== "" ? (
+        <div className=" grid w-full sm:px-10">
+          <button
+            onClick={() => {
+              props.setFilter({
+                language: "",
+                categories: "",
+                containt: "",
+              });
+              navigatTo("/");
+            }}
+            className=" place-self-end p-1 px-2 bg-slate-50 border-[1px] text-slate-600 font-bold tracking-wide hover:scale-105 duration-500 hover:border-sky-400 border-sky-600 rounded-xl"
+          >
+            Clear Filter
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
       {forms.length === 0 ? (
         <div className=" h-screen"> Loading...</div>
       ) : (
@@ -179,6 +252,7 @@ function AllCards(props) {
           <div className="text-4xl text-gray-700 font-extrabold text-center w-full tracking-wide">
             The Creator's Corner
           </div>
+          {/* Idea Cards */}
           {forms !== "" ? (
             <div className="flex flex-col items-center justify-center">
               <div className="md:w-full  rounded-md grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 gap-10 p-5">
@@ -280,20 +354,11 @@ function AllCards(props) {
                             </span>
                           ) : item.likes.includes(User._id) ? (
                             <span className="">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="#d10000"
-                                stroke-width="2.4"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-heart"
-                              >
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                              </svg>
+                              <img
+                                src={HeartImage}
+                                className="h-6 w-6"
+                                alt="Not Found"
+                              />
                             </span>
                           ) : (
                             <span>
@@ -319,42 +384,38 @@ function AllCards(props) {
                   </div>
                 ))}
               </div>
-
-              <div className="w-[90%]  p-1">
-                <Pagination
-                  totalPosts={forms.length}
-                  postsPages={postperpage}
-                  setCurrentPage={setCurrentPage}
-                />
-              </div>
+              {currentposts.length !== 0 ? (
+                <div className="w-[90%]  p-1">
+                  <Pagination
+                    totalPosts={currentposts.length + 1}
+                    postsPages={postperpage}
+                    setCurrentPage={setCurrentPage}
+                  />
+                </div>
+              ) : (
+                <div className="sm:px-10 bg-slate-300 sm:py-5">
+                  <h1 className="text-center text-3xl  text-red-400 tracking-wider">
+                    No Idea in This Field
+                  </h1>
+                  <Link
+                    to={"/requirementForm"}
+                    className="p-1 rounded-lg bg-sky-600 text-sky-200"
+                  >
+                    Request Now!!
+                  </Link>
+                </div>
+              )}
             </div>
           ) : (
             <div className="w-2/3">
-              <main className="grid min-h-full place-items-center bg-white">
-                <div className="text-center">
-                  <p className="text-base font-semibold text-indigo-600">404</p>
-                  <h1 className="mt-4 text-2xl font-semibold tracking-tight text-balance text-gray-900">
-                    Loading Please wait....
-                  </h1>
-                  <p className="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-                    Sorry, we are try to Load the page right know.
-                  </p>
-                  <div className="mt-10 flex items-center justify-center gap-x-6">
-                    <a className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                      Go back home
-                    </a>
-                    <a href="#" className="text-sm font-semibold text-gray-900">
-                      Contact support <span aria-hidden="true">&rarr;</span>
-                    </a>
-                  </div>
-                </div>
-              </main>
+              {/* For Loading */}
+              <Loading />
             </div>
           )}
         </div>
       )}
 
-      {/* <div className="flex flex-col gap-8 p-5 bg-gray-500  md:w-[20%]"> */}
+      {/* Requerement Cards */}
       <div className="flex flex-col gap-8 sm:p-5">
         <h1 className="text-white bg-slate-700 sm:mx-20 md:mx-0 text-center text-4xl py-10 font-bold tracking-wider">
           Content Requirements
