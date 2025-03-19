@@ -27,7 +27,7 @@ function Home() {
       <div className="">
         <div className="">
           <div
-            className=" h-[90vh] sm:h-[70vh] md:min-h-screen w-full flex items-center justify-center relative"
+            className=" h-[90vh] sm:h-[70vh] md:min-h-[80vh] w-full flex items-center justify-center relative"
             style={{
               backgroundImage: `url("${homeimg}")`,
               backgroundSize: "cover",
@@ -118,14 +118,15 @@ function Home() {
                   </select>
                 </div>
 
-                <button
+                <a
+                  href="#cards"
                   onClick={() => {
                     setXFilter(Filter);
                   }}
                   className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition mt-4"
                 >
                   Let's Begin
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -137,7 +138,7 @@ function Home() {
           /> */}
         </div>
         <div className="w-full h-10 rounded-b-xl  bg-slate-800 shadow-xl shadow-black mb-10"></div>
-        <div className="p-4">
+        <div id="cards" className="p-4">
           {XFilter.language !== "" ||
           XFilter.categories !== "" ||
           XFilter.containt !== "" ? (

@@ -108,7 +108,7 @@ function ContactPage() {
   return (
     <div>
       <ToastContainer />
-      <div className="flex sm:flex-row justify-center items-center flex-col flex-wrap bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/twcomponents/header.webp')] bg-cover bg-center bg-gray-600 py-10">
+      <div className="flex sm:flex-row justify-center items-center flex-col flex-wrap bg-gray-600 py-10">
         <section className=" sm:w-7/12 rounded-r-full sm:pl-5 ">
           <div
             className="py-8 lg:py-16 px-4 sm:mr-20 sm:w-[90%] rounded-xl  bg-white/50  mx-auto max-w-screen-md
