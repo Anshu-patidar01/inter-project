@@ -12,6 +12,7 @@ export const MyProvider = ({ children }) => {
     password: "",
   });
   const [pop, setpop] = useState("false");
+  const [requestedBy, setrequestedBy] = useState("Self");
   const [count, setcount] = useState(0);
   const [allcategory, setallcategory] = useState("All Category");
   return (
@@ -29,6 +30,8 @@ export const MyProvider = ({ children }) => {
         setpop,
         allcategory,
         setallcategory,
+        requestedBy,
+        setrequestedBy,
       }}
     >
       {children}

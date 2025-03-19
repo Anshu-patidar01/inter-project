@@ -11,7 +11,9 @@ function RequirementForm() {
   const [SummeryWords, setSummeryWords] = useState("");
   const [test, settest] = useState("");
   const { setUser, User } = useContext(MyContext);
+  // console.log(requestedBy);
   // console.log(User);
+  // console.log()
 
   const [form, setform] = useState({
     company: "",
@@ -19,6 +21,8 @@ function RequirementForm() {
     city: "",
     language: "",
     interested: "",
+    containt: "",
+    email: "",
     Summary: "",
   });
   const [error, seterror] = useState("");
@@ -32,6 +36,10 @@ function RequirementForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setform({
+      ...form,
+      ["email"]: User.data.email,
+    });
     console.log(form);
     const value = form.mobile;
     if (!/^[6-9]\d{9}$/.test(value)) {
@@ -255,6 +263,45 @@ function RequirementForm() {
                           <option>Theme</option>
                           <option>Music</option>
                           <option>Other</option>
+                        </select>
+                        <ChevronDownIcon
+                          aria-hidden="true"
+                          className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
+                        />
+                      </div>
+                    </div>
+                    <div className="sm:col-span-3">
+                      <label
+                        htmlFor="Containt_Type"
+                        className="block text-sm/6 font-medium text-gray-100"
+                      >
+                        Content Type <span className="text-red-500">*</span>
+                      </label>
+                      <div className="mt-2 grid grid-cols-1">
+                        <select
+                          id="Containt_Type"
+                          name="containt"
+                          value={form.containt}
+                          onChange={handleChange}
+                          //autoComplete="Topic"
+                          required
+                          className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                        >
+                          <option value="">Select Content</option>
+                          <option>Action</option>
+                          <option>Adventure</option>
+                          <option>Comedy</option>
+                          <option>Drama</option>
+                          <option>Fantasy</option>
+                          <option>Fiction</option>
+                          <option>Horror</option>
+                          <option>Musicals</option>
+                          <option>Mystery</option>
+                          <option>Romance</option>
+                          <option>Science Fiction</option>
+                          <option>Sports</option>
+                          <option>Thriller</option>
+                          <option>Other...</option>
                         </select>
                         <ChevronDownIcon
                           aria-hidden="true"

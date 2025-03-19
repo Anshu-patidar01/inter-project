@@ -19,6 +19,7 @@ const IdiaFormController = async (req, res) => {
     ROCAttachment,
     summary,
     termAndCondition,
+    requestedByformId,
   } = req.body;
 
   try {
@@ -54,6 +55,7 @@ const IdiaFormController = async (req, res) => {
       copyright,
       ROCNumber,
       ROCAttachment,
+      requestedByformId,
       summary,
       termAndCondition,
     };
@@ -77,6 +79,7 @@ const IdiaFormController = async (req, res) => {
       categories,
       containt,
       copyright,
+      requestedByformId,
       ROCNumber,
       ROCAttachment: fileURL,
       summary,
@@ -105,7 +108,8 @@ const IdiaFormController = async (req, res) => {
   }
 };
 const RequirementForm = async (req, res) => {
-  const { company, mobile, city, language, interested, Summary } = req.body;
+  const { company, mobile, city, language, interested, Summary, containt } =
+    req.body;
 
   try {
     if (!company || !mobile || !city || !language || !interested || !Summary) {
@@ -113,7 +117,7 @@ const RequirementForm = async (req, res) => {
     }
 
     const forms = await RequirementModel.find({});
-    const formId = company + (100 + Object.keys(forms).length);
+    const formId = interested[0] + (100 + Object.keys(forms).length);
     const userId = req.user.id;
     const form = await RequirementModel.create({
       company,
@@ -123,6 +127,7 @@ const RequirementForm = async (req, res) => {
       interested,
       Summary,
       formId,
+      containt,
       userId,
     });
     const user = req.user;
@@ -179,7 +184,7 @@ const limitedIdeaForm = async (req, res) => {
   try {
     const forms = await IdeaFormModel.find(
       { status: "Approved" },
-      "city gender title language categories copyright containt summary likes _id createdAt formId ROCAttachment updatedAt"
+      "city gender title language categories copyright containt summary likes _id createdAt formId ROCAttachment updatedAt requestedByformId"
     )
       .sort({ _id: -1 })
       .populate("userId", "fullname");
@@ -237,6 +242,7 @@ const limitedIdeaForm = async (req, res) => {
         updatedAt: form.updatedAt,
         _id: form._id,
         ROCAttachment: form.ROCAttachment,
+        requestedByformId: form.requestedByformId,
       };
     });
     res.send(modifiedForm);
@@ -301,7 +307,7 @@ const getrequirementform = async (req, res) => {
   try {
     const forms = await RequirementModel.find({})
       .sort({ _id: -1 })
-      .populate("userId", "fullname");
+      .populate("userId", "fullname email");
     res.send(forms);
   } catch (error) {
     res.status(400).json({
@@ -335,3 +341,4 @@ export {
   getfullform,
   getrequirementform,
 };
+("");

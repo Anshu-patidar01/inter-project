@@ -28,6 +28,10 @@ const RequirementSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    containt: {
+      type: String,
+      required: true,
+    },
     Summary: {
       type: String,
       required: true,

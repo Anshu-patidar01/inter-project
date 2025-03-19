@@ -1,25 +1,54 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import base_api from "../../utility/contants";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 function RequirementForm() {
   const [forms, setforms] = useState([]);
-
+  const requirement_api = async () => {
+    try {
+      await axios.get(`${base_api}/form/Requirement`).then((res) => {
+        console.log(res.data);
+        setforms(res.data);
+      });
+    } catch (error) {
+      console.log("some error in getting requirement form details");
+    }
+  };
   useEffect(() => {
-    const requirement_api = async () => {
-      try {
-        await axios.get(`${base_api}/form/Requirement`).then((res) => {
-          console.log(res.data);
-          setforms(res.data);
-        });
-      } catch (error) {
-        console.log("some error in getting requirement form details");
-      }
-    };
     requirement_api();
   }, []);
+  // /admin/deleteRequirementform
+  const handleDelete = async (id) => {
+    try {
+      await axios
+        .post(
+          `${base_api}/admin/deleteRequirementform`,
+          {
+            formId: id,
+          },
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then((res) => {
+          // setToggeload(true);
+          toast.success("Requirement Deleted Successfully!", {
+            position: "top-center",
+          });
+          requirement_api();
+        });
+    } catch (error) {
+      toast.error("Try Again!", {
+        position: "top-center",
+      });
+      console.log("some error in Delete requirement form:", error);
+    }
+  };
   return (
     <div>
       {" "}
+      <ToastContainer />
       <div>
         {" "}
         <div className="p-5  m-3 bg-orange-300 rounded-sm ">
@@ -79,6 +108,9 @@ function RequirementForm() {
                   </td>
                   <td className="border-2 border-gray-800 text-center">
                     <button
+                      onClick={() => {
+                        handleDelete(item._id);
+                      }}
                       className={`bg-red-700 p-1 px-3 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg mr-2`}
                     >
                       Delete

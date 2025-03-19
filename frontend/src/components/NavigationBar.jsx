@@ -77,9 +77,9 @@ export default function NavigationBar() {
     <Disclosure as="nav" className="bg-gray-900 w-full ">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
-          <div class="text-2xl px-2 py-1 bg-white rounded-lg font-bold text-gray-900 flex items-center space-x-2">
-            <span class="text-black">Script</span>
-            <span class="text-white bg-black px-2 rounded-lg">HQ</span>
+          <div className="text-2xl px-2 py-1 bg-white rounded-lg font-bold text-gray-900 flex items-center space-x-2">
+            <span className="text-black">Script</span>
+            <span className="text-white bg-black px-2 rounded-lg">HQ</span>
           </div>{" "}
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
@@ -134,7 +134,7 @@ export default function NavigationBar() {
                         <ul
                           onMouseEnter={() => setDropdownOpen(true)}
                           onMouseLeave={() => setDropdownOpen(false)}
-                          className="absolute bg-white text-black right-0 w-48 rounded shadow-lg"
+                          className="absolute bg-white text-black right-0 z-10 w-48 rounded shadow-lg"
                         >
                           <li
                             onClick={() => {

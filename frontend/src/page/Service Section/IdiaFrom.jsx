@@ -11,7 +11,8 @@ import { MyContext } from "../../Context/context";
 export default function IdiaFrom() {
   const [Copyright, setCopyright] = useState("");
   const [CheckBox, setCheckBox] = useState(false);
-  const { setUser, User } = useContext(MyContext);
+  const { requestedBy } = useContext(MyContext);
+  // console.log(requestedBy);
   const navigateTo = useNavigate();
   const handleCheckBoxChange = (e) => {
     // e.preventDefault();
@@ -43,6 +44,7 @@ export default function IdiaFrom() {
     ROCAttachment: "",
     summary: "",
     termAndCondition: "",
+    requestedByformId: requestedBy,
   });
   const handleOnsubmit = async (e) => {
     e.preventDefault();

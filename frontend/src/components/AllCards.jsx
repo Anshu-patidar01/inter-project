@@ -16,6 +16,8 @@ function AllCards(props) {
     setpop,
     Pop,
     allcategory,
+    requestedBy,
+    setrequestedBy,
     setallcategory,
   } = useContext(MyContext);
   const [CurrentPage, setCurrentPage] = useState(1);
@@ -48,6 +50,10 @@ function AllCards(props) {
   };
 
   useEffect(() => {
+    // for requirment interested button
+    if (requirementform !== "Self") {
+      setrequestedBy("Self");
+    }
     const validate_token_api = async () => {
       const token = localStorage.getItem("project");
       await axios
@@ -181,11 +187,13 @@ function AllCards(props) {
                     key={index}
                     className=" flex flex-col justify-between   shadow-xl hover:shadow-indigo-300 hover:scale-105 cursor-pointer duration-300 text-black border-[1px] hover:border-indigo-600  border-slate-400 rounded-xl "
                   >
-                    <div className=" flex justify-end px-1">
-                      <span className="text-gray-600 text-sm">
-                        Date: {item.updatedAt.split("T")[0]}
-                      </span>
-                    </div>
+                    {item.requestedByformId !== "Self" && (
+                      <div className=" flex justify-end px-1">
+                        <span className="text-gray-600 text-sm">
+                          Requested ID : {item.requestedByformId}
+                        </span>
+                      </div>
+                    )}
                     <div className="h-full flex flex-col justify-between  break-words p-3 ">
                       <div className="flex flex-row justify-between">
                         <h1 className="text-gray-700 text-lg font-bold tracking-wider">
@@ -358,6 +366,11 @@ function AllCards(props) {
               className=" flex justify-center hover:scale-110 duration-300  items-center text-gray-800"
             >
               <div className=" flex flex-col gap-1  border-[1px] hover:border-indigo-600  border-slate-400 rounded-xl font-bold w-72 bg-gray-50  shadow-xl hover:shadow-indigo-300 px-5 py-5 ">
+                <div className=" flex justify-end px-1">
+                  <span className="text-gray-600 font-normal text-sm">
+                    ID : {item.formId}
+                  </span>
+                </div>
                 <label>
                   Interested In:
                   <span className="text-sm font-normal">
@@ -371,21 +384,39 @@ function AllCards(props) {
                   <span className="text-sm font-normal"> {item.language}</span>
                 </label>
                 <label>
+                  Content:{" "}
+                  <span className="text-sm font-normal"> {item.containt}</span>
+                </label>
+                <label className=" min-h-15 max-h-12 overflow-hidden">
                   Summery:
                   <span className="text-sm font-normal">
                     {" "}
-                    {item.Summary.split(" ").slice(0, 10).join(" ")}
-                    <span
-                      className="text-blue-800 cursor-pointer"
-                      onClick={() => {
-                        setpop("true");
-                        setsummary(item.Summary);
-                      }}
-                    >
-                      See More...
-                    </span>
+                    {item.Summary.split(" ").slice(0, 8).join(" ")}
                   </span>
                 </label>
+                <span
+                  className="text-blue-800 cursor-pointer"
+                  onClick={() => {
+                    setpop("true");
+                    setsummary(item.Summary);
+                  }}
+                >
+                  See More...
+                </span>
+                <button
+                  onClick={() => {
+                    if (User._id === "") {
+                      navigatTo("/login");
+                    } else {
+                      console.log(item.formId);
+                      setrequestedBy(item.formId);
+                      navigatTo("/idiaSubmit");
+                    }
+                  }}
+                  className=" py-2 mt-2 border-[1px] hover:scale-105 duration-300 hover:shadow-lg border-sky-500 rounded-lg p-1 shadow-md "
+                >
+                  <span>I am Interested</span>
+                </button>
               </div>
             </div>
           ))}

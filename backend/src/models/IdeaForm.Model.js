@@ -62,6 +62,17 @@ const IdeaFormSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    sold: {
+      type: String,
+      enum: [true, false],
+      default: false,
+      required: true,
+    },
+    requestedByformId: {
+      type: String,
+      default: "Self",
+      required: true,
+    },
     termAndCondition: {
       type: String,
       required: true,
