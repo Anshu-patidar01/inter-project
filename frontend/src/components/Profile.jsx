@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { useSearchParams } from "react-router-dom";
 import { MyContext } from "../Context/context";
+import backgroundimage from "../assets/All Profile Background.jpg";
 function Profile() {
   const { User } = useContext(MyContext);
   const user = User.data;
@@ -14,15 +15,12 @@ function Profile() {
   const [test, settest] = useState("");
   const [pop, setpop] = useState(false);
   const [editid, seteditid] = useState("");
-
   const [form, setform] = useState({
     title: "",
     summary: "",
   });
-
   const respons = async () => {
     const token = localStorage.getItem("project");
-
     await axios
       .get(`${base_api}/form/getIdiaForm`, {
         headers: {
@@ -148,7 +146,14 @@ function Profile() {
       <ToastContainer />
 
       <div className="bg-slate-200">
-        <section>
+        <section
+          style={{
+            backgroundImage: `url(${backgroundimage})`, // ✅ Proper string format
+            backgroundSize: "cover",
+            backgroundPosition: "top",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
           <header class="md:px-2 py-20 flex flex-col justify-center items-center text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -166,19 +171,15 @@ function Profile() {
               <circle cx="12" cy="10" r="3" />
               <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
             </svg>
-            <div className="flex flex-col gap-1">
-              <h1 class="text-4xl text-gray-500 font-bold mt-2">
-                {user.fullname}
-              </h1>
-              <h2 class="text-base md:text-xl text-gray-500 font-bold">
-                {user.email}
-              </h2>
-              <h2 class="text-base md:text-xl text-gray-500 font-bold">
+            <div className="flex flex-col gap-1  text-gray-900">
+              <h1 class="text-4xl font-bold mt-2">{user.fullname}</h1>
+              <h2 class="text-base md:text-xl font-bold">{user.email}</h2>
+              <h2 class="text-base md:text-xl font-bold">
                 {user.mobileNumber}
               </h2>
             </div>
           </header>
-          <div className="text-end text-gray-600 p-3">
+          <div className="text-end text-gray-800 p-3">
             {" "}
             Joining Date: {user.updatedAt.split("T")[0]}
           </div>

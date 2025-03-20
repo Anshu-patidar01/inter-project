@@ -240,7 +240,7 @@ function IdeaForms() {
                             </button>
                           ) : (
                             <button
-                              className="bg-gray-800 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg w-20 p-1 px-3"
+                              className="bg-gray-200 hover:scale-110 cursor-pointer duration-300 text-gray-700 rounded-lg w-20 p-1 px-3"
                               onClick={() => {
                                 handleSold(item._id, "true");
                               }}

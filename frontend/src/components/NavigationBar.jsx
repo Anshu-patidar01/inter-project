@@ -21,7 +21,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useContext, useEffect } from "react";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { MyContext } from "../Context/context";
-
+import logoimg from "../../public/ScriptHQ Logo/logo-png.png";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -40,6 +40,7 @@ export default function NavigationBar() {
     });
   };
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [ServicDropdownOpen, setServiceDropdownOpen] = useState(false);
 
   useEffect(() => {
     async () => {
@@ -77,9 +78,9 @@ export default function NavigationBar() {
     <Disclosure as="nav" className="bg-gray-900 w-full ">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
-          <div className="text-2xl px-2 py-1 bg-white rounded-lg font-bold text-gray-900 flex items-center space-x-2">
-            <span className="text-black">Script</span>
-            <span className="text-white bg-black px-2 rounded-lg">HQ</span>
+          <div className="w-full md:w-auto flex justify-center">
+            {" "}
+            <img src={logoimg} className=" w-24 h-15" alt="" />
           </div>{" "}
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
@@ -242,14 +243,72 @@ export default function NavigationBar() {
                 >
                   About
                 </Link>
-                <Link
+                <div
+                  className={
+                    "bg-gray-600 text-white rounded-md  text-sm font-medium"
+                  }
+                >
+                  <div className=" grid grid-cols-1">
+                    <div className="relative">
+                      <button
+                        onClick={() => {
+                          ServicDropdownOpen(!ServicDropdownOpen);
+                          // setallcategory("all");
+                          // navigate("/");
+
+                          // navigate("/services");
+                          // console.log("hello");
+                        }}
+                        onMouseEnter={() => setServiceDropdownOpen(true)}
+                        onMouseLeave={() => setServiceDropdownOpen(false)}
+                        className="bg-gray-600 px-4 py-2 rounded transition"
+                      >
+                        Services
+                      </button>
+
+                      {ServicDropdownOpen && (
+                        <ul
+                          onMouseEnter={() => setServiceDropdownOpen(true)}
+                          onMouseLeave={() => setServiceDropdownOpen(false)}
+                          className="absolute bg-white text-black right-0 z-10 w-48 rounded shadow-lg"
+                        >
+                          <li
+                            onClick={() => {
+                              // console.log(allcategory);
+                              navigate("/requirementForm");
+                              // setallcategory("Short Story");
+                            }}
+                            className="px-4 py-2 hover:bg-gray-200"
+                          >
+                            <Link to={"/"}>
+                              <div className="w-full">Requirement Form</div>
+                            </Link>
+                          </li>
+                          <li
+                            onClick={() => {
+                              // console.log(allcategory);
+                              navigate("/idiaSubmit");
+                              // setallcategory("Short Story");
+                            }}
+                            className="px-4 py-2 hover:bg-gray-200"
+                          >
+                            <Link to={"/"}>
+                              <div className="w-full">Idea Form</div>
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                {/* <Link
                   to={"/services"}
                   className={
                     "bg-gray-600 text-white rounded-md px-3 py-2 text-sm font-medium"
                   }
                 >
                   Services
-                </Link>
+                </Link> */}
                 <Link
                   to={"/"}
                   className={
@@ -270,7 +329,7 @@ export default function NavigationBar() {
             </div>
           </div>
           {User._id === "" ? (
-            <div className="absolute  inset-y-0 right-0 flex gap-2 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className="absolute inset-y-0 right-0 flex gap-2 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <Link to={"/login"} className=" text-white p-2 sm:p-3 rounded-xl">
                 {" "}
                 Sign-in
@@ -284,7 +343,7 @@ export default function NavigationBar() {
               </Link>
             </div>
           ) : (
-            <Menu as="div" className="relative ml-3">
+            <Menu as="div" className=" absolute right-0">
               <div>
                 <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                   <span className="absolute -inset-1.5" />

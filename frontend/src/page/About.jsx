@@ -1,14 +1,22 @@
 import React from "react";
-
+import backgroundImage from "../assets/About Us Cropped.jpg";
 export default function About() {
   return (
     <div>
-      <div className=" bg-gray-800 flex justify-center items-center gap-5 px-10 md:px-40">
-        <div className="py-24 md:py-20 w-full text-white flex flex-col justify-center items-center gap-5">
-          <h1 className="text-3xl md:text-[5rem] text-white font-bold tracking-wider">
+      <div
+        style={{
+          backgroundImage: `url(${backgroundImage})`, // ✅ Proper string format
+          backgroundSize: "cover",
+          backgroundPosition: "top",
+          backgroundRepeat: "no-repeat",
+        }}
+        className=" bg-gray-800 h-96  flex justify-center items-center gap-5 px-10 md:px-40"
+      >
+        <div className="py-24 md:py-20 w-full text-black flex flex-col justify-center items-center gap-5">
+          <h1 className="text-5xl md:text-[5rem] text-black font-bold tracking-wider">
             About Us
           </h1>
-          <p className="text-gray-300 px-10 md:px-36 text-center">
+          <p className="text-gray-950 bg-white/50 px-10 md:px-36 text-center">
             At ScriptHQ(Head Quarter of Scripts), we believe that every great
             film starts with a powerful script. We are a team of passionate and
             talented professionals committed to discovering, nurturing, and
