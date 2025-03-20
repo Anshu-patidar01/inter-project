@@ -23,8 +23,14 @@ function AllCards(props) {
     setallcategory,
   } = useContext(MyContext);
   const [CurrentPage, setCurrentPage] = useState(1);
-  const [postperpage, setpostperpage] = useState(9);
+  const [postperpage, setpostperpage] = useState(6);
   const lastpostIndex = CurrentPage * postperpage;
+
+  const [reqCurrentPage, setreqCurrentPage] = useState(1);
+  const [reqpostperpage, setreqpostperpage] = useState(6);
+  const reqlastpostIndex = reqCurrentPage * reqpostperpage;
+  const reqfirstpostindex = reqlastpostIndex - reqpostperpage;
+
   const firstpostindex = lastpostIndex - postperpage;
   const [requirementform, setrequirementform] = useState([]);
   const [summary, setsummary] = useState("");
@@ -157,6 +163,7 @@ function AllCards(props) {
       return item;
     }
   });
+  let reqposts = requirementform.slice(reqfirstpostindex, reqlastpostIndex);
   currentposts = currentposts.slice(firstpostindex, lastpostIndex);
   const handlelikes = async (id) => {
     try {
@@ -391,11 +398,12 @@ function AllCards(props) {
                 ))}
               </div>
               {currentposts.length !== 0 ? (
-                <div className="w-[90%]  p-1">
+                <div className="w-[100%]  p-1">
                   <Pagination
-                    totalPosts={currentposts.length + 1}
+                    totalPosts={forms.length}
                     postsPages={postperpage}
                     setCurrentPage={setCurrentPage}
+                    CurrentPage={CurrentPage}
                   />
                 </div>
               ) : (
@@ -428,7 +436,7 @@ function AllCards(props) {
           Industry Content Request{" "}
         </div>
         <div className="md:w-full rounded-md grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 gap-10 p-2 sm:p-5">
-          {requirementform.map((item, index) => (
+          {reqposts.map((item, index) => (
             <div
               key={index}
               className=" flex justify-center hover:scale-110 duration-300  items-center text-gray-800"
@@ -490,6 +498,28 @@ function AllCards(props) {
             </div>
           ))}
         </div>
+        {reqposts.length !== 0 ? (
+          <div className="w-[100%]  p-1">
+            <Pagination
+              totalPosts={reqposts.length}
+              postsPages={reqpostperpage}
+              setCurrentPage={setreqCurrentPage}
+              CurrentPage={reqCurrentPage}
+            />
+          </div>
+        ) : (
+          <div className="sm:px-10 bg-slate-300 sm:py-5">
+            <h1 className="text-center text-3xl  text-red-400 tracking-wider">
+              No requeste in This Field
+            </h1>
+            <Link
+              to={"/requirementForm"}
+              className="p-1 rounded-lg bg-sky-600 text-sky-200"
+            >
+              Request Now!!
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

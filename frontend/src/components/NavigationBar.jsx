@@ -281,7 +281,9 @@ export default function NavigationBar() {
                             className="px-4 py-2 hover:bg-gray-200"
                           >
                             <Link to={"/"}>
-                              <div className="w-full">Requirement Form</div>
+                              <div className="w-full">
+                                Industry Content Request Platform
+                              </div>
                             </Link>
                           </li>
                           <li
@@ -293,7 +295,9 @@ export default function NavigationBar() {
                             className="px-4 py-2 hover:bg-gray-200"
                           >
                             <Link to={"/"}>
-                              <div className="w-full">Idea Form</div>
+                              <div className="w-full">
+                                Script Submission Platform
+                              </div>
                             </Link>
                           </li>
                         </ul>
@@ -572,7 +576,9 @@ export default function NavigationBar() {
                         className="px-4 py-2 hover:bg-gray-200"
                       >
                         <Link to={"/"}>
-                          <div className="w-full">Requirement Form</div>
+                          <div className="w-full">
+                            Industry Content Request Platform
+                          </div>
                         </Link>
                       </li>
                       <li
@@ -584,7 +590,9 @@ export default function NavigationBar() {
                         className="px-4 py-2 hover:bg-gray-200"
                       >
                         <Link to={"/"}>
-                          <div className="w-full">Idea Form</div>
+                          <div className="w-full">
+                            Script Submission Platform
+                          </div>
                         </Link>
                       </li>
                     </ul>

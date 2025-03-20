@@ -129,20 +129,26 @@ function RequirementForm() {
         <ToastContainer />
         <div className="w-full h-auto rounded-lg sm:rounded-[5rem] shadow-2xl bg-gray-800 text-white shadow-sky-800">
           <div className="p-5 sm:p-5">
-            <div className=" text-justify py-2 px-5 text-gray-300">
-              "Looking for the Perfect Script? <br /> Let Writers Bring Your
-              Vision to Life!" At ScriptHQ, we connect filmmakers, producers,
-              and content creators with skilled writers who craft scripts
-              tailored to their vision. Our Industry Content Request platform
-              allows you to submit specific requirements—genre, language, and
-              format—and let talented writers develop the perfect screenplay,
-              script, lyrics, or concept for your project. Whether you need a
-              thriller, drama, web series, or commercial script, we bring your
-              vision to life. <br /> Submit your content request today and find
-              the perfect story for your next big project!
+            <div className=" flex flex-col  gap-2 text-justify py-2 px-5 text-gray-300">
+              <div> "Looking for the Perfect Script?</div>
+              <div className="">
+                {" "}
+                Let Writers Bring Your Vision to Life!" At ScriptHQ, we connect
+                filmmakers, producers, and content creators with skilled writers
+                who craft scripts tailored to their vision. Our Industry Content
+                Request platform allows you to submit specific
+                requirements—genre, language, and format—and let talented
+                writers develop the perfect screenplay, script, lyrics, or
+                concept for your project. Whether you need a thriller, drama,
+                web series, or commercial script, we bring your vision to life.{" "}
+              </div>{" "}
+              <div>
+                Submit your content request today and find the perfect story for
+                your next big project!
+              </div>
             </div>
             <div>
-              <h1 className="text-center text-3xl md:text-[3rem] font-bold">
+              <h1 className="text-center text-3xl mt-3 md:text-[3rem] font-bold">
                 Industry Content Request Platform
               </h1>
             </div>

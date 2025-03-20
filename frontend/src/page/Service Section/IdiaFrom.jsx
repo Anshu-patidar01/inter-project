@@ -159,17 +159,23 @@ export default function IdiaFrom() {
 
       <div className="w-full h-auto rounded-lg  md:rounded-[5rem] shadow-2xl bg-gray-800 text-white shadow-sky-800">
         <div className="p-3 md:p-5">
-          <div className=" text-justify py-2 px-5 text-gray-300">
-            "Your Script, Your Vision - Get Discovered!” <br /> At ScriptHQ, we
-            connect screenwriters with filmmakers, producers, and OTT platforms,
-            turning ideas into industry-ready content. Our Script Submission
-            Platform allows writers to submit scripts, screenplays, story
-            concepts, lyrics, music, theme, etc directly to production houses
-            seeking fresh narratives. We craft compelling pitch decks, ensuring
-            your script reaches the right industry professionals. With secure
-            submissions and direct industry access, your creativity is protected
-            while maximizing its potential. <br />
-            Submit your script today and bring your story to life!
+          <div className=" flex flex-col gap-2  text-justify py-2 px-5 text-gray-300">
+            <h1>"Your Script, Your Vision - Get Discovered!” </h1>
+            <h1>
+              {" "}
+              At ScriptHQ, we connect screenwriters with filmmakers, producers,
+              and OTT platforms, turning ideas into industry-ready content. Our
+              Script Submission Platform allows writers to submit scripts,
+              screenplays, story concepts, lyrics, music, theme, etc directly to
+              production houses seeking fresh narratives. We craft compelling
+              pitch decks, ensuring your script reaches the right industry
+              professionals. With secure submissions and direct industry access,
+              your creativity is protected while maximizing its potential.
+            </h1>
+            <h1>
+              {" "}
+              Submit your script today and bring your story to life!
+            </h1>{" "}
           </div>
           <div className="flex flex-row gap-4 items-center justify-center mb-6">
             <h2 className="text-3xl md:text-[3rem] p-1 text-center font-extrabold tracking-wider text-gray-200">
@@ -196,7 +202,7 @@ export default function IdiaFrom() {
           >
             <div className="space-y-12">
               <div className="border-b border-gray-900/10 pb-12">
-                <div className="mt-10 grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-6">
+                <div className="mt-5 grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-6">
                   {/* state */}
                   <div className=" sm:col-span-2">
                     <label
