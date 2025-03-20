@@ -57,7 +57,7 @@ export default function LoginPage() {
         setToggele(true);
         if (response.data.admin === false) {
           setTimeout(() => {
-            navigate("/services");
+            navigate("/");
           }, 1000);
         } else {
           setTimeout(() => {

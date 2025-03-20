@@ -536,12 +536,60 @@ export default function NavigationBar() {
             >
               About
             </Link>
-            <Link
-              to={"/services"}
-              className={" text-white rounded-md px-3 py-2 text-sm font-medium"}
-            >
-              Services
-            </Link>
+            <div className={" text-white rounded-md  text-sm font-medium"}>
+              <div className=" grid grid-cols-1">
+                <div className="relative">
+                  <button
+                    onClick={() => {
+                      setServiceDropdownOpen(!ServicDropdownOpen);
+                      // setallcategory("all");
+                      // navigate("/");
+
+                      // navigate("/services");
+                      // console.log("hello");
+                    }}
+                    onMouseEnter={() => setServiceDropdownOpen(true)}
+                    onMouseLeave={() => setServiceDropdownOpen(false)}
+                    className=" px-4 py-2 rounded transition"
+                  >
+                    Services
+                  </button>
+
+                  {ServicDropdownOpen && (
+                    <ul
+                      onMouseEnter={() => setServiceDropdownOpen(true)}
+                      onMouseLeave={() => setServiceDropdownOpen(false)}
+                      className="absolute bg-white text-black md:right-0 z-10 w-48 rounded shadow-lg"
+                    >
+                      <li
+                        onClick={() => {
+                          // console.log(allcategory);
+                          navigate("/requirementForm");
+                          // setallcategory("Short Story");
+                        }}
+                        className="px-4 py-2 hover:bg-gray-200"
+                      >
+                        <Link to={"/"}>
+                          <div className="w-full">Requirement Form</div>
+                        </Link>
+                      </li>
+                      <li
+                        onClick={() => {
+                          // console.log(allcategory);
+                          navigate("/idiaSubmit");
+                          // setallcategory("Short Story");
+                        }}
+                        className="px-4 py-2 hover:bg-gray-200"
+                      >
+                        <Link to={"/"}>
+                          <div className="w-full">Idea Form</div>
+                        </Link>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              </div>
+            </div>
             <Link
               to={"/"}
               className={" text-white rounded-md px-3 py-2 text-sm font-medium"}

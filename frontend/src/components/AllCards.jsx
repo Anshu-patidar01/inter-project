@@ -97,55 +97,57 @@ function AllCards(props) {
   }, []);
   let currentposts = forms.filter((item) => {
     if (props.state !== "true") {
-      if (
-        props.Filter.language !== "" &&
-        props.Filter.categories !== "" &&
-        props.Filter.containt !== ""
-      ) {
-        return (
-          item.language === props.Filter.language &&
-          item.categories === props.Filter.categories &&
-          item.containt === props.Filter.containt
-        );
-      }
-      if (
-        props.Filter.language === "" &&
-        props.Filter.categories !== "" &&
-        props.Filter.containt !== ""
-      ) {
-        return (
-          item.categories === props.Filter.categories &&
-          item.containt === props.Filter.containt
-        );
-      }
-      if (
-        props.Filter.language !== "" &&
-        props.Filter.categories !== "" &&
-        props.Filter.containt === ""
-      ) {
-        return (
-          item.language === props.Filter.language &&
-          item.categories === props.Filter.categories
-        );
-      }
-      if (
-        props.Filter.language !== "" &&
-        props.Filter.categories === "" &&
-        props.Filter.containt !== ""
-      ) {
-        return (
-          item.language === props.Filter.language &&
-          item.containt === props.Filter.containt
-        );
-      }
-      if (props.Filter.language !== "") {
-        return item.language === props.Filter.language;
-      }
-      if (props.Filter.categories !== "") {
-        return item.categories === props.Filter.categories;
-      }
-      if (props.Filter.containt !== "") {
-        return item.containt === props.Filter.containt;
+      if (props.Filter !== "false") {
+        if (
+          props.Filter.language !== "" &&
+          props.Filter.categories !== "" &&
+          props.Filter.containt !== ""
+        ) {
+          return (
+            item.language === props.Filter.language &&
+            item.categories === props.Filter.categories &&
+            item.containt === props.Filter.containt
+          );
+        }
+        if (
+          props.Filter.language === "" &&
+          props.Filter.categories !== "" &&
+          props.Filter.containt !== ""
+        ) {
+          return (
+            item.categories === props.Filter.categories &&
+            item.containt === props.Filter.containt
+          );
+        }
+        if (
+          props.Filter.language !== "" &&
+          props.Filter.categories !== "" &&
+          props.Filter.containt === ""
+        ) {
+          return (
+            item.language === props.Filter.language &&
+            item.categories === props.Filter.categories
+          );
+        }
+        if (
+          props.Filter.language !== "" &&
+          props.Filter.categories === "" &&
+          props.Filter.containt !== ""
+        ) {
+          return (
+            item.language === props.Filter.language &&
+            item.containt === props.Filter.containt
+          );
+        }
+        if (props.Filter.language !== "") {
+          return item.language === props.Filter.language;
+        }
+        if (props.Filter.categories !== "") {
+          return item.categories === props.Filter.categories;
+        }
+        if (props.Filter.containt !== "") {
+          return item.containt === props.Filter.containt;
+        }
       }
 
       if (allcategory === "All Category") return item;
@@ -228,19 +230,23 @@ function AllCards(props) {
       props.Filter.categories !== "" ||
       props.Filter.containt !== "" ? (
         <div className=" grid w-full sm:px-10">
-          <button
-            onClick={() => {
-              props.setFilter({
-                language: "",
-                categories: "",
-                containt: "",
-              });
-              navigatTo("/");
-            }}
-            className=" place-self-end p-1 px-2 bg-slate-50 border-[1px] text-slate-600 font-bold tracking-wide hover:scale-105 duration-500 hover:border-sky-400 border-sky-600 rounded-xl"
-          >
-            Clear Filter
-          </button>
+          {props.Filter === "false" ? (
+            ""
+          ) : (
+            <button
+              onClick={() => {
+                props.setFilter({
+                  language: "",
+                  categories: "",
+                  containt: "",
+                });
+                navigatTo("/");
+              }}
+              className=" place-self-end p-1 px-2 bg-slate-50 border-[1px] text-slate-600 font-bold tracking-wide hover:scale-105 duration-500 hover:border-sky-400 border-sky-600 rounded-xl"
+            >
+              Clear Filter
+            </button>
+          )}
         </div>
       ) : (
         ""

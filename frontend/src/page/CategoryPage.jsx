@@ -11,7 +11,7 @@ function CategoryPage() {
         <h1 className="text-xl font-bold tracking-wider">
           Filter :{allcategory}
         </h1>
-        <AllCards state="false" />
+        <AllCards state="false" Filter={"false"} setFilter={""} />
       </div>
     </div>
   );
