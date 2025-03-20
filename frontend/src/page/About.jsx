@@ -16,7 +16,7 @@ export default function About() {
           <h1 className="text-5xl md:text-[5rem] text-black font-bold tracking-wider">
             About Us
           </h1>
-          <p className="text-gray-950 bg-white/50 px-10 md:px-36 text-center">
+          <p className="text-gray-950 font-bold tracking-wide mt-2 px-10 md:px-36 text-center">
             At ScriptHQ(Head Quarter of Scripts), we believe that every great
             film starts with a powerful script. We are a team of passionate and
             talented professionals committed to discovering, nurturing, and
@@ -26,7 +26,7 @@ export default function About() {
         </div>
       </div>
       <div className=" w-full grid grid-cols-1 text-justify md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
-        <div className="py-10 md:py-24">
+        <div className="">
           <h1 className="text-3xl text-center font-bold my-10">
             At ScriptHQ, our foundation is built on three core principles that
             define who we are and what we stand for
@@ -62,7 +62,7 @@ export default function About() {
       </div>
 
       <div className="bg-gray-700 text-white w-full text-justify grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
-        <div className=" py-24">
+        <div className="">
           <h1 className="text-5xl text-center font-bold my-10">What We Do ?</h1>
           <ul className="space-y-5 text-gray-200">
             <li>
@@ -93,7 +93,7 @@ export default function About() {
         </div>
       </div>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 text-justify gap-12 md:gap-48 p-10  md:px-20 items-center">
-        <div className=" py-24">
+        <div className="">
           <h1 className="text-[3rem] text-center font-bold my-10">
             Why Choose ScriptHQ?
           </h1>

@@ -423,9 +423,10 @@ function AllCards(props) {
 
       {/* Requerement Cards */}
       <div className="flex flex-col gap-8 sm:p-5">
-        <h1 className="text-white bg-slate-700 sm:mx-20 md:mx-0 text-center text-4xl py-10 font-bold tracking-wider">
-          Content Requirements
-        </h1>
+        {/* <h1 className="text-white bg-slate-700 sm:mx-20 md:mx-0 text-center text-4xl py-10 font-bold tracking-wider"></h1> */}
+        <div className="text-4xl text-gray-700 font-extrabold text-center w-full tracking-wide">
+          Industry Content Request{" "}
+        </div>
         <div className="md:w-full rounded-md grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 gap-10 p-2 sm:p-5">
           {requirementform.map((item, index) => (
             <div

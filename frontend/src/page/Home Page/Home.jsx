@@ -36,14 +36,14 @@ function Home() {
             }}
           >
             <div className="absolute inset-0 bg-black bg-opacity-70"></div>
-            <div className=" absolute w-[90%] sm:w-[60%] space-y-5  p-2 rounded-full ">
-              <h1 className=" text-3xl md:text-6xl font-extrabold text-center tracking-wide text-white">
+            <div className=" absolute bottom-24 w-[90%] sm:w-[60%] space-y-5  p-2 rounded-full ">
+              {/* <h1 className=" text-3xl md:text-6xl font-extrabold text-center tracking-wide text-white">
                 Welcome To ScriptHQ
               </h1>
               <p className="text-gray-100 text-center sm:text-justify bg-black/30 ">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex,
                 harum.
-              </p>
+              </p> */}
               <div className=" bg-black bg-opacity-70 p-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 flex-wrap rounded-lg">
                 <div className="flex flex-col  items-center">
                   <label className="text-white text-sm font-semibold mb-1">
@@ -137,8 +137,8 @@ function Home() {
             className="w-full h-[50vh] md:h-auto object-cover object-top  md:object-center"
           /> */}
         </div>
-        <div className="w-full h-10 rounded-b-xl  bg-slate-800 shadow-xl shadow-black mb-10"></div>
-        <div id="cards" className="p-4">
+        {/* <div className="w-full h-10 rounded-b-xl  bg-slate-800 shadow-xl shadow-black mb-10"></div> */}
+        <div id="cards" className="px-4 py-1">
           {XFilter.language !== "" ||
           XFilter.categories !== "" ||
           XFilter.containt !== "" ? (

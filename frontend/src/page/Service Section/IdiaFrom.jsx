@@ -158,12 +158,24 @@ export default function IdiaFrom() {
       <ToastContainer />
 
       <div className="w-full h-auto rounded-lg  md:rounded-[5rem] shadow-2xl bg-gray-800 text-white shadow-sky-800">
-        <div className="p-3 md:p-10">
+        <div className="p-3 md:p-5">
+          <div className=" text-justify py-2 px-5 text-gray-300">
+            "Your Script, Your Vision - Get Discovered!” <br /> At ScriptHQ, we
+            connect screenwriters with filmmakers, producers, and OTT platforms,
+            turning ideas into industry-ready content. Our Script Submission
+            Platform allows writers to submit scripts, screenplays, story
+            concepts, lyrics, music, theme, etc directly to production houses
+            seeking fresh narratives. We craft compelling pitch decks, ensuring
+            your script reaches the right industry professionals. With secure
+            submissions and direct industry access, your creativity is protected
+            while maximizing its potential. <br />
+            Submit your script today and bring your story to life!
+          </div>
           <div className="flex flex-row gap-4 items-center justify-center mb-6">
-            <h2 className="text-[3rem] p-1 text-center font-extrabold tracking-wider text-gray-200">
-              Submit an Idea
+            <h2 className="text-3xl md:text-[3rem] p-1 text-center font-extrabold tracking-wider text-gray-200">
+              Script Submission Platform
             </h2>{" "}
-            <svg
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
@@ -175,7 +187,7 @@ export default function IdiaFrom() {
                 d="M9.013 19.9a.75.75 0 0 1 .877-.597 11.319 11.319 0 0 0 4.22 0 .75.75 0 1 1 .28 1.473 12.819 12.819 0 0 1-4.78 0 .75.75 0 0 1-.597-.876ZM9.754 22.344a.75.75 0 0 1 .824-.668 13.682 13.682 0 0 0 2.844 0 .75.75 0 1 1 .156 1.492 15.156 15.156 0 0 1-3.156 0 .75.75 0 0 1-.668-.824Z"
                 clipRule="evenodd"
               />
-            </svg>
+            </svg> */}
           </div>
           <form
             onSubmit={handleOnsubmit}
@@ -378,7 +390,7 @@ export default function IdiaFrom() {
                       />
                     </div>
                   </div>
-                  <div className="sm:col-span-3">
+                  <div className="sm:col-span-2">
                     <label
                       htmlFor="Language"
                       className="block text-sm/6 font-medium text-gray-100"
@@ -413,7 +425,7 @@ export default function IdiaFrom() {
                       />
                     </div>
                   </div>
-                  <div className="sm:col-span-3">
+                  <div className="sm:col-span-2">
                     <label
                       htmlFor="Containt_Type"
                       className="block text-sm/6 font-medium text-gray-100"
@@ -452,7 +464,7 @@ export default function IdiaFrom() {
                       />
                     </div>
                   </div>
-                  <div className="sm:col-span-3">
+                  <div className="sm:col-span-2">
                     <label
                       htmlFor="Categories"
                       className="block text-sm/6 font-medium text-gray-100"
@@ -645,7 +657,7 @@ export default function IdiaFrom() {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-end gap-x-6">
+            <div className="mt-2 mr-4 md:mr-10 flex items-center justify-end gap-x-6">
               <Link
                 to={"/"}
                 type="button"

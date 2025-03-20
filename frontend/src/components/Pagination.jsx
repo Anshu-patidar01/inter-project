@@ -1,28 +1,38 @@
 import React, { useState } from "react";
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 function Pagination({ totalPosts, postsPages, setCurrentPage }) {
   let page = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPages); i++) {
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPages) + 4; i++) {
     page.push(i);
   }
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 1000,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+  };
   return (
-    <div className="flex flex-row gap-3 overflow-x-scroll border-2   my-10 w-full justify-center">
-      {page.map((item, index) => {
-        return (
-          <div key={index}>
-            <button
-              key={index}
-              className="bg-gray-700  hover:bg-slate-700 text-white p-1 px-3 rounded-lg"
-              onClick={() => {
-                setCurrentPage(item);
-              }}
-            >
-              {item}
-            </button>
-          </div>
-        );
-      })}
+    <div className="w-full bg-gray-500">
+      <div className="w-[20rem] m-auto p-4">
+        <Slider {...settings}>
+          {page.map((item, index) => (
+            <div key={index} className="flex justify-center">
+              <button
+                className="bg-gray-700 hover:bg-slate-700 text-white p-2 px-4 rounded-lg"
+                onClick={() => setCurrentPage(item)}
+              >
+                {item}
+              </button>
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
+
+    // <div></div>
   );
 }
 

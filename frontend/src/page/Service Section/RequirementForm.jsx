@@ -125,18 +125,30 @@ function RequirementForm() {
   };
   return (
     <>
-      <div className="p-2 sm:p-10">
+      <div className="p-2 sm:px-20 sm:py-10">
         <ToastContainer />
         <div className="w-full h-auto rounded-lg sm:rounded-[5rem] shadow-2xl bg-gray-800 text-white shadow-sky-800">
-          <div className="p-5 sm:p-10">
+          <div className="p-5 sm:p-5">
+            <div className=" text-justify py-2 px-5 text-gray-300">
+              "Looking for the Perfect Script? <br /> Let Writers Bring Your
+              Vision to Life!" At ScriptHQ, we connect filmmakers, producers,
+              and content creators with skilled writers who craft scripts
+              tailored to their vision. Our Industry Content Request platform
+              allows you to submit specific requirements—genre, language, and
+              format—and let talented writers develop the perfect screenplay,
+              script, lyrics, or concept for your project. Whether you need a
+              thriller, drama, web series, or commercial script, we bring your
+              vision to life. <br /> Submit your content request today and find
+              the perfect story for your next big project!
+            </div>
             <div>
-              <h1 className="text-start text-[3rem] font-bold">
-                Requirement Form
+              <h1 className="text-center text-3xl md:text-[3rem] font-bold">
+                Industry Content Request Platform
               </h1>
             </div>
             <form onSubmit={handleSubmit}>
               <div className="space-y-12">
-                <div className="border-b border-gray-900/10 pb-12">
+                <div className="border-b border-gray-900/10 ">
                   <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-6">
                     <div className="col-span-3">
                       <label
@@ -336,8 +348,8 @@ function RequirementForm() {
                     </div>
                   </div>
 
-                  <div className=" flex flex-row gap-3 float-end mt-5 sm:mt-10">
-                    <button className="bg-gray-800 text-white hover:scale-110 duration-500 shadow-md shadow-black rounded-lg p-2  font-bold">
+                  <div className=" mt-5 mr-4 md:mr-10 flex items-center justify-end gap-x-6">
+                    <button className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                       Submit
                     </button>
                     <button className="bg-gray-100 hover:scale-110 duration-500  rounded-lg p-2 text-black font-bold">

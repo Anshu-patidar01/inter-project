@@ -205,11 +205,11 @@ function ContactPage() {
           </div>
         </section>
         <section className="sm:w-5/12 py-32 p-3 flex flex-col mt-16 justify-center rounded-l-full bg-slate-400/50 text-white gap-10 sm:p-5">
-          <div className="text-center text-5xl text-white font-bold tracking-widest">
+          <div className="text-center ml-10 text-5xl text-white font-bold tracking-widest">
             Contact Us
           </div>
           {/* <div className=" absolute hidden sm:block bg-white/15 ml-2 sm:ml-8 rounded-l-xl w-[25rem] sm:w-[29rem] h-full"></div> */}
-          <div className=" flex flex-row items-center gap-5 text-xl">
+          <div className=" flex ml-10 flex-row items-center gap-5 text-xl">
             <span className="hover:scale-125 duration-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +230,7 @@ function ContactPage() {
             </span>
             <span>+91 6789054321</span>
           </div>
-          <div className=" flex flex-row items-center gap-5 text-xl">
+          <div className=" flex ml-10 flex-row items-center gap-5 text-xl">
             <span className="hover:scale-125 duration-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -254,7 +254,7 @@ function ContactPage() {
               <div className="mt-2">Officialscripthq@gmail.com</div>
             </span>
           </div>
-          <div className="flex flex-row items-center gap-5 text-xl">
+          <div className="flex ml-10 flex-row items-center gap-5 text-xl">
             <span className="hover:scale-125 duration-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -272,7 +272,7 @@ function ContactPage() {
                 <circle cx="12" cy="10" r="3" />
               </svg>
             </span>
-            <span>12,west, bholaram ringroad ,indore, MP</span>
+            <span>195-A, Ground Floor Mahalaxmi Nagar, Indore (M.P.)</span>
           </div>
           <div className="flex flex-row justify-center items-center">
             <div className="flex flex-row gap-5 text-center items-center">
@@ -297,6 +297,27 @@ function ContactPage() {
                     <path d="m6 6 12 12" />
                   </svg>
                 </div>
+              </a>
+              <a
+                href="https://www.instagram.com/scripthqofficial?utm_source=qr&igsh=bXd1aDdzd25ibWFy"
+                className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-instagram"
+                >
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
               </a>
               <a
                 href="https://www.facebook.com/share/1CZj6tandM/"
