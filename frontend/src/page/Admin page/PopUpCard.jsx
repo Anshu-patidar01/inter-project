@@ -101,6 +101,14 @@ export default function PopUpCard() {
                 <h2>{IdeaForm.status}</h2>
               </div>
               <div className="flex flex-row gap-2">
+                <h1 className=" font-bold text-base">Sold: </h1>
+                <h2>{IdeaForm.sold}</h2>
+              </div>
+              <div className="flex flex-row gap-2">
+                <h1 className=" font-bold text-base">On Request: </h1>
+                <h2>{IdeaForm.requestedByformId}</h2>
+              </div>
+              <div className="flex flex-row gap-2">
                 <h1 className=" font-bold text-base">Copyright: </h1>
                 <h2>{IdeaForm.copyright}</h2>
               </div>

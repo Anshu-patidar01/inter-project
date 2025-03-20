@@ -5,6 +5,7 @@ import PopUpCard from "./PopUpCard.jsx";
 import base_api from "../../utility/contants.js";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
+import { Button } from "@headlessui/react";
 function IdeaForms() {
   const [forms, setforms] = useState([]);
   const { Pop, setPop } = useContext(AdminContext);
@@ -96,6 +97,33 @@ function IdeaForms() {
         position: "top-center",
       });
       console.log("some error in Delete form:", error);
+    }
+  };
+  const handleSold = async (id, status) => {
+    try {
+      await axios
+        .post(
+          `${base_api}/admin/updateSold`,
+          {
+            formId: id,
+            status: status,
+          },
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then((res) => {
+          // setToggeload(true);
+          toast.success("Sold Updated Successfully!", {
+            position: "top-center",
+          });
+          requirement_api();
+        });
+    } catch (error) {
+      toast.error("Try Again!", {
+        position: "top-center",
+      });
+      console.log("some error in Updated sold form:", error);
     }
   };
   return (
@@ -201,7 +229,25 @@ function IdeaForms() {
                           <span className="text-blue-900"> ... </span>
                         </td>
                         <td className="border-2 border-gray-800 text-center">
-                          True
+                          {item.sold === "true" ? (
+                            <button
+                              className="bg-gray-600 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg w-20 p-1 px-3"
+                              onClick={() => {
+                                handleSold(item._id, "false");
+                              }}
+                            >
+                              Sold
+                            </button>
+                          ) : (
+                            <button
+                              className="bg-gray-800 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg w-20 p-1 px-3"
+                              onClick={() => {
+                                handleSold(item._id, "true");
+                              }}
+                            >
+                              UnSold
+                            </button>
+                          )}
                         </td>
                         <td className="border-2 border-gray-800 text-center ">
                           <div

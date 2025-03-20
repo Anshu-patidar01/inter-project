@@ -99,8 +99,24 @@ const getAllUsers = async (req, res) => {
     res.json({ message: "Error in getting user api..", error: error.message });
   }
 };
+const updatedsold = async (req, res) => {
+  const { formId, status } = req.body;
+  try {
+    if (!formId) throw new Error("Form Id not provided!");
+    // if (!status) throw new Error("Status not provided!");
+    const _id = formId;
+    const form = await IdeaFormModel.findByIdAndUpdate(
+      { _id },
+      { sold: status }
+    );
+    res.send(`Updated sold to ${status}`);
+  } catch (error) {
+    res.status(404).send(`Error:${error}`);
+  }
+};
 export {
   getidiaforms,
+  updatedsold,
   updateideaform,
   getAllUsers,
   deleteideaform,
