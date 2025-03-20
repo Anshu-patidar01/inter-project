@@ -204,8 +204,8 @@ function ContactPage() {
             </form>
           </div>
         </section>
-        <section className="sm:w-5/12 py-32 md:p-3 flex flex-col mt-16 justify-center md:rounded-l-full bg-slate-400/50 text-white gap-10 sm:p-5">
-          <div className="text-center md:ml-10 text-5xl text-white font-bold tracking-widest">
+        <section className="sm:w-5/12 w-full py-32 md:p-3 flex flex-col mt-16 justify-center md:rounded-l-full bg-slate-400/50 text-white gap-10 sm:p-5">
+          <div className="text-center md:ml-10 text-3xl md:text-5xl text-white font-bold tracking-widest">
             Contact Us
           </div>
 
@@ -235,8 +235,8 @@ function ContactPage() {
             <span className="hover:scale-125 duration-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="54"
-                height="54"
+                width="40"
+                height="40"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="#ffffff"
@@ -259,8 +259,8 @@ function ContactPage() {
             <span className="hover:scale-125 duration-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="54"
-                height="54"
+                width="40"
+                height="40"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="#ffffff"

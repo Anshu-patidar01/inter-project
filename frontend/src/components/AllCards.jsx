@@ -265,7 +265,7 @@ function AllCards(props) {
                 {currentposts.map((item, index) => (
                   <div
                     key={index}
-                    className=" flex flex-col justify-between   shadow-xl hover:shadow-indigo-300 hover:scale-105 cursor-pointer duration-300 text-black border-[1px] hover:border-indigo-600  border-slate-400 rounded-xl "
+                    className=" flex flex-col justify-between shadow-xl hover:shadow-indigo-300 hover:scale-105 cursor-pointer duration-300 text-black border-[1px] hover:border-indigo-600  border-slate-400 rounded-xl "
                   >
                     {item.requestedByformId !== "Self" && (
                       <div className=" flex justify-end px-1">
