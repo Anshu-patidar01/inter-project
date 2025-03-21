@@ -186,6 +186,7 @@ function IdeaForms() {
                   <tr className="border-2 border-gray-800">
                     <th className=" border-2 border-gray-800">User Name</th>
                     <th className=" border-2 border-gray-800">Created Date:</th>
+                    <th className=" border-2 border-gray-800">Created For:</th>
                     <th className=" border-2 border-gray-800">Title</th>
                     <th className=" border-2 border-gray-800">Language</th>
                     <th className=" border-2 border-gray-800">Categories</th>
@@ -208,12 +209,18 @@ function IdeaForms() {
                         return item.status === "Rejected";
                     })
                     .map((item) => (
-                      <tr className="border-2 border-gray-800 hover:bg-white duration-200">
+                      <tr
+                        key={item._id}
+                        className="border-2 border-gray-800 hover:bg-white duration-200"
+                      >
                         <td className="border-2 border-gray-800 text-center">
                           {item.userId.fullname}
                         </td>
                         <td className="border-2 border-gray-800 text-center">
                           {item.updatedAt.split("T")[0]}
+                        </td>
+                        <td className="border-2 border-gray-800 text-center">
+                          {item.requestedByformId}
                         </td>
                         <td className="border-2 border-gray-800 text-center">
                           {item.title}
@@ -271,7 +278,7 @@ function IdeaForms() {
                               strokeWidth="3"
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                              class="lucide lucide-eye"
+                              className="lucide lucide-eye"
                             >
                               <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
                               <circle cx="12" cy="12" r="3" />

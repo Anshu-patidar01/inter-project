@@ -9,7 +9,7 @@ function Footer() {
           <Link to={"/"}>Home</Link>
           <Link to={"/about"}>About Us</Link>
           <Link to={"/"}>FAQs</Link>
-          <Link to={"/contact"}>Contact</Link>
+          <Link to={"/contact"}>Contact Us</Link>
         </div>
         <div className="flex flex-row gap-5 text-center items-center">
           <a
@@ -33,6 +33,27 @@ function Footer() {
                 <path d="m6 6 12 12" />
               </svg>
             </div>
+          </a>
+          <a
+            href="https://www.instagram.com/scripthqofficial/?utm_source=qr&igsh=bXd1aDdzd25ibWFy"
+            className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-instagram"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+            </svg>
           </a>
           <a
             href="https://www.facebook.com/share/1CZj6tandM/"

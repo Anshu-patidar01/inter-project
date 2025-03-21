@@ -300,7 +300,7 @@ function ContactPage() {
                 </div>
               </a>
               <a
-                href="https://www.instagram.com/scripthqofficial?utm_source=qr&igsh=bXd1aDdzd25ibWFy"
+                href="https://www.instagram.com/scripthqofficial/?utm_source=qr&igsh=bXd1aDdzd25ibWFy"
                 className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
               >
                 <svg
@@ -310,10 +310,10 @@ function ContactPage() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-instagram"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-instagram"
                 >
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />

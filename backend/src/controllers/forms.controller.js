@@ -269,7 +269,7 @@ const IdeaUpdate = async (req, res) => {
     );
     res.send("Updated.");
   } catch (error) {
-    res.status(404).send(error);
+    res.status(404).send(error.message);
   }
 };
 const IdeaDelete = async (req, res) => {
@@ -284,6 +284,23 @@ const IdeaDelete = async (req, res) => {
     res.send("Deleted..");
   } catch (error) {
     res.status(404).send(error);
+  }
+};
+const RequistUpdate = async (req, res) => {
+  // res.send("hello");
+  const { formId, status } = req.body;
+  try {
+    if (!formId) {
+      throw new Error("Form Id not found");
+    }
+    const _id = formId;
+    const updateform = await RequirementModel.findByIdAndUpdate(
+      { _id },
+      { status }
+    );
+    res.send("Updated.");
+  } catch (error) {
+    res.status(404).send(error.message);
   }
 };
 
@@ -306,9 +323,10 @@ const GetidiaForm = async (req, res) => {
 };
 const getrequirementform = async (req, res) => {
   try {
-    const forms = await RequirementModel.find({})
+    const forms = await RequirementModel.find({ status: "Approved" })
       .sort({ _id: -1 })
       .populate("userId", "fullname email");
+    // console.log(forms);
     res.send(forms);
   } catch (error) {
     res.status(400).json({
@@ -339,6 +357,7 @@ export {
   IdeaUpdate,
   GetidiaForm,
   limitedIdeaForm,
+  RequistUpdate,
   getfullform,
   getrequirementform,
 };

@@ -151,9 +151,35 @@ function Profile() {
       ["title"]: editdata.title,
       ["summary"]: editdata.summary,
     });
+    seteditdata({
+      ...editdata,
+      [e.target.name]: e.target.value,
+    });
   };
+  const handleeditsummarychange = (e) => {};
+  const handleeditchange = (e) => {
+    e.preventDefault();
 
-  const handleeditchange = (e) => {};
+    const words = e.target.value.trim().split(/\s+/);
+    settest(words.length);
+    if (words.length <= 200) {
+      // console.log(e.target.value);
+
+      setSummeryWords(e.target.value);
+      setform({
+        ...form,
+        [e.target.name]: e.target.value,
+      });
+      seteditdata({
+        ...editdata,
+        ["summary"]: e.target.value,
+      });
+    } else {
+      toast.error("Max words limit is 200 only..", {
+        position: "top-center",
+      });
+    }
+  };
   return (
     <div className=" md:px-20 ">
       <ToastContainer />
@@ -340,10 +366,9 @@ function Profile() {
                       <input
                         type="text"
                         name="title"
-                        value={form.title}
+                        value={editdata.title}
                         onChange={(e) => {
-                          handleChange(e);
-                          // console.log(id, item._id);
+                          handleedit(e); // console.log(id, item._id);
                         }}
                         className=" p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />{" "}
@@ -359,9 +384,10 @@ function Profile() {
                         className="w-full h-40 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="summary"
                         // value={form.summary}
-                        value={SummeryWords}
+                        value={editdata.summary}
                         onChange={(e) => {
                           handleSummeruChange(e);
+                          handleeditchange(e);
                         }}
                         // onChange={(e) => handleChange(e)}
                         placeholder="Enter your message..."

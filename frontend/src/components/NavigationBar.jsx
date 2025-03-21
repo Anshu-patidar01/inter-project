@@ -7,16 +7,7 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-
 import { use, useState } from "react";
-import {
-  Listbox,
-  ListboxButton,
-  ListboxOption,
-  ListboxOptions,
-} from "@headlessui/react";
-import { ChevronDownIcon, ChevronUpDownIcon } from "@heroicons/react/16/solid";
-import { CheckIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useContext, useEffect } from "react";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
@@ -78,10 +69,20 @@ export default function NavigationBar() {
     <Disclosure as="nav" className="bg-gray-900 w-full ">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
-          <div className="w-full md:w-auto flex justify-center">
-            {" "}
-            <img src={logoimg} className=" w-24 h-15" alt="" />
-          </div>{" "}
+          <div className="hidden sm:block">
+            {User._id === "" ? (
+              ""
+            ) : (
+              <div className="w-full sm:hidden md:w-auto flex justify-center">
+                {" "}
+                <img src={logoimg} className=" w-24 h-15" alt="Not Found" />
+              </div>
+            )}
+            <div className="w-full hidden sm:block  md:w-auto ">
+              {" "}
+              <img src={logoimg} className=" w-24 h-15" alt="Not Found" />
+            </div>
+          </div>
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">
@@ -107,6 +108,14 @@ export default function NavigationBar() {
                   to={"/"}
                 >
                   <h1>Home</h1>
+                </Link>
+                <Link
+                  to={"/about"}
+                  className={
+                    "bg-gray-600 text-white rounded-md px-3 py-2 text-sm font-medium"
+                  }
+                >
+                  About Us
                 </Link>
                 <div
                   className={
@@ -235,14 +244,7 @@ export default function NavigationBar() {
                     </div>
                   </div>
                 </div>
-                <Link
-                  to={"/about"}
-                  className={
-                    "bg-gray-600 text-white rounded-md px-3 py-2 text-sm font-medium"
-                  }
-                >
-                  About Us
-                </Link>
+
                 <div
                   className={
                     "bg-gray-600 text-white rounded-md  text-sm font-medium"
@@ -403,6 +405,10 @@ export default function NavigationBar() {
 
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pt-2 pb-3">
+          <div className="w-full sm:hidden md:w-auto flex justify-start">
+            {" "}
+            <img src={logoimg} className=" w-24 h-15" alt="Not Found" />
+          </div>
           <div className="flex flex-col space-x-4">
             <Link
               className={
@@ -412,9 +418,15 @@ export default function NavigationBar() {
             >
               <h1>Home</h1>
             </Link>
+            <Link
+              to={"/about"}
+              className={" text-white rounded-md py-2 text-sm font-medium"}
+            >
+              About
+            </Link>
             <div
               // to={"/"}
-              className={" text-white rounded-md px-3 py-2 text-sm font-medium"}
+              className={" text-white rounded-md  py-2 text-sm font-medium"}
             >
               <div className="relative">
                 <button
@@ -428,7 +440,7 @@ export default function NavigationBar() {
                   }}
                   onMouseEnter={() => setDropdownOpen(true)}
                   onMouseLeave={() => setDropdownOpen(false)}
-                  className="bg-gray-600 px-4 py-2 rounded transition"
+                  className=" py-2 rounded transition"
                 >
                   All Category
                 </button>
@@ -536,27 +548,17 @@ export default function NavigationBar() {
                 )}
               </div>
             </div>
-            <Link
-              to={"/about"}
-              className={" text-white rounded-md px-3 py-2 text-sm font-medium"}
-            >
-              About
-            </Link>
+
             <div className={" text-white rounded-md  text-sm font-medium"}>
               <div className=" grid grid-cols-1">
                 <div className="relative">
                   <button
                     onClick={() => {
                       setServiceDropdownOpen(!ServicDropdownOpen);
-                      // setallcategory("all");
-                      // navigate("/");
-
-                      // navigate("/services");
-                      // console.log("hello");
                     }}
                     onMouseEnter={() => setServiceDropdownOpen(true)}
                     onMouseLeave={() => setServiceDropdownOpen(false)}
-                    className=" px-4 py-2 rounded transition"
+                    className=" py-2 rounded transition"
                   >
                     Services
                   </button>
@@ -602,13 +604,13 @@ export default function NavigationBar() {
             </div>
             <Link
               to={"/"}
-              className={" text-white rounded-md px-3 py-2 text-sm font-medium"}
+              className={" text-white rounded-md  py-2 text-sm font-medium"}
             >
               Portfolio
             </Link>
             <Link
               to={"/contact"}
-              className={" text-white rounded-md px-3 py-2 text-sm font-medium"}
+              className={" text-white rounded-md  py-2 text-sm font-medium"}
             >
               Contact
             </Link>

@@ -9,6 +9,12 @@ const getidiaforms = async (req, res) => {
     .populate("userId", "fullname");
   res.send(forms);
 };
+const getrequirementform = async (req, res) => {
+  const forms = await RequirementModel.find({})
+    .sort({ updatedAt: -1 })
+    .populate("userId", "fullname email");
+  res.send(forms);
+};
 const updateideaform = async (req, res) => {
   const { formId, status } = req.body;
   try {
@@ -120,6 +126,7 @@ export {
   updateideaform,
   getAllUsers,
   deleteideaform,
+  getrequirementform,
   deletefullform,
   deleterequirementform,
 };
