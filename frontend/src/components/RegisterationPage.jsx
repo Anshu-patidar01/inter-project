@@ -49,9 +49,8 @@ export default function RegisterationPage() {
             email: "",
             password: "",
           });
-          setUser(response.data);
+          // setUser(response.data);
           console.log(response.data);
-
           setToggeload(true);
           toast.success("Registered Successfully!", {
             position: "top-center",
@@ -66,12 +65,16 @@ export default function RegisterationPage() {
             error: error.response.data.Error,
           };
           console.log(response.error);
+          setToggeload(true);
+
           toast.error(response.error, {
             position: "top-center",
             autoClose: 8000,
           });
         });
     } catch (error) {
+      setToggeload(true);
+
       console.log("error while connecting to registering api.");
     }
   };

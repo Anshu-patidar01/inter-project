@@ -62,11 +62,14 @@ export default function LoginPage() {
         } else {
           setTimeout(() => {
             navigate("/admin");
+            setToggele(true);
           }, 1000);
         }
       })
       .catch((error) => {
         console.log(error.response.data.Error);
+        setToggele(true);
+
         toast.error(error.response.data.Error, {
           position: "top-center",
         });
@@ -82,7 +85,6 @@ export default function LoginPage() {
             Sign in to your account
           </h2>
         </div>
-
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
             action="#"

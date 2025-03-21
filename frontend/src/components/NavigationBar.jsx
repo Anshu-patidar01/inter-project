@@ -12,7 +12,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useContext, useEffect } from "react";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { MyContext } from "../Context/context";
-import logoimg from "../../public/ScriptHQ Logo/logo-png.png";
+import logoimg from "../assets/Vista Logos (1)/logo-png.png";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -606,7 +606,7 @@ export default function NavigationBar() {
               to={"/"}
               className={" text-white rounded-md  py-2 text-sm font-medium"}
             >
-              Portfolio
+              FAQs
             </Link>
             <Link
               to={"/contact"}
