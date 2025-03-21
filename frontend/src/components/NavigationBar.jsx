@@ -241,7 +241,7 @@ export default function NavigationBar() {
                     "bg-gray-600 text-white rounded-md px-3 py-2 text-sm font-medium"
                   }
                 >
-                  About
+                  About Us
                 </Link>
                 <div
                   className={
@@ -311,7 +311,7 @@ export default function NavigationBar() {
                     "bg-gray-600 text-white rounded-md px-3 py-2 text-sm font-medium"
                   }
                 >
-                  Portfolio
+                  FAQs
                 </Link>
 
                 {/* <Link
@@ -329,7 +329,7 @@ export default function NavigationBar() {
                     "bg-gray-600 text-white rounded-md px-3 py-2 text-sm font-medium"
                   }
                 >
-                  Contact
+                  Contact Us
                 </Link>
               </div>
             </div>

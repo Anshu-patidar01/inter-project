@@ -179,7 +179,7 @@ function ContactPage() {
                   className="flex flex-row justify-between mb-2 text-sm font-medium text-gray-900"
                 >
                   <span>
-                    Your message<span className="text-red-600">*</span>
+                    Your Message<span className="text-red-600">*</span>
                   </span>
                   <span>{test}/100</span>
                 </label>
@@ -198,8 +198,8 @@ function ContactPage() {
                 type="submit"
                 className="py-3 px-5 text-sm font-medium text-center text-white bg-gray-800 border-[2px] border-gray-400 rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
-                {!ToggleLoading && <span>Send message</span>}
-                {ToggleLoading && <span>Sending message...</span>}
+                {!ToggleLoading && <span>Send Message</span>}
+                {ToggleLoading && <span>Sending Message...</span>}
               </button>
             </form>
           </div>

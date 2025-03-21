@@ -101,7 +101,8 @@ function AllCards(props) {
     validate_token_api();
     response2();
   }, []);
-  let currentposts = forms.filter((item) => {
+  let currentposts = [];
+  currentposts = forms.filter((item) => {
     if (props.state !== "true") {
       if (props.Filter !== "false") {
         if (
@@ -160,9 +161,13 @@ function AllCards(props) {
       if (allcategory === "all") return item;
       return item.categories == allcategory;
     } else {
-      return item;
+      // console.log(item.sold);
+      return item.sold === "false";
     }
   });
+  const soldeditem = forms.filter((item) => item.sold === "true");
+  // console.log(soldeditem);
+  currentposts = currentposts.concat(soldeditem);
   let reqposts = requirementform.slice(reqfirstpostindex, reqlastpostIndex);
   currentposts = currentposts.slice(firstpostindex, lastpostIndex);
   const handlelikes = async (id) => {
@@ -272,10 +277,12 @@ function AllCards(props) {
                 {currentposts.map((item, index) => (
                   <div
                     key={index}
-                    className=" flex flex-col justify-between shadow-xl hover:shadow-indigo-300 hover:scale-105 cursor-pointer duration-300 text-black border-[1px] hover:border-indigo-600  border-slate-400 rounded-xl "
+                    className={`flex flex-col justify-between shadow-xl hover:shadow-indigo-300 hover:scale-105 cursor-pointer duration-300 text-black ${
+                      item.sold === "true" ? "bg-gray-400" : ""
+                    } border-[1px] hover:border-indigo-600  border-slate-400 rounded-xl `}
                   >
                     {item.requestedByformId !== "Self" && (
-                      <div className=" flex justify-end px-1">
+                      <div className="flex justify-end px-1">
                         <span className="text-gray-600 text-sm">
                           Requested ID : {item.requestedByformId}
                         </span>
@@ -301,39 +308,43 @@ function AllCards(props) {
                       <h1 className="text-gray-700">
                         Copyright: {item.copyright}
                       </h1>
-                      <div className="text-gray-700 break-words max-h-24 overflow-hidden ">
-                        Summary :{" "}
-                        {item.language === "Tamil"
-                          ? item.summary.split(" ").slice(0, 5).join(" ")
-                          : item.summary.split(" ").slice(0, 10).join(" ")}
-                        <span
-                          className="text-blue-800"
-                          onClick={() => {
-                            setpop("true");
-                            setsummary(item.summary);
-                          }}
-                        >
-                          See More...
-                        </span>
-                      </div>
+                      {item.sold === "false" && (
+                        <div className="text-gray-700 break-words max-h-24 overflow-hidden ">
+                          Summary :{" "}
+                          {item.language === "Tamil"
+                            ? item.summary.split(" ").slice(0, 5).join(" ")
+                            : item.summary.split(" ").slice(0, 10).join(" ")}
+                          <span
+                            className="text-blue-800"
+                            onClick={() => {
+                              setpop("true");
+                              setsummary(item.summary);
+                            }}
+                          >
+                            See More...
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <div className="flex flex-row justify-between gap-4 p-2">
-                      <button
-                        onClick={() => {
-                          if (User._id === "") {
-                            navigatTo("/login");
-                          } else {
-                            setpop("true");
-                            setsummary(
-                              `We are sending Mail to Admin That You are interested in form:${item.formId} Title:${item.title} Category:${item.categories} Language:${item.language}`
-                            );
-                            handleinterestedin(item);
-                          }
-                        }}
-                        className=" border-[1px] hover:scale-105 duration-300 hover:shadow-lg border-sky-500 rounded-lg p-1 shadow-md "
-                      >
-                        <span>Interested</span>
-                      </button>
+                      {item.sold === "false" && (
+                        <button
+                          onClick={() => {
+                            if (User._id === "") {
+                              navigatTo("/login");
+                            } else {
+                              setpop("true");
+                              setsummary(
+                                `We are sending Mail to Admin That You are interested in form:${item.formId} Title:${item.title} Category:${item.categories} Language:${item.language}`
+                              );
+                              handleinterestedin(item);
+                            }
+                          }}
+                          className=" border-[1px] hover:scale-105 duration-300 hover:shadow-lg border-sky-500 rounded-lg p-1 shadow-md "
+                        >
+                          <span>Interested</span>
+                        </button>
+                      )}
                       <span className=" flex flex-row items-center gap-3">
                         <h1 className="text-lg">{item.likes.length}</h1>
                         <button

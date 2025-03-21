@@ -24,7 +24,7 @@ function UserRoute() {
         <Route path="/" element={<Home />} />
         <Route path="/registration" element={<RegisterationPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/services" element={<ServicePage />} />
+        <Route path="/services" element={<Home />} />
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<About />} />

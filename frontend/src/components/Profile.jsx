@@ -13,6 +13,10 @@ function Profile() {
   const [data, setdata] = useState([]);
   const [SummeryWords, setSummeryWords] = useState("");
   const [test, settest] = useState("");
+  const [editdata, seteditdata] = useState({
+    title: "",
+    summary: "",
+  });
   const [pop, setpop] = useState(false);
   const [editid, seteditid] = useState("");
   const [form, setform] = useState({
@@ -141,6 +145,15 @@ function Profile() {
       });
     }
   };
+  const handleedit = (e) => {
+    setform({
+      ...form,
+      ["title"]: editdata.title,
+      ["summary"]: editdata.summary,
+    });
+  };
+
+  const handleeditchange = (e) => {};
   return (
     <div className=" md:px-20 ">
       <ToastContainer />
@@ -207,7 +220,7 @@ function Profile() {
                             : "text-green-700/80"
                         } font-bold tracking-wider`}
                       >
-                        {item.status}
+                        {item.status === "Pendding" ? "Pending" : item.status}
                       </span>
                     </h1>
                   </div>
@@ -254,6 +267,10 @@ function Profile() {
                               settoggle(false);
                               setpop(true);
                               seteditid(item._id);
+                              seteditdata({
+                                title: item.title,
+                                summary: item.summary,
+                              });
                             }}
                             className="hover:bg-green-800/80 bg-green-800 p-2 px-4 text-white font-bold tracking-wide rounded-lg"
                           >

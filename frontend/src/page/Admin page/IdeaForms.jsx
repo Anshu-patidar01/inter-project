@@ -229,24 +229,28 @@ function IdeaForms() {
                           <span className="text-blue-900"> ... </span>
                         </td>
                         <td className="border-2 border-gray-800 text-center">
-                          {item.sold === "true" ? (
-                            <button
-                              className="bg-gray-600 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg w-20 p-1 px-3"
-                              onClick={() => {
-                                handleSold(item._id, "false");
-                              }}
-                            >
-                              Sold
-                            </button>
-                          ) : (
-                            <button
-                              className="bg-gray-200 hover:scale-110 cursor-pointer duration-300 text-gray-700 rounded-lg w-20 p-1 px-3"
-                              onClick={() => {
-                                handleSold(item._id, "true");
-                              }}
-                            >
-                              UnSold
-                            </button>
+                          {item.status === "Approved" && (
+                            <div>
+                              {item.sold === "true" ? (
+                                <button
+                                  className="bg-gray-600 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg w-20 p-1 px-3"
+                                  onClick={() => {
+                                    handleSold(item._id, "false");
+                                  }}
+                                >
+                                  Sold
+                                </button>
+                              ) : (
+                                <button
+                                  className="bg-gray-200 hover:scale-110 cursor-pointer duration-300 text-gray-700 rounded-lg w-20 p-1 px-3"
+                                  onClick={() => {
+                                    handleSold(item._id, "true");
+                                  }}
+                                >
+                                  UnSold
+                                </button>
+                              )}
+                            </div>
                           )}
                         </td>
                         <td className="border-2 border-gray-800 text-center ">

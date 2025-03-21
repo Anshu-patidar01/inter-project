@@ -45,6 +45,11 @@ function RequirementForm() {
       console.log("some error in Delete requirement form:", error);
     }
   };
+
+  const handleApprove = async (id) => {
+    console.log(id);
+  };
+
   return (
     <div>
       {" "}
@@ -87,9 +92,9 @@ function RequirementForm() {
                   </td>
                   <td className="border-2 border-gray-800 text-center">
                     {item.Summary.split(" ").slice(0, 5).join(" ")}{" "}
-                    <span className="text-blue-900"> see more... </span>
+                    <span className="text-blue-900">see more...</span>
                   </td>
-                  <td className=" grid place-items-center hover:scale-125 cursor-pointer duration-300 border-gray-800 text-center">
+                  <td className=" flex justify-center items-center hover:scale-125 cursor-pointer duration-300 border-gray-800 text-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -106,7 +111,16 @@ function RequirementForm() {
                       <circle cx="12" cy="12" r="3" />
                     </svg>
                   </td>
-                  <td className="border-2 border-gray-800 text-center">
+                  <td className="border-2  p-2 border-gray-800 text-center">
+                    <button
+                      onClick={() => {
+                        handleApprove(item._id);
+                        // handleDelete(item._id);
+                      }}
+                      className={`bg-green-700 p-1 mb-2 px-3 hover:scale-110 cursor-pointer duration-300 text-white rounded-lg mr-2`}
+                    >
+                      Approve
+                    </button>
                     <button
                       onClick={() => {
                         handleDelete(item._id);
