@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Footer() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   return (
     <div className="p-2 bg-gray-800">
       <div className=" sm:items-center sm:p-10 p-3 text-white flex  flex-col gap-2 sm:flex-col sm:flex sm:justify-center items-center">
@@ -14,6 +17,7 @@ function Footer() {
         <div className="flex flex-row gap-5 text-center items-center">
           <a
             href="https://x.com/Scripthq0"
+            target="_blank"
             className="border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg "
           >
             <div>
@@ -35,6 +39,7 @@ function Footer() {
             </div>
           </a>
           <a
+            target="_blank"
             href="https://www.instagram.com/scripthqofficial/?utm_source=qr&igsh=bXd1aDdzd25ibWFy"
             className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
           >
@@ -56,6 +61,7 @@ function Footer() {
             </svg>
           </a>
           <a
+            target="_blank"
             href="https://www.facebook.com/share/1CZj6tandM/"
             className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
           >
@@ -77,6 +83,7 @@ function Footer() {
             </div>
           </a>
           <a
+            target="_blank"
             href="https://youtube.com/@scripthqofficial?si=UXrt-JLsb2s_un9y"
             className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
           >
@@ -99,6 +106,7 @@ function Footer() {
             </div>
           </a>
           <a
+            target="_blank"
             href="https://www.threads.net/@scripthq_official"
             className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
           >

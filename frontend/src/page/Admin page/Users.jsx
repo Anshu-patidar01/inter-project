@@ -18,6 +18,9 @@ function Users() {
     };
     requirement_api();
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   return (
     <div>
       {" "}

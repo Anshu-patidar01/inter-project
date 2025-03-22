@@ -7,6 +7,9 @@ import { useSearchParams } from "react-router-dom";
 import { MyContext } from "../Context/context";
 import backgroundimage from "../assets/All Profile Background.jpg";
 function Profile() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   const { User } = useContext(MyContext);
   const user = User.data;
   const [toggle, settoggle] = useState(false);

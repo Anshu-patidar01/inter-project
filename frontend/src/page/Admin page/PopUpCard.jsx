@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -11,7 +11,9 @@ import { AdminContext } from "../../Context/AdminContex";
 export default function PopUpCard() {
   const { Pop, setPop } = useContext(AdminContext);
   const { IdeaForm } = useContext(AdminContext);
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   return (
     <div className={`relative  z-10 ${Pop === "true" ? "block" : "hidden"}`}>
       <div className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in" />

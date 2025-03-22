@@ -4,7 +4,9 @@ import axios from "axios";
 import base_api from "../../utility/contants";
 function FullForms() {
   const [forms, setforms] = useState([]);
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   useEffect(() => {
     const requirement_api = async () => {
       try {

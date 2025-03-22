@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import base_api from "../../utility/contants";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
@@ -7,6 +7,9 @@ import { MyContext } from "../../Context/context";
 import { useNavigate } from "react-router-dom";
 
 function ContactPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   const [ToggleLoading, setToggleLoading] = useState(false);
   const navigateto = useNavigate();
   const [form, setform] = useState({
@@ -276,8 +279,9 @@ function ContactPage() {
             <span>195-A, Ground Floor Mahalaxmi Nagar, Indore (M.P.)</span>
           </div>
           <div className="flex flex-row justify-center items-center">
-            <div className="flex flex-row gap-5 text-center items-center">
+            {/* <div className="flex flex-row gap-5 text-center items-center">
               <a
+                target="_blank"
                 href="https://x.com/Scripthq0"
                 className="border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg "
               >
@@ -300,6 +304,7 @@ function ContactPage() {
                 </div>
               </a>
               <a
+                target="_blank"
                 href="https://www.instagram.com/scripthqofficial/?utm_source=qr&igsh=bXd1aDdzd25ibWFy"
                 className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
               >
@@ -321,6 +326,7 @@ function ContactPage() {
                 </svg>
               </a>
               <a
+                target="_blank"
                 href="https://www.facebook.com/share/1CZj6tandM/"
                 className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
               >
@@ -342,6 +348,7 @@ function ContactPage() {
                 </div>
               </a>
               <a
+                target="_blank"
                 href="https://youtube.com/@scripthqofficial?si=UXrt-JLsb2s_un9y"
                 className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
               >
@@ -364,6 +371,7 @@ function ContactPage() {
                 </div>
               </a>
               <a
+                target="_blank"
                 href="https://www.threads.net/@scripthq_official"
                 className=" border-2 hover:scale-110 duration-300 text-xl border-white rounded-lg p-1 "
               >
@@ -385,7 +393,7 @@ function ContactPage() {
                   </svg>
                 </div>
               </a>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>

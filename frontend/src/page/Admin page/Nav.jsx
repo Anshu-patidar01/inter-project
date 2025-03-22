@@ -8,6 +8,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const navigation = [
@@ -28,6 +29,9 @@ function classNames(...classes) {
 }
 
 export default function Nav() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   const handleLogout = () => {
     localStorage.removeItem("project");
     setUser({

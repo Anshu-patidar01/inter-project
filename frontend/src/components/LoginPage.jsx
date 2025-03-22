@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -7,6 +7,9 @@ import { MyContext } from "../Context/context.jsx";
 import base_api from "../utility/contants.js";
 
 export default function LoginPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   const navigate = useNavigate();
   const { User, setUser } = useContext(MyContext);
   const [Toggele, setToggele] = useState(true);

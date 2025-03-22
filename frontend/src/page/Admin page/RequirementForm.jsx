@@ -18,6 +18,9 @@ function RequirementForm() {
     }
   };
   useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
+  useEffect(() => {
     requirement_api();
   }, []);
   // /admin/deleteRequirementform

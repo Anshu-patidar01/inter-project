@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllCards from "../../components/AllCards";
 import homeimg from "../../assets/Home_Page_image[1].jpg";
 function Home() {
@@ -21,6 +21,9 @@ function Home() {
       [e.target.name]: e.target.value,
     });
   };
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
 
   return (
     <div className="">
@@ -84,7 +87,7 @@ function Home() {
                     <option>Full Script</option>
                     <option>Lyrics</option>
                     <option>Poem</option>
-                    <option>Theme</option>
+                    {/* <option>Theme</option> */}
                     <option>Music</option>
                     <option>Other...</option>
                   </select>

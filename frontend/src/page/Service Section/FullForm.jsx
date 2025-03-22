@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavigationBar from "../../components/NavigationBar";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -7,6 +7,9 @@ import "react-toastify/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import base_api from "../../utility/contants";
 function FullForm2() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   const [Form, setForm] = useState({
     company: "",
     mobile: "",

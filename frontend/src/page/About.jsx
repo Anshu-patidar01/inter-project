@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import backgroundImage from "../assets/About Us Cropped.jpg";
 export default function About() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   return (
     <div>
-      <div
+      {/* <div
         style={{
           backgroundImage: `url(${backgroundImage})`, // ✅ Proper string format
           backgroundSize: "cover",
@@ -24,11 +27,16 @@ export default function About() {
             industry.
           </p>
         </div>
-      </div>
+      </div> */}
       <div className=" w-full grid grid-cols-1 text-justify md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
         <div className="">
-          <h1 className="text-3xl text-center font-bold my-10">
-            At ScriptHQ, our foundation is built on three core principles that
+          <h1 className="text-xl text-justify font-bold my-10">
+            {" "}
+            At ScriptHQ(Head Quarter of Scripts), we believe that every great
+            film starts with a powerful script. We are a team of passionate and
+            talented professionals committed to discovering, nurturing, and
+            delivering exceptional creative content to the global entertainment
+            industry.our foundation is built on three core principles that
             define who we are and what we stand for
           </h1>
           <ul className="list-disc  space-y-5">

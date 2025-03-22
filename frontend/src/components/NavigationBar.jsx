@@ -12,7 +12,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useContext, useEffect } from "react";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { MyContext } from "../Context/context";
-import logoimg from "../assets/Vista Logos (1)/logo-png.png";
+import logoimg from "../assets/Vista Logos (1)/logo-transparent-png.png";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -73,14 +73,26 @@ export default function NavigationBar() {
             {User._id === "" ? (
               ""
             ) : (
-              <div className="w-full sm:hidden md:w-auto flex justify-center">
+              <div className="w-full  sm:hidden md:w-auto flex justify-center">
                 {" "}
-                <img src={logoimg} className=" w-24 h-15" alt="Not Found" />
+                <a href="/">
+                  <img
+                    src={logoimg}
+                    className="scale-125 w-24 h-15"
+                    alt="Not Found"
+                  />
+                </a>
               </div>
             )}
             <div className="w-full hidden sm:block  md:w-auto ">
               {" "}
-              <img src={logoimg} className=" w-24 h-15" alt="Not Found" />
+              <a href="/">
+                <img
+                  src={logoimg}
+                  className="scale-125 w-24 h-15"
+                  alt="Not Found"
+                />
+              </a>
             </div>
           </div>
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -103,7 +115,7 @@ export default function NavigationBar() {
               <div className="flex space-x-4">
                 <Link
                   className={
-                    "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                    "hover:scale-110 text-white rounded-md px-3 py-2 text-sm font-medium"
                   }
                   to={"/"}
                 >
@@ -112,16 +124,12 @@ export default function NavigationBar() {
                 <Link
                   to={"/about"}
                   className={
-                    "bg-gray-600 text-white rounded-md px-3 py-2 text-sm font-medium"
+                    "hover:scale-110 text-white rounded-md px-3 py-2 text-sm font-medium"
                   }
                 >
                   About Us
                 </Link>
-                <div
-                  className={
-                    "bg-gray-600 text-white rounded-md  text-sm font-medium"
-                  }
-                >
+                <div className={" text-white rounded-md  text-sm font-medium"}>
                   <div className=" grid grid-cols-1">
                     <div className="relative">
                       <button
@@ -135,7 +143,7 @@ export default function NavigationBar() {
                         }}
                         onMouseEnter={() => setDropdownOpen(true)}
                         onMouseLeave={() => setDropdownOpen(false)}
-                        className="bg-gray-600 px-4 py-2 rounded transition"
+                        className="hover:scale-110 px-4 py-2 rounded transition"
                       >
                         All Category
                       </button>
@@ -204,7 +212,7 @@ export default function NavigationBar() {
                               <button>Poem</button>
                             </Link>
                           </li>
-                          <li
+                          {/* <li
                             onClick={() => {
                               setallcategory("Theme");
                               navigate("/category");
@@ -215,7 +223,7 @@ export default function NavigationBar() {
                             <Link to={"/category"}>
                               <button>Theme</button>
                             </Link>
-                          </li>
+                          </li> */}
                           <li
                             onClick={() => {
                               setallcategory("Music");
@@ -245,11 +253,7 @@ export default function NavigationBar() {
                   </div>
                 </div>
 
-                <div
-                  className={
-                    "bg-gray-600 text-white rounded-md  text-sm font-medium"
-                  }
-                >
+                <div className={" text-white rounded-md  text-sm font-medium"}>
                   <div className=" grid grid-cols-1">
                     <div className="relative">
                       <button
@@ -263,7 +267,7 @@ export default function NavigationBar() {
                         }}
                         onMouseEnter={() => setServiceDropdownOpen(true)}
                         onMouseLeave={() => setServiceDropdownOpen(false)}
-                        className="bg-gray-600 px-4 py-2 rounded transition"
+                        className="hover:scale-110 px-4 py-2 rounded transition"
                       >
                         Services
                       </button>
@@ -310,7 +314,7 @@ export default function NavigationBar() {
                 <Link
                   to={"/"}
                   className={
-                    "bg-gray-600 text-white rounded-md px-3 py-2 text-sm font-medium"
+                    "hover:scale-110 text-white rounded-md px-3 py-2 text-sm font-medium"
                   }
                 >
                   FAQs
@@ -328,7 +332,7 @@ export default function NavigationBar() {
                 <Link
                   to={"/contact"}
                   className={
-                    "bg-gray-600 text-white rounded-md px-3 py-2 text-sm font-medium"
+                    "hover:scale-110 text-white rounded-md px-3 py-2 text-sm font-medium"
                   }
                 >
                   Contact Us
@@ -338,7 +342,10 @@ export default function NavigationBar() {
           </div>
           {User._id === "" ? (
             <div className="absolute inset-y-0 right-0 flex gap-2 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <Link to={"/login"} className=" text-white p-2 sm:p-3 rounded-xl">
+              <Link
+                to={"/login"}
+                className=" text-white  hover:bg-gray-950 p-2 sm:p-3 rounded-xl"
+              >
                 {" "}
                 Sign-in
               </Link>
@@ -406,14 +413,17 @@ export default function NavigationBar() {
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pt-2 pb-3">
           <div className="w-full sm:hidden md:w-auto flex justify-start">
-            {" "}
-            <img src={logoimg} className=" w-24 h-15" alt="Not Found" />
+            <a href="/">
+              <img
+                src={logoimg}
+                className=" scale-125 w-24 h-15"
+                alt="Not Found"
+              />
+            </a>
           </div>
           <div className="flex flex-col space-x-4">
             <Link
-              className={
-                "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-              }
+              className={" text-white rounded-md px-3 py-2 text-sm font-medium"}
               to={"/"}
             >
               <h1>Home</h1>
@@ -509,7 +519,7 @@ export default function NavigationBar() {
                         <button>Poem</button>
                       </Link>
                     </li>
-                    <li
+                    {/* <li
                       onClick={() => {
                         setallcategory("Theme");
                         navigate("/category");
@@ -520,7 +530,7 @@ export default function NavigationBar() {
                       <Link to={"/category"}>
                         <button>Theme</button>
                       </Link>
-                    </li>
+                    </li> */}
                     <li
                       onClick={() => {
                         setallcategory("Music");

@@ -71,7 +71,7 @@ const sendEmail = async (
 </head>
 <body>
     <div class="container">
-        <h2>New Submission recived</h2>
+        <h2>New Submission Received </h2>
         <p><span class="highlight">Subject:${subject}</span></p>
         <p><span class="highlight">To:</span> <span id="adminEmail"></span>${to}</p>
         <p><span class="highlight">From:</span> <span id="userEmail">${from1}</span></p>
@@ -141,7 +141,7 @@ const FormSendEmail = async (to, from1, name, subject, message) => {
       </head>
       <body>
           <div class="container">
-              <h2>New Submission recived</h2>
+              <h2>New Submission Received </h2>
               <p><span class="highlight">Subject:${subject}</span></p>
               <p>Dear <span id="adminName">${fullname},</span></p>
               <p><span class="highlight">${message}</span></p>

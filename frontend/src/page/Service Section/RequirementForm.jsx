@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import base_api from "../../utility/contants";
 import { toast, ToastContainer } from "react-toastify";
@@ -7,6 +7,9 @@ import "react-toastify/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../Context/context";
 function RequirementForm() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   const navigateTo = useNavigate();
   const [SummeryWords, setSummeryWords] = useState("");
   const [test, settest] = useState("");

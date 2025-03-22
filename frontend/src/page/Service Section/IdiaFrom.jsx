@@ -1,6 +1,6 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import axios from "axios";
@@ -9,6 +9,9 @@ import base_api from "../../utility/contants";
 import termandcondition from "../../assets/New User Terms & Conditions.pdf";
 import { MyContext } from "../../Context/context";
 export default function IdiaFrom() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   const [Copyright, setCopyright] = useState("");
   const [CheckBox, setCheckBox] = useState(false);
   const { requestedBy } = useContext(MyContext);
@@ -493,7 +496,7 @@ export default function IdiaFrom() {
                         <option>Full Script</option>
                         <option>Lyrics</option>
                         <option>Poem</option>
-                        <option>Theme</option>
+                        {/* <option>Theme</option> */}
                         <option>Music</option>
                         <option>Other...</option>
                       </select>
