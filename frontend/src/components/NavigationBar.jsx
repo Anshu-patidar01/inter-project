@@ -312,7 +312,7 @@ export default function NavigationBar() {
                   </div>
                 </div>
                 <Link
-                  to={"/"}
+                  to={"/FAQ"}
                   className={
                     "hover:scale-110 text-white rounded-md px-3 py-2 text-sm font-medium"
                   }

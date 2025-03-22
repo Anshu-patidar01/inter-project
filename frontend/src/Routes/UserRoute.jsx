@@ -15,6 +15,7 @@ import FullForm from "../page/Service Section/FullForm";
 import ProtectedRoute from "./ProtectedRoute";
 import NavigationBar from "../components/NavigationBar";
 import Footer from "../page/Footer";
+import FAQ from "../page/FAQ";
 
 function UserRoute() {
   return (
@@ -28,6 +29,7 @@ function UserRoute() {
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<About />} />
+        <Route path="/FAQ" element={<FAQ />} />
         <Route path="/forgot/:token" element={<Forgot />} />
 
         {/* Profile protected */}
