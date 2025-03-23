@@ -250,6 +250,7 @@ function RequirementForm() {
                           <option>Malayalam</option>
                           <option>Marathi</option>
                           <option>Urdu</option>
+                          <option>Other</option>
                         </select>
                         <ChevronDownIcon
                           aria-hidden="true"
