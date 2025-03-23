@@ -207,7 +207,7 @@ function ContactPage() {
             </form>
           </div>
         </section>
-        <section className="sm:w-5/12 w-full py-32 md:p-3 flex flex-col mt-16 justify-center md:rounded-l-full bg-slate-400/50 text-white gap-10 sm:p-5">
+        <section className="sm:w-5/12 w-full py-32 md:p-3 flex flex-col mt-16 justify-center md:rounded-l-3xl bg-slate-400/50 text-white gap-10 sm:p-5">
           <div className="text-center md:ml-10 text-3xl md:text-5xl text-white font-bold tracking-widest">
             Contact Us
           </div>
