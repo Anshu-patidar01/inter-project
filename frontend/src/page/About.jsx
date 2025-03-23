@@ -6,7 +6,7 @@ export default function About() {
   }, []);
   return (
     <div>
-      {/* <div
+      <div
         style={{
           backgroundImage: `url(${backgroundImage})`, // ✅ Proper string format
           backgroundSize: "cover",
@@ -14,20 +14,7 @@ export default function About() {
           backgroundRepeat: "no-repeat",
         }}
         className=" bg-gray-800 h-96  flex justify-center items-center gap-5 px-10 md:px-40"
-      >
-        <div className="py-24 md:py-20 w-full text-black flex flex-col justify-center items-center gap-5">
-          <h1 className="text-5xl md:text-[5rem] text-black font-bold tracking-wider">
-            About Us
-          </h1>
-          <p className="text-gray-950 font-bold tracking-wide mt-2 px-10 md:px-36 text-center">
-            At ScriptHQ(Head Quarter of Scripts), we believe that every great
-            film starts with a powerful script. We are a team of passionate and
-            talented professionals committed to discovering, nurturing, and
-            delivering exceptional creative content to the global entertainment
-            industry.
-          </p>
-        </div>
-      </div> */}
+      ></div>
       <div className=" w-full grid grid-cols-1 text-justify md:grid-cols-2 gap-12 md:gap-48 p-10  md:px-20 items-center">
         <div className="">
           <h1 className="text-xl text-justify font-bold my-10">
@@ -36,8 +23,8 @@ export default function About() {
             film starts with a powerful script. We are a team of passionate and
             talented professionals committed to discovering, nurturing, and
             delivering exceptional creative content to the global entertainment
-            industry.our foundation is built on three core principles that
-            define who we are and what we stand for
+            industry.At ScrptHQ, our foundation is built on three core
+            principles that define who we are and what we stand for
           </h1>
           <ul className="list-disc  space-y-5">
             <li>

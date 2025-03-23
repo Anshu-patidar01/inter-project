@@ -187,6 +187,7 @@ function IdeaForms() {
               <table className="text-start border-2 border-gray-800">
                 <thead>
                   <tr className="border-2 border-gray-800">
+                    <th className=" border-2 border-gray-800">FormId</th>
                     <th className=" border-2 border-gray-800">User Name</th>
                     <th className=" border-2 border-gray-800">Created Date:</th>
                     <th className=" border-2 border-gray-800">Created For:</th>
@@ -216,6 +217,9 @@ function IdeaForms() {
                         key={item._id}
                         className="border-2 border-gray-800 hover:bg-white duration-200"
                       >
+                        <td className="border-2 border-gray-800 text-center">
+                          {item.formId}
+                        </td>
                         <td className="border-2 border-gray-800 text-center">
                           {item.userId.fullname}
                         </td>

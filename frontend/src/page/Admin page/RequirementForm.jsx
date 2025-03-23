@@ -170,6 +170,7 @@ function RequirementForm() {
           <table className="text-start border-2 border-gray-800 w-full">
             <thead>
               <tr className="border-2 border-gray-800">
+                <th className=" border-2 border-gray-800">Form Id</th>
                 <th className=" border-2 border-gray-800">User Name</th>
                 <th className=" border-2 border-gray-800">Company</th>
                 <th className=" border-2 border-gray-800">Mobile</th>
@@ -188,6 +189,9 @@ function RequirementForm() {
                   key={inded}
                   className="border-2 border-gray-800 hover:bg-white duration-200"
                 >
+                  <td className="border-2 border-gray-800 text-center">
+                    {item.formId}
+                  </td>
                   <td className="border-2 border-gray-800 text-center">
                     {item.userId.fullname}
                   </td>

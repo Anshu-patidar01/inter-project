@@ -280,8 +280,6 @@ function RequirementForm() {
                           <option>Full Script</option>
                           <option>Lyrics</option>
                           <option>Poem</option>
-                          <option>Dialogue</option>
-                          <option>Theme</option>
                           <option>Music</option>
                           <option>Other</option>
                         </select>
