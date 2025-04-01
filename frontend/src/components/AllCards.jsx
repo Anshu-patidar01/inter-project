@@ -168,7 +168,8 @@ function AllCards(props) {
   const soldeditem = forms.filter((item) => item.sold === "true");
   // console.log(soldeditem);
   currentposts = currentposts.concat(soldeditem);
-  let reqposts = requirementform.slice(reqfirstpostindex, reqlastpostIndex);
+  let reqposts = [];
+  reqposts = requirementform.slice(reqfirstpostindex, reqlastpostIndex);
   currentposts = currentposts.slice(firstpostindex, lastpostIndex);
   const handlelikes = async (id) => {
     try {
