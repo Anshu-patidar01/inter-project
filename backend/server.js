@@ -13,7 +13,8 @@ app.use(express.static("public"));
 app.use(
   cors({
     // origin: "https://intern-frontend-five.vercel.app/",
-    origin: "https://inter-project-gray.vercel.app",
+    origin: "http://23.235.221.122:5173",
+    // origin: "http://localhost:5173",
     credentials: true,
   })
 );
