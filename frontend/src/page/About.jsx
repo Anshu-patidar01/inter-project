@@ -19,12 +19,12 @@ export default function About() {
         <div className="">
           <h1 className="text-xl text-justify font-bold my-10">
             {" "}
-            At ScriptHQ(Head Quarter of Scripts), we believe that every great
-            film starts with a powerful script. We are a team of passionate and
-            talented professionals committed to discovering, nurturing, and
-            delivering exceptional creative content to the global entertainment
-            industry.At ScrptHQ, our foundation is built on three core
-            principles that define who we are and what we stand for
+            At ScriptHQ (The Head Quarter of Scripts), we believe that every
+            great film starts with a powerful script. We are a team of
+            passionate and talented professionals committed to discovering,
+            nurturing, and delivering exceptional creative content to the global
+            entertainment industry.At ScrptHQ, our foundation is built on three
+            core principles that define who we are and what we stand for
           </h1>
           <ul className="list-disc  space-y-5">
             <li>

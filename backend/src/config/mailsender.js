@@ -17,6 +17,9 @@ const transporterinfo = nodemailer.createTransport({
     user: "info@scripthq.in", // Your GoDaddy Professional Email
     pass: "AnkushSumit@2025", // Your email password
   },
+  tls: {
+    rejectUnauthorized: false, // Ignore self-signed certificate issues
+  },
 });
 
 // Function to Send Email

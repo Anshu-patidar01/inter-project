@@ -11,7 +11,7 @@ function Footer() {
         <div className="flex items-center justify-center gap-4 flex-row">
           <Link to={"/"}>Home</Link>
           <Link to={"/about"}>About Us</Link>
-          <Link to={"/"}>FAQs</Link>
+          <Link to={"/FAQ"}>FAQs</Link>
           <Link to={"/contact"}>Contact Us</Link>
         </div>
         <div className="flex flex-row gap-5 text-center items-center">

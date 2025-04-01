@@ -255,7 +255,7 @@ function ContactPage() {
             </span>
             <span>
               <div>Info@scripthq.in</div>
-              <div className="mt-2">Officialscripthq@gmail.com</div>
+              <div className="mt-2">officialscripthq@gmail.com</div>
             </span>
           </div>
           <div className="flex md:ml-10 flex-row items-center gap-5 text-xl">

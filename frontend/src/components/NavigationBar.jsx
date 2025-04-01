@@ -613,7 +613,7 @@ export default function NavigationBar() {
               </div>
             </div>
             <Link
-              to={"/"}
+              to={"/FAQ"}
               className={" text-white rounded-md  py-2 text-sm font-medium"}
             >
               FAQs

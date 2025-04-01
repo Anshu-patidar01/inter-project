@@ -61,6 +61,17 @@ const register = async (req, res) => {
       message
     );
     // console.log(x);
+    // const subject = "Welcome to ScriptHQ – Your Creative Journey Begins!";
+    // const message =
+    //   "Congratulations! 🎉 You have successfully registered at ScriptHQ – The Head Quarter of Scripts.<br>We are thrilled to have you on board as part of our growing creative community. At ScriptHQ, we are committed to providing a secure, innovative, and collaborative platform where storytellers, filmmakers, and industry professionals come together to create magic.";
+    // const x = await FormSendEmail(
+    //   userx.email,
+    //   "Info@scripthq.in",
+    //   userx.fullname,
+    //   subject,
+    //   message
+    // );
+    // console.log(x);
     res.status(201).json({ user: userx });
     // }
   } catch (error) {
