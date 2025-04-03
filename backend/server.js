@@ -13,7 +13,7 @@ app.use(express.static("public"));
 app.use(
   cors({
     // origin: "https://intern-frontend-five.vercel.app/",
-    origin: "http://23.235.221.122:5173",
+    origin: "https://scripthq.in",
     // origin: "http://localhost:5173",
     credentials: true,
   })
