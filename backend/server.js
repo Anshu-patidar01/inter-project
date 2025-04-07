@@ -10,16 +10,21 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(express.static("public"));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(
   cors({
-    // origin: "https://intern-frontend-five.vercel.app/",
-    origin: "https://scripthq.in",
-    // origin: "http://localhost:5173",
+    origin: ["https://intern-frontend-five.vercel.app", "https://scripthq.in"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+app.options("*", cors());
+
 connection()
   .then(() =>
     app.listen(PORT, () => {
