@@ -165,6 +165,10 @@ function AllCards(props) {
       return item.sold === "false";
     }
   });
+  currentposts = currentposts.filter((item) => {
+    return item.sold === "false";
+  });
+  const lenghtOfCurrentPosts = currentposts.length;
   const soldeditem = forms.filter((item) => item.sold === "true");
   // console.log(soldeditem);
   currentposts = currentposts.concat(soldeditem);
@@ -417,10 +421,10 @@ function AllCards(props) {
                   </div>
                 ))}
               </div>
-              {currentposts.length !== 0 ? (
+              {lenghtOfCurrentPosts !== 0 ? (
                 <div className="w-[100%]  p-1">
                   <Pagination
-                    totalPosts={forms.length}
+                    totalPosts={lenghtOfCurrentPosts}
                     postsPages={postperpage}
                     setCurrentPage={setCurrentPage}
                     CurrentPage={CurrentPage}
@@ -433,10 +437,23 @@ function AllCards(props) {
                   </h1>
                   <Link
                     to={"/requirementForm"}
-                    className="p-1 rounded-lg bg-sky-600 text-sky-200"
+                    className="p-1 rounded-lg m-3 bg-sky-600 text-sky-200"
                   >
                     Request Now!!
                   </Link>
+                  <button
+                    onClick={() => {
+                      props.setFilter({
+                        language: "",
+                        categories: "",
+                        containt: "",
+                      });
+                      navigatTo("/");
+                    }}
+                    className=" place-self-end p-1 px-2 bg-slate-50 border-[1px] text-slate-600 font-bold tracking-wide hover:scale-105 duration-500 hover:border-sky-400 border-sky-600 rounded-xl"
+                  >
+                    Clear Filter
+                  </button>
                 </div>
               )}
             </div>

@@ -114,7 +114,11 @@ export default function PopUpCard() {
               </div>
               <div className="flex flex-row gap-2">
                 <h1 className=" font-bold text-base">ROCAttachment: </h1>
-                <h2>{IdeaForm.ROCAttachment}</h2>
+                <a href={IdeaForm.ROCAttachment} className="text-blue-400">
+                  {IdeaForm.ROCAttachment === ""
+                    ? "Not Provided"
+                    : `${IdeaForm.ROCAttachment}`}
+                </a>
               </div>
               <div className="flex flex-row gap-2">
                 <h1 className=" font-bold text-base">Address: </h1>
