@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AllCards from "../../components/AllCards";
 import homeimg from "../../assets/Home_Page_image[1].jpg";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
+import img1 from "../../assets/1st image.jpg";
+import img2 from "../../assets/2nd image.jpg";
+import img3 from "../../assets/3rd image.jpg";
 function Home() {
   const [Filter, setFilter] = useState({
     language: "",
@@ -12,6 +17,34 @@ function Home() {
     categories: "",
     containt: "",
   });
+  const items = [
+    {
+      image: img1,
+      path: "ScriptHQ acts as a bridge between content writers and the entertainment production industry. It connects writers with script and content demands, streamlining creative collaboration.",
+    },
+    {
+      image: img2,
+      path: "An industry content request platform that connects content creators with real-time content needs from the industry helping writers what businesses are looking for.",
+    },
+    {
+      image: img3,
+      path: "ScriptHQ supports content writers by providing a script submission platform that connects them with industry opportunities and helps them deliver professional, ready-to-use content.",
+    },
+  ].map((item) => (
+    <div className=" flex justify-center">
+      <h1 className=" absolute z-20 w-[20rem] sm:w-[30rem] md:w-[40rem] text-white text-xl md:text-2xl font-bold top-36 sm:top-24 text-center  md:top-40">
+        {item.path}
+      </h1>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  inset-0 z-10 h-[80vh] w-[98vw] sm:w-[90vw] bg-black bg-opacity-50"></div>
+      <img
+        key={item.path}
+        className=" h-[80vh] bg-cover sm:h-[80vh] w-[98vw] sm:w-[90vw] relative"
+        // className="w-full  max-h-[80vh] object-contain sm:w-[90vw]"
+        src={item.image}
+        alt="image"
+      />
+    </div>
+  ));
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -29,17 +62,15 @@ function Home() {
     <div className="">
       <div className="">
         <div className="">
-          <div
-            className=" h-[90vh] sm:h-[70vh] md:min-h-[80vh] w-full flex items-center justify-center relative"
-            style={{
-              backgroundImage: `url("${homeimg}")`,
-              backgroundSize: "cover",
-              backgroundPosition: "top center",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
-            <div className=" absolute bottom-24 w-[90%] sm:w-[60%] space-y-5  p-2 rounded-full ">
+          <div className=" relative flex flex-col  items-center justify-center bg-gray-100 ">
+            <AliceCarousel
+              disableButtonsControls
+              autoPlay
+              autoPlayInterval={4000}
+              infinite
+              items={items}
+            />
+            <div className="absolute bottom-24  md:bottom-36  w-[90%] sm:w-[60%] space-y-5  p-2 rounded-full ">
               {/* <h1 className=" text-3xl md:text-6xl font-extrabold text-center tracking-wide text-white">
                 Welcome To ScriptHQ
               </h1>

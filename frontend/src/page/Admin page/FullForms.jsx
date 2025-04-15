@@ -29,6 +29,7 @@ function FullForms() {
           <table className="text-start border-2 border-gray-800 w-full">
             <thead>
               <tr className="border-2 border-gray-800">
+                <th className=" border-2 border-gray-800">S:no.</th>
                 <th className=" border-2 border-gray-800">formId</th>
                 <th className=" border-2 border-gray-800">User Name</th>
                 <th className=" border-2 border-gray-800">Company</th>
@@ -42,8 +43,14 @@ function FullForms() {
               </tr>
             </thead>
             <tbody>
-              {forms.map((item, inded) => (
-                <tr className="border-2 border-gray-800 hover:bg-white duration-200">
+              {forms.map((item, index) => (
+                <tr
+                  key={item.formId}
+                  className="border-2 border-gray-800 hover:bg-white duration-200"
+                >
+                  <td className="border-2 border-gray-800 text-center">
+                    {index + 1}
+                  </td>
                   <td className="border-2 border-gray-800 text-center">
                     {item.formId}
                   </td>

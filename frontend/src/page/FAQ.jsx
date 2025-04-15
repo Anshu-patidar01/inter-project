@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Plus, X } from "lucide-react";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(""); // Start with the second item open
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component mounts
+  }, []);
   const faqItems = [
     {
       question: "What is ScriptHQ and how does it work?",

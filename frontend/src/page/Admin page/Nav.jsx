@@ -20,7 +20,7 @@ const navigation = [
   },
   // { name: "Full Forms", href: "/admin/FullForms", current: false },
   // { name: "Idea Forms", href: "/admin", current: false },
-  // { name: "Users", href: "/admin/Users", current: false },
+  { name: "Users", href: "/admin/Users", current: false },
   { name: "User page", href: "/", current: false },
 ];
 

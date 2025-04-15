@@ -170,6 +170,8 @@ function RequirementForm() {
           <table className="text-start border-2 border-gray-800 w-full">
             <thead>
               <tr className="border-2 border-gray-800">
+                <th className=" border-2 border-gray-800">S:no.</th>
+
                 <th className=" border-2 border-gray-800">Form Id</th>
                 <th className=" border-2 border-gray-800">User Name</th>
                 <th className=" border-2 border-gray-800">Company</th>
@@ -184,11 +186,14 @@ function RequirementForm() {
               </tr>
             </thead>
             <tbody>
-              {forms.map((item, inded) => (
+              {forms.map((item, index) => (
                 <tr
-                  key={inded}
+                  key={item.formId}
                   className="border-2 border-gray-800 hover:bg-white duration-200"
                 >
+                  <td className="border-2 border-gray-800 text-center">
+                    {index + 1}
+                  </td>
                   <td className="border-2 border-gray-800 text-center">
                     {item.formId}
                   </td>

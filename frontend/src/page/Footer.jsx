@@ -130,7 +130,7 @@ function Footer() {
           </a>
         </div>
       </div>
-      <div className=" text-white text-center sm:mt-0">Copyright @2025</div>
+      <div className=" text-white text-center sm:mt-0">Copyright @scripthq</div>
     </div>
   );
 }

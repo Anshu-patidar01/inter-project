@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
 import backgroundImage from "../assets/About Us Cropped.jpg";
+import img1 from "../assets/About us - 1.jpeg";
+import img2 from "../assets/About Us - 2.jpg";
+import img3 from "../assets/About Us - 3.jpg";
+
 export default function About() {
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component mounts
@@ -49,9 +53,10 @@ export default function About() {
         </div>
         <div className="">
           <img
-            src="https://img.freepik.com/free-vector/hand-drawn-essay-illustration_23-2150268421.jpg"
+            src={img1}
+            // src="https://img.freepik.com/free-vector/hand-drawn-essay-illustration_23-2150268421.jpg"
             alt="Not found"
-            className="rounded-full h-80 w-80"
+            className="rounded-xl h-80 w-80"
           />
         </div>
       </div>
@@ -82,7 +87,8 @@ export default function About() {
         </div>
         <div className="">
           <img
-            src="https://www.intlum.com/wp-content/themes/intlum/images/content-banner-image.png"
+            src={img2}
+            // src="https://www.intlum.com/wp-content/themes/intlum/images/content-banner-image.png"
             className="rounded-lg h-96 w-96"
           />
         </div>
@@ -129,7 +135,8 @@ export default function About() {
         </div>
         <div className="">
           <img
-            src="https://ebizfiling.com/wp-content/uploads/2022/05/Header-image-1-Content-writing.png"
+            src={img3}
+            // src="https://ebizfiling.com/wp-content/uploads/2022/05/Header-image-1-Content-writing.png"
             className="rounded-lg h-96 w-96"
           />
         </div>

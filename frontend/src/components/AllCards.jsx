@@ -268,203 +268,195 @@ function AllCards(props) {
       ) : (
         ""
       )}
-      {forms.length === 0 ? (
-        <div className=" h-screen"> Loading...</div>
-      ) : (
-        <div className="flex flex-col my-10 items-center md:items-start justify-center px-2 sm:px-10 gap-3 w-full">
-          <div className="text-4xl text-gray-700 font-extrabold text-center w-full tracking-wide">
-            The Creator's Corner
-          </div>
-          {/* Idea Cards */}
-          {forms !== "" ? (
-            <div className="flex flex-col items-center justify-center">
-              <div className="md:w-full  rounded-md grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 gap-10 p-5">
-                {currentposts.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`flex flex-col justify-between shadow-xl hover:shadow-indigo-300 hover:scale-105 cursor-pointer duration-300 text-black ${
-                      item.sold === "true" ? "bg-gray-400" : ""
-                    } border-[1px] hover:border-indigo-600  border-slate-400 rounded-xl `}
-                  >
-                    {item.sold === "true" ? (
-                      <div className="text-2xl text-center text-gray-600 font-bold tracking-wide">
-                        {" "}
-                        Sold
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                    {item.requestedByformId !== "Self" && (
-                      <div className="flex justify-end px-1">
-                        <span className="text-gray-600 text-sm">
-                          Requested ID : {item.requestedByformId}
-                        </span>
-                      </div>
-                    )}
-                    <div className="h-full flex flex-col justify-between  break-words p-3 ">
-                      <div className="flex flex-row justify-between">
-                        <h1 className="text-gray-700 text-lg font-bold tracking-wider">
-                          {item.gender === "Male" ? "Mr. " : "Mrs. "}{" "}
-                          {item.fullname}
-                        </h1>
-                      </div>
-                      <h1 className="text-gray-700 font-semibold">
-                        Title: {item.title}
-                      </h1>
-                      <h1 className="text-gray-700">
-                        Language: {item.language}
-                      </h1>
-                      <h1 className="text-gray-700">Content:{item.containt}</h1>
-                      <h1 className="text-gray-700">
-                        Category: {item.categories}
-                      </h1>
-                      <h1 className="text-gray-700">
-                        Copyright: {item.copyright}
-                      </h1>
-                      {item.sold === "false" && (
-                        <div className="text-gray-700 break-words max-h-24 overflow-hidden ">
-                          Summary :{" "}
-                          {item.language === "Tamil"
-                            ? item.summary.split(" ").slice(0, 5).join(" ")
-                            : item.summary.split(" ").slice(0, 10).join(" ")}
-                          <span
-                            className="text-blue-800"
-                            onClick={() => {
-                              setpop("true");
-                              setsummary(item.summary);
-                            }}
-                          >
-                            See More...
-                          </span>
-                        </div>
-                      )}
+
+      <div className="flex flex-col my-10 items-center justify-center px-2 sm:px-10 gap-3 w-full">
+        <div className="text-4xl text-gray-700 font-extrabold text-center w-full tracking-wide">
+          The Creator's Corner
+        </div>
+        {/* Idea Cards */}
+        {forms.length === 0 ? (
+          <div className="h-auto"> Not have any Data...</div>
+        ) : (
+          <div className="flex flex-col items-center justify-center">
+            <div className="md:w-full  rounded-md grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 gap-10 p-5">
+              {currentposts.map((item, index) => (
+                <div
+                  key={index}
+                  className={`flex flex-col justify-between shadow-xl hover:shadow-indigo-300 hover:scale-105 cursor-pointer duration-300 text-black ${
+                    item.sold === "true" ? "bg-gray-400" : ""
+                  } border-[1px] hover:border-indigo-600  border-slate-400 rounded-xl `}
+                >
+                  {item.sold === "true" ? (
+                    <div className="text-2xl text-center text-gray-600 font-bold tracking-wide">
+                      {" "}
+                      Sold
                     </div>
+                  ) : (
+                    ""
+                  )}
+                  {item.requestedByformId !== "Self" && (
+                    <div className="flex justify-end px-1">
+                      <span className="text-gray-600 text-sm">
+                        Requested ID : {item.requestedByformId}
+                      </span>
+                    </div>
+                  )}
+                  <div className="h-full flex flex-col justify-between  break-words p-3 ">
+                    <div className="flex flex-row justify-between">
+                      <h1 className="text-gray-700 text-lg font-bold tracking-wider">
+                        {item.gender === "Male" ? "Mr. " : "Mrs. "}{" "}
+                        {item.fullname}
+                      </h1>
+                    </div>
+                    <h1 className="text-gray-700 font-semibold">
+                      Title: {item.title}
+                    </h1>
+                    <h1 className="text-gray-700">Language: {item.language}</h1>
+                    <h1 className="text-gray-700">Content:{item.containt}</h1>
+                    <h1 className="text-gray-700">
+                      Category: {item.categories}
+                    </h1>
+                    <h1 className="text-gray-700">
+                      Copyright: {item.copyright}
+                    </h1>
                     {item.sold === "false" && (
-                      <div className="flex flex-row justify-between gap-4 p-2">
-                        <button
+                      <div className="text-gray-700 break-words max-h-24 overflow-hidden ">
+                        Summary :{" "}
+                        {item.language === "Tamil"
+                          ? item.summary.split(" ").slice(0, 5).join(" ")
+                          : item.summary.split(" ").slice(0, 10).join(" ")}
+                        <span
+                          className="text-blue-800"
                           onClick={() => {
-                            if (User._id === "") {
-                              navigatTo("/login");
-                            } else {
-                              setpop("true");
-                              setsummary(
-                                `We are sending Mail to Admin That You are interested in form:${item.formId} Title:${item.title} Category:${item.categories} Language:${item.language}`
-                              );
-                              handleinterestedin(item);
-                            }
+                            setpop("true");
+                            setsummary(item.summary);
                           }}
-                          className=" border-[1px] hover:scale-105 duration-300 hover:shadow-lg border-sky-500 rounded-lg p-1 shadow-md "
                         >
-                          <span>Interested</span>
-                        </button>
-                        <span className=" flex flex-row items-center gap-3">
-                          <h1 className="text-lg">{item.likes.length}</h1>
-                          <button
-                            onClick={() => {
-                              handlelikes(item._id);
-                              console.log("item clicked:", User);
-                            }}
-                            className=" shadow-md hover:shadow-red-600 rounded-full p-1"
-                          >
-                            {User._id === "" ? (
-                              <span
-                                onClick={() => {
-                                  navigatTo("/registration");
-                                  response2();
-                                }}
-                              >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="#000000"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  className="lucide lucide-heart"
-                                >
-                                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                                </svg>
-                              </span>
-                            ) : item.likes.includes(User._id) ? (
-                              <span className="">
-                                <img
-                                  src={HeartImage}
-                                  className="h-6 w-6"
-                                  alt="Not Found"
-                                />
-                              </span>
-                            ) : (
-                              <span>
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="#000000"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  className="lucide lucide-heart"
-                                >
-                                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                                </svg>
-                              </span>
-                            )}
-                          </button>
+                          See More...
                         </span>
                       </div>
                     )}
                   </div>
-                ))}
+                  {item.sold === "false" && (
+                    <div className="flex flex-row justify-between gap-4 p-2">
+                      <button
+                        onClick={() => {
+                          if (User._id === "") {
+                            navigatTo("/login");
+                          } else {
+                            setpop("true");
+                            setsummary(
+                              `We are sending Mail to Admin That You are interested in form:${item.formId} Title:${item.title} Category:${item.categories} Language:${item.language}`
+                            );
+                            handleinterestedin(item);
+                          }
+                        }}
+                        className=" border-[1px] hover:scale-105 duration-300 hover:shadow-lg border-sky-500 rounded-lg p-1 shadow-md "
+                      >
+                        <span>Interested</span>
+                      </button>
+                      <span className=" flex flex-row items-center gap-3">
+                        <h1 className="text-lg">{item.likes.length}</h1>
+                        <button
+                          onClick={() => {
+                            handlelikes(item._id);
+                            console.log("item clicked:", User);
+                          }}
+                          className=" shadow-md hover:shadow-red-600 rounded-full p-1"
+                        >
+                          {User._id === "" ? (
+                            <span
+                              onClick={() => {
+                                navigatTo("/registration");
+                                response2();
+                              }}
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#000000"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="lucide lucide-heart"
+                              >
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                              </svg>
+                            </span>
+                          ) : item.likes.includes(User._id) ? (
+                            <span className="">
+                              <img
+                                src={HeartImage}
+                                className="h-6 w-6"
+                                alt="Not Found"
+                              />
+                            </span>
+                          ) : (
+                            <span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#000000"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="lucide lucide-heart"
+                              >
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                              </svg>
+                            </span>
+                          )}
+                        </button>
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            {lenghtOfCurrentPosts !== 0 ? (
+              <div className="w-[100%]  p-1">
+                <Pagination
+                  totalPosts={lenghtOfCurrentPosts}
+                  postsPages={postperpage}
+                  setCurrentPage={setCurrentPage}
+                  CurrentPage={CurrentPage}
+                />
               </div>
-              {lenghtOfCurrentPosts !== 0 ? (
-                <div className="w-[100%]  p-1">
-                  <Pagination
-                    totalPosts={lenghtOfCurrentPosts}
-                    postsPages={postperpage}
-                    setCurrentPage={setCurrentPage}
-                    CurrentPage={CurrentPage}
-                  />
-                </div>
-              ) : (
-                <div className="sm:px-10 bg-slate-300 sm:py-5">
-                  <h1 className="text-center text-3xl  text-red-400 tracking-wider">
-                    No Idea in This Field
-                  </h1>
-                  <Link
-                    to={"/requirementForm"}
-                    className="p-1 rounded-lg m-3 bg-sky-600 text-sky-200"
-                  >
-                    Request Now!!
-                  </Link>
-                  <button
-                    onClick={() => {
-                      props.setFilter({
-                        language: "",
-                        categories: "",
-                        containt: "",
-                      });
-                      navigatTo("/");
-                    }}
-                    className=" place-self-end p-1 px-2 bg-slate-50 border-[1px] text-slate-600 font-bold tracking-wide hover:scale-105 duration-500 hover:border-sky-400 border-sky-600 rounded-xl"
-                  >
-                    Clear Filter
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="w-2/3">
-              {/* For Loading */}
-              <Loading />
-            </div>
-          )}
-        </div>
-      )}
+            ) : (
+              <div className="sm:px-10 bg-slate-300 sm:py-5">
+                <h1 className="text-center text-3xl  text-red-400 tracking-wider">
+                  No Idea in This Field
+                </h1>
+                <Link
+                  to={"/requirementForm"}
+                  className="p-1 rounded-lg m-3 bg-sky-600 text-sky-200"
+                >
+                  Request Now!!
+                </Link>
+                <button
+                  onClick={() => {
+                    props.setFilter({
+                      language: "",
+                      categories: "",
+                      containt: "",
+                    });
+                    navigatTo("/");
+                  }}
+                  className=" place-self-end p-1 px-2 bg-slate-50 border-[1px] text-slate-600 font-bold tracking-wide hover:scale-105 duration-500 hover:border-sky-400 border-sky-600 rounded-xl"
+                >
+                  Clear Filter
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
 
       {/* Requerement Cards */}
       <div className="flex flex-col gap-8 sm:p-5">
