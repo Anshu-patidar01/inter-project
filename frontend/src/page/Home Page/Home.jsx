@@ -32,15 +32,17 @@ function Home() {
     },
   ].map((item) => (
     <div className=" flex justify-center">
-      <h1 className=" absolute z-20 w-[20rem] sm:w-[30rem] md:w-[40rem] text-white text-xl md:text-2xl font-bold top-36 sm:top-24 text-center  md:top-40">
+      <h1 className=" absolute z-20 w-[20rem] sm:w-[30rem] md:w-[40rem] text-white text-xl md:text-2xl font-bold top-24 text-center  md:top-40">
         {item.path}
       </h1>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  inset-0 z-10 h-[80vh] w-[98vw] sm:w-[90vw] bg-black bg-opacity-50"></div>
-      <img
+      <div
         key={item.path}
-        className=" h-[80vh] bg-cover sm:h-[80vh] w-[98vw] sm:w-[90vw] relative"
+        className=" h-[80vh] bg-cover bg-center sm:h-[80vh] w-[98vw] sm:w-[90vw] relative"
         // className="w-full  max-h-[80vh] object-contain sm:w-[90vw]"
-        src={item.image}
+        // src={item.image}
+        // className=" h-screen"
+        style={{ backgroundImage: `url(${item.image})` }}
         alt="image"
       />
     </div>
