@@ -10,7 +10,20 @@ function CategoryPage() {
   return (
     <div className="p-2">
       {/* {allcategory} */}
-      <div
+      <div>
+        <img
+          src={img}
+          className="h-[90vh] hidden md:block  bg-cover bg-center sm:h-[70vh] md:min-h-[80vh] w-full"
+          alt=""
+        />
+        <img
+          src={img}
+          className=" md:hidden block  bg-cover bg-center  w-full"
+          alt=""
+        />
+        {/* <img src="" alt="" /> */}
+      </div>
+      {/* <div
         className=" h-[90vh] sm:h-[70vh] md:min-h-[80vh] w-full flex items-center justify-center relative"
         style={{
           backgroundImage: `url("${img}")`,
@@ -18,7 +31,7 @@ function CategoryPage() {
           backgroundPosition: "top center",
           backgroundRepeat: "no-repeat",
         }}
-      ></div>
+      ></div> */}
       <div className="my-20">
         <h1 className="text-xl font-bold tracking-wider">
           Filter :{allcategory}
