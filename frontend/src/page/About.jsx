@@ -56,7 +56,7 @@ export default function About() {
             src={img1}
             // src="https://img.freepik.com/free-vector/hand-drawn-essay-illustration_23-2150268421.jpg"
             alt="Not found"
-            className="rounded-xl h-80 w-80"
+            className="rounded-xl h-96 w-[30rem]"
           />
         </div>
       </div>
@@ -89,7 +89,7 @@ export default function About() {
           <img
             src={img2}
             // src="https://www.intlum.com/wp-content/themes/intlum/images/content-banner-image.png"
-            className="rounded-lg h-96 w-96"
+            className="rounded-lg h-96 w-[30rem]"
           />
         </div>
       </div>
@@ -137,7 +137,7 @@ export default function About() {
           <img
             src={img3}
             // src="https://ebizfiling.com/wp-content/uploads/2022/05/Header-image-1-Content-writing.png"
-            className="rounded-lg h-96 w-96"
+            className="rounded-lg h-96 w-[30rem]"
           />
         </div>
       </div>

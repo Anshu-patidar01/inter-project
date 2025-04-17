@@ -213,7 +213,7 @@ function ContactPage() {
           </div>
 
           {/* <div className=" absolute hidden sm:block bg-white/15 ml-2 sm:ml-8 rounded-l-xl w-[25rem] sm:w-[29rem] h-full"></div> */}
-          {/* <div className=" flex md:ml-10 flex-row items-center gap-5 text-xl">
+          <div className=" flex md:ml-10 flex-row items-center gap-5 text-xl">
             <span className="hover:scale-125 duration-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -232,8 +232,8 @@ function ContactPage() {
                 <path d="M14.05 6A5 5 0 0 1 18 10" />
               </svg>
             </span>
-            <span>+91 6789054321</span>
-          </div> */}
+            <span>+91 9243002430</span>
+          </div>
           <div className=" flex md:ml-10 flex-row items-center gap-5 text-xl">
             <span className="hover:scale-125 duration-500">
               <svg

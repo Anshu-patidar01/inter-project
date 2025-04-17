@@ -539,7 +539,7 @@ function AllCards(props) {
         ) : (
           <div className="sm:px-10 bg-slate-300 sm:py-5">
             <h1 className="text-center text-3xl  text-red-400 tracking-wider">
-              No requeste in This Field
+              No request in This Field
             </h1>
             <Link
               to={"/requirementForm"}
